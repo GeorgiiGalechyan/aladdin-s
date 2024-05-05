@@ -1,0 +1,30 @@
+---
+import Layout from "./Layout.astro"
+
+const {title} = Astro.props
+---
+<Layout title={title}>
+  <main class="main">
+    <div class="wrapper main-wrapper">
+      <slot/>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .main {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .wrapper {
+      width: 1080px;
+    }
+  
+  .main-wrapper {
+    background-color: burlywood;
+  }
+
+</style>

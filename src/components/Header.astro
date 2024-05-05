@@ -1,0 +1,76 @@
+---
+import  { menu as menu } from './menu.ts'
+
+const  { } = Astro.props;
+---
+
+<header class="header">
+	<div class="wrapper header-wrapper">
+		<div class="fl-row">
+			<a class="logo" href="/">
+				<img class="logo-img" src="" alt="logo">
+				Здесь будет логотип
+			</a>
+			<ul class="nav-row main-menu">
+				{menu.map( (i) => <li class="nav-row-item main-menu-item"> 
+					<a href="i.url">i.titile</a>
+				</li>)}
+		</ul>
+	</div>
+
+</header>
+
+
+<style>
+
+	.header {
+		display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+	}
+
+	.wrapper {
+		width: 1080px;
+	}
+
+	.header-wrapper {
+		background-color: cadetblue;
+	}
+
+	.fl-row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+	}
+
+	.logo {
+		
+	}
+
+	.logo-img {
+
+	}
+
+	.nav-row {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.main-menu {
+		background-color: chartreuse;
+		font-size: 1.3em;
+	}
+
+	.nav-row-item {
+
+	}
+
+	.main-menu-item{
+		padding: 0.75em;
+	}
+
+</style>
