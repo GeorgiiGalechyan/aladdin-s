@@ -1,12 +1,12 @@
 ---
-import { menu } from "../menu"
+import  menu  from "../menu"
 
 const  { } = Astro.props;
 ---
 <nav id="main-menu">
   <ul class="menu">
     {menu.map( (i) => (
-    <li class="menu-item"> 
+    <li  class="menu-item"> 
       <a href={i.url}>{i.title}</a>
     </li>))
     }

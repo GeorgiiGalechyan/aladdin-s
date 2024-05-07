@@ -1,0 +1,26 @@
+---
+import offices from "./offices"
+
+---
+
+<div class="office--select">
+  <select>
+    <option value="">оф. Вольская</option>
+    <option value="">оф. Рабочая</option>
+  </select>
+</div>
+
+<style>
+  select {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border: 0;
+  }
+
+  select::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+</style>

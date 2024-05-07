@@ -94,7 +94,7 @@ const menu: IMenuItem[] = [
   },
 ]
 
-export { menu }
+export default menu
 export type { IMenuItem }
 
 // const pages = {
