@@ -3,7 +3,7 @@ const {} = Astro.props
 ---
 
 <footer class="footer">
-  <div class="wrapper footer-wrapper">
+  <div class="footer-wrapper">
     <div class="fl-row">
       <div class="fl-col">
         <p> Колонка 1, Строка 1 </p>
@@ -28,16 +28,15 @@ const {} = Astro.props
 
   .footer {
     display: flex;
+    flex: 0 0 auto;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
   }
 
-	.wrapper {
-		width: 1080px;
-  }
 
   .footer-wrapper {
+    width: 1080px;
     background-color: darkgreen ;
   }
 

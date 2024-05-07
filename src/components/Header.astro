@@ -1,23 +1,40 @@
 ---
-import  { menu as menu } from './menu.ts'
+import { Picture  } from 'astro:assets';
+import  logo from './logo_v1.webp'
+import Navbar from "./navigation/Navbar.astro";
 
 const  { } = Astro.props;
 ---
 
 <header class="header">
-	<div class="wrapper header-wrapper">
-		<div class="fl-row">
-			<a class="logo" href="/">
-				<img class="logo-img" src="" alt="logo">
-				Здесь будет логотип
+	<div class="header-wrapper">
+		<div class="header-info">
+			<a class="logo" href="/"> <!-- Логотип -->
+				<Picture 
+				src={logo} 
+				formats={['avif', 'webp']}
+				alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
 			</a>
-			<ul class="nav-row main-menu">
-				{menu.map( (i) => <li class="nav-row-item main-menu-item"> 
-					<a href="i.url">i.titile</a>
-				</li>)}
-		</ul>
+			<div class="offices"> <!-- Логотип -->
+				<p>Пункты приёма документов</p>
+			</div>
+			<ul class="contacts"> 
+				<li class="contacts-item">
+					<p>Телефон отдела переводов</p>
+					<a href="tel:+79173026308"> +7 (917) 302-63-08</a>
+				</li>
+				<li>
+					<p>Телефон юридического отдела</p>
+					<a href="tel:+79030238585">+7 (903) 023-85-85</a>
+				</li>
+				<li>
+					<p>Email</p>
+					<a href="mailto:perevod@aladdin-s.ru">perevod@aladdin-s.ru</a>
+				</li>
+			</ul>
+		</div>
+		<Navbar />
 	</div>
-
 </header>
 
 
@@ -25,52 +42,54 @@ const  { } = Astro.props;
 
 	.header {
 		display: flex;
-    flex-flow: column nowrap;
+		flex: 0 0 auto;
     justify-content: center;
-    align-items: center;
-	}
-
-	.wrapper {
-		width: 1080px;
 	}
 
 	.header-wrapper {
-		background-color: cadetblue;
+		width: 1200px;
+		display: flex;
+    flex-direction: column;
 	}
 
-	.fl-row {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
+	.header-info {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 3rem;
 	}
 
 	.logo {
-		
+		margin: 10px;
+		width: 100px;
+		height: 100px;
 	}
 
-	.logo-img {
-
-	}
-
-	.nav-row {
+	.contacts {
 		display: flex;
 		flex-flow: row nowrap;
-		justify-content: space-around;
-		align-items: center;
+		flex: 1 0 auto;
+		justify-content: right;
+		row-gap: 1rem;
 	}
 
-	.main-menu {
-		background-color: chartreuse;
-		font-size: 1.3em;
+	.contacts li {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		margin-left: 2rem;
 	}
 
-	.nav-row-item {
+	.contacts p {
 
+		font-size: 0.9rem;
 	}
 
-	.main-menu-item{
-		padding: 0.75em;
+	.contacts  a {
+		font-size: 1rem;
+		color: green;
 	}
+
 
 </style>

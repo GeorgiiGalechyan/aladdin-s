@@ -3,25 +3,38 @@ import PagesLayout from '../layouts/PagesLayout.astro';
 ---
 
 <PagesLayout title="Главная">
-  <div class="section">
-    <div class="hero"></div>
+  <div class="hero">
+    <div class="btn-group">
+      <button>Кнопка 1</button>
+      <button>Кнопка 2</button>
+    </div>
+  </div>
+  <div class="about">
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
+    <p>Какой-то текст</p>
   </div>
 </PagesLayout>
 
 <style>
-  .section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    background-color: brown;
-  }
 
   .hero {
-    width: 90%;
-    height: 90%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
     background-color: cornflowerblue;
     display: flex;
   }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    background-color: brown;
+  }
+
+
 
 </style>
