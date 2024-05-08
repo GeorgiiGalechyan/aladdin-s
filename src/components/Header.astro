@@ -1,6 +1,7 @@
 ---
 import { Picture  } from 'astro:assets';
 import  logo from './logo_v1.webp'
+import Offices from './Offices.astro';
 import Navbar from "./navigation/Navbar.astro";
 
 const  { } = Astro.props;
@@ -15,9 +16,7 @@ const  { } = Astro.props;
 				formats={['avif', 'webp']}
 				alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
 			</a>
-			<div class="offices"> <!-- Логотип -->
-				<p>Пункты приёма документов</p>
-			</div>
+			<Offices />
 			<ul class="contacts"> 
 				<li class="contacts-item">
 					<p>Телефон отдела переводов</p>
