@@ -1,0 +1,86 @@
+---
+import offices from "./officesData"
+---
+
+<div style="display: flex; flex-flow: column nowrap;">
+  <p class="title">Пункты приёма документов</p>
+  <div class="office-content">
+    <div class="select-container">
+      <select>
+        {offices.map((i)=> <option value={i.id}> {i.name} </option> )}
+      </select>
+      <span class="select-arrow"></span>
+    </div>
+    {offices.map((i) => 
+      <div id={i.id} class="office-info">
+        <a href={i.phoneUrl}>{i.phone}</a>
+        <p>{i.address}</p>
+        <pre>{i.working}</pre>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+
+  .title {
+    font-size: 0.9rem;
+  }
+
+  .office-content {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .select-container {
+    position: relative;
+    border-right: 1px solid black;
+    padding: 0.5rem 1rem 0.5 0;
+  }
+
+  select {
+    padding: 0 1rem 0 0;
+    background-color: transparent;
+    border: 0;
+    font-size: 0.9rem;
+  }
+
+  .select-arrow {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: blue;
+  }
+
+  .select-arrow::after {
+    /* z-index: 1;
+    --size: 1rem;
+    content'';
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid violet;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1rem;
+    height: 1rem; */
+  }
+
+  .office-info {
+    padding: 0 1rem;
+  }
+
+
+
+  .office-info p,
+  .office-info a,
+  .office-info pre {
+    font-size: 0.7rem;
+  }
+
+</style>
