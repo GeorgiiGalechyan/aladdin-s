@@ -1,95 +1,88 @@
 ---
-import { Picture  } from 'astro:assets';
-import  logo from './logo_v1.webp'
+import { Picture } from 'astro:assets'
+import logo from './logo_v1.webp'
 
-import Offices from '@components/header/offices/Offices.astro';
-import Navbar from "@components/header/navbar/Navbar.astro";
+import Offices from '@components/header/offices/Offices.astro'
+import Navbar from '@components/header/navbar/Navbar.astro'
 
-const  { } = Astro.props;
+const {} = Astro.props
 ---
 
 <header class="header">
-	<div class="header-wrapper">
-		<div class="header-info">
-			<a class="logo" href="/"> <!-- Логотип -->
-				<Picture 
-				src={logo} 
-				formats={['avif', 'webp']}
-				alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
-			</a>
-			<Offices />
-			<ul class="contacts"> 
-				<li class="contacts-item">
-					<p>Телефон отдела переводов</p>
-					<a href="tel:+79173026308"> +7 (917) 302-63-08</a>
-				</li>
-				<li>
-					<p>Телефон юридического отдела</p>
-					<a href="tel:+79030238585">+7 (903) 023-85-85</a>
-				</li>
-				<li>
-					<p>Email</p>
-					<a href="mailto:perevod@aladdin-s.ru">perevod@aladdin-s.ru</a>
-				</li>
-			</ul>
-		</div>
-		<Navbar />
-	</div>
+  <div class="header-wrapper">
+    <div class="header-info">
+      <a class="logo" href="/">
+        <!-- Логотип -->
+        <Picture src={logo} formats={['avif', 'webp']} alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
+      </a>
+      <Offices />
+      <ul class="contacts">
+        <li class="contacts-item">
+          <p>Телефон отдела переводов</p>
+          <a href="tel:+79173026308"> +7 (917) 302-63-08</a>
+        </li>
+        <li>
+          <p>Телефон юридического отдела</p>
+          <a href="tel:+79030238585">+7 (903) 023-85-85</a>
+        </li>
+        <li>
+          <p>Email</p>
+          <a href="mailto:perevod@aladdin-s.ru">perevod@aladdin-s.ru</a>
+        </li>
+      </ul>
+    </div>
+    <Navbar />
+  </div>
 </header>
 
-
 <style>
-
-	.header {
-		display: flex;
-		flex: 0 0 auto;
+  .header {
+    display: flex;
+    flex: 0 0 auto;
     justify-content: center;
-	}
+  }
 
-	.header-wrapper {
-		width: 1200px;
-		display: flex;
+  .header-wrapper {
+    width: 1200px;
+    display: flex;
     flex-direction: column;
-	}
+  }
 
-	.header-info {
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-		align-items: center;
-		gap: 3rem;
-	}
+  .header-info {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
 
-	.logo {
-		margin: 10px;
-		width: 100px;
-		height: 100px;
-	}
+  .logo {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+  }
 
-	.contacts {
-		display: flex;
-		flex-flow: row nowrap;
-		flex: 1 0 auto;
-		justify-content: right;
-		row-gap: 1rem;
-	}
+  .contacts {
+    display: flex;
+    flex-flow: row nowrap;
+    flex: 1 0 auto;
+    justify-content: right;
+    row-gap: 1rem;
+  }
 
-	.contacts li {
-		display: flex;
-		flex-direction: column;
-		justify-content: start;
-		margin-left: 2rem;
-	}
+  .contacts li {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-left: 2rem;
+  }
 
-	.contacts p {
+  .contacts p {
+    font-size: 0.9rem;
+  }
 
-		font-size: 0.9rem;
-	}
-
-	.contacts  a {
-		font-size: 1rem;
-		color: green;
-	}
-
-
+  .contacts a {
+    font-size: 1rem;
+    color: green;
+  }
 </style>

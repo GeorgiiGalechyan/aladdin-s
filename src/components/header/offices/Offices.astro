@@ -1,60 +1,52 @@
 ---
-import offices from "./officesData"
-
-
+import offices from './officesData'
 ---
-
-<script>
-  import offices from "./officesData"
-
-  const officesIDArr = offices.map(i => i.id) // officesID[]
-  
-
-  const select = document.getElementById("select");
-  select?.addEventListener('change', () => {})
-
-  const displayInfo = () => {
-  
-
-    const officeHTML = document.getElementsByClassName('office-info')
-
-
-
-  //     // Проверяем тот ли это элемент который нам нужен
-  // if(target.classList.contains('menu__item')) {
-  //   for(let i = 0; i < menuItem.length; i++) {
-  //     // Убираем у других
-  //     menuItem[i].classList.remove('active');
-  //   }
-  //   // Добавляем тому на который нажали
-  //   target.classList.add('active');
-  }
-
-
-</script>
-
 
 <div class="offices-component">
   <h2>Пункты приёма документов</h2>
   <div class="offices-container">
     <div class="select-container">
-      <select id="select">
-        {offices.map((i)=> <option value={i.id}> {i.name} </option> )}
+      <select id="office-select">
+        <optgroup label="Саратов">
+          {offices.map((i) => <option value={i.id}> {i.name} </option>)}
+        </optgroup>
       </select>
       <span class="select-arrow"></span>
     </div>
-    {offices.map((i) => 
-      <div id={i.id} class='office-info'>
-        <a href={i.phoneUrl}>{i.phone}</a>
-        <p>{i.address}</p>
-        <pre>{i.working}</pre>
-      </div>
-    )}
+    {
+      offices.map((i) => (
+        <div id={i.id} class="office-info hidden">
+          <a href={i.phoneUrl}>{i.phone}</a>
+          <p>{i.address}</p>
+          <pre>{i.working}</pre>
+        </div>
+      ))
+    }
   </div>
 </div>
 
-<style>
+<script>
+  const select = document.getElementById('office-select')
 
+  select.addEventListener('change', () => {
+    /* 1) Определяем value выбранного селектора */
+    const value = document.getElementById('office-select').value
+
+    /* 2) Очищаем все классы у div.offie-info */
+    document.querySelectorAll('info-office').forEach((elem) => {
+      // Что-то здесь не так...!!!
+      if (elem.id == value) {
+        elem.classList.remove(...elem.classList)
+        elem.classList.add('office-info', 'visible')
+      } else {
+        elem.classList.remove(...elem.classList)
+        elem.classList.add('office-info', 'hidden')
+      }
+    })
+  })
+</script>
+
+<style>
   .offices-component h2 {
     font-size: 0.9rem;
   }
@@ -89,8 +81,8 @@ import offices from "./officesData"
     background-color: blue;
   }
 
-  .select-arrow::after {
-    /* z-index: 1;
+  /* .select-arrow::after {
+     z-index: 1;
     --size: 1rem;
     content'';
     border-left: var(--size) solid transparent;
@@ -100,20 +92,16 @@ import offices from "./officesData"
     top: 1rem;
     right: 1rem;
     width: 1rem;
-    height: 1rem; */
+    height: 1rem; 
+  } */
+
+  .hidden {
+    display: none;
   }
 
-  .office-info {
-    display: none
+  .visible {
+    display: flex;
     padding: 0 1rem;
-  }
-
-
-
-  .office-info p,
-  .office-info a,
-  .office-info pre {
     font-size: 0.7rem;
   }
-
 </style>
