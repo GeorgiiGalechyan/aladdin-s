@@ -14,6 +14,19 @@ import offices from './officesData'
       <span class="select-arrow"></span>
     </div>
     {
+      () => {
+        const i = offices[0]
+
+        return (
+          <div id="default-office" class="office-info visible">
+            <a href={i.phoneUrl}>{i.phone}</a>
+            <p>{i.address}</p>
+            <pre>{i.working}</pre>
+          </div>
+        )
+      }
+    }
+    {
       offices.map((i) => (
         <div id={i.id} class="office-info hidden">
           <a href={i.phoneUrl}>{i.phone}</a>
@@ -26,22 +39,32 @@ import offices from './officesData'
 </div>
 
 <script>
-  const select = document.getElementById('office-select')
+  ;(document.getElementById('office-select') as HTMLSelectElement).addEventListener('change', () => {
+    // Написать, чтобы исполнялось при наличии 'default-office'
+    // Если 'default-office' нету, то выдаёт ошибку
+    ;(document.getElementById('default-office') as HTMLDivElement).remove()
+    console.log('defaultOffice is delete')
 
-  select.addEventListener('change', () => {
-    /* 1) Определяем value выбранного селектора */
-    const value = document.getElementById('office-select').value
+    const select = document.getElementById('office-select') as HTMLSelectElement
+    const value: string = select.value
 
-    /* 2) Очищаем все классы у div.offie-info */
-    document.querySelectorAll('info-office').forEach((elem) => {
-      // Что-то здесь не так...!!!
-      if (elem.id == value) {
-        elem.classList.remove(...elem.classList)
-        elem.classList.add('office-info', 'visible')
-      } else {
-        elem.classList.remove(...elem.classList)
-        elem.classList.add('office-info', 'hidden')
+    ;(document.querySelectorAll('.office-info') as NodeListOf<HTMLDivElement>).forEach((elem: HTMLDivElement): void => {
+      const isChoise: boolean = elem.id === value
+
+      const refreshVisible = () => {
+        console.log(isChoise)
+        if (isChoise) {
+          console.log('in ifChoise true')
+          elem.classList.remove(...elem.classList)
+          elem.classList.add('office-info', 'visible')
+        } else {
+          console.log('in ifChoise false')
+          elem.classList.remove(...elem.classList)
+          elem.classList.add('office-info', 'hidden')
+        }
       }
+
+      refreshVisible()
     })
   })
 </script>
@@ -102,6 +125,6 @@ import offices from './officesData'
   .visible {
     display: flex;
     padding: 0 1rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 </style>
