@@ -1,5 +1,7 @@
 ---
 import offices from './officesData'
+
+const defOff = offices[0] // default visible office
 ---
 
 <div class="offices-component">
@@ -13,19 +15,11 @@ import offices from './officesData'
       </select>
       <span class="select-arrow"></span>
     </div>
-    {
-      () => {
-        const i = offices[0]
-
-        return (
-          <div id="default-office" class="office-info visible">
-            <a href={i.phoneUrl}>{i.phone}</a>
-            <p>{i.address}</p>
-            <pre>{i.working}</pre>
-          </div>
-        )
-      }
-    }
+    <div id="default-office" class="office-info visible">
+      <a href={defOff.phoneUrl}>{defOff.phone}</a>
+      <p>{defOff.address}</p>
+      <pre>{defOff.working}</pre>
+    </div>
     {
       offices.map((i) => (
         <div id={i.id} class="office-info hidden">
@@ -39,11 +33,13 @@ import offices from './officesData'
 </div>
 
 <script>
+  ;(document.getElementById('office-select') as HTMLOptionElement).value = 'volskaya'
   ;(document.getElementById('office-select') as HTMLSelectElement).addEventListener('change', () => {
-    // Написать, чтобы исполнялось при наличии 'default-office'
-    // Если 'default-office' нету, то выдаёт ошибку
-    ;(document.getElementById('default-office') as HTMLDivElement).remove()
-    console.log('defaultOffice is delete')
+    let defaultOff = document.getElementById('default-office') as HTMLDivElement | null
+    if (defaultOff) {
+      defaultOff.remove()
+      console.log('defaultOffice is delete')
+    }
 
     const select = document.getElementById('office-select') as HTMLSelectElement
     const value: string = select.value
@@ -54,11 +50,9 @@ import offices from './officesData'
       const refreshVisible = () => {
         console.log(isChoise)
         if (isChoise) {
-          console.log('in ifChoise true')
           elem.classList.remove(...elem.classList)
           elem.classList.add('office-info', 'visible')
         } else {
-          console.log('in ifChoise false')
           elem.classList.remove(...elem.classList)
           elem.classList.add('office-info', 'hidden')
         }
