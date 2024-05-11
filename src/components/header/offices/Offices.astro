@@ -10,21 +10,19 @@ const defOff = offices[0] // default visible office
     <div class="select-container">
       <select id="office-select">
         <optgroup label="Саратов">
-          {offices.map((i) => <option value={i.id}> {i.name} </option>)}
+          {offices.map((i) => <option value={i.id}> {i.address} </option>)}
         </optgroup>
       </select>
       <span class="select-arrow"></span>
     </div>
     <div id="default-office" class="office-info visible">
       <a href={defOff.phoneUrl}>{defOff.phone}</a>
-      <p>{defOff.address}</p>
       <pre>{defOff.working}</pre>
     </div>
     {
       offices.map((i) => (
         <div id={i.id} class="office-info hidden">
           <a href={i.phoneUrl}>{i.phone}</a>
-          <p>{i.address}</p>
           <pre>{i.working}</pre>
         </div>
       ))
@@ -78,12 +76,12 @@ const defOff = offices[0] // default visible office
   .select-container {
     position: relative;
     border-right: 1px solid black;
-    padding: 0.5rem 1rem 0.5 0;
+    margin-right: 1rem;
   }
 
   select {
-    padding: 0 1rem 0 0;
-    background-color: transparent;
+    padding: 0 0 0 0;
+    background-color: gray;
     border: 0;
     font-size: 0.9rem;
   }
@@ -117,8 +115,10 @@ const defOff = offices[0] // default visible office
   }
 
   .visible {
-    display: flex;
     padding: 0 1rem;
     font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
   }
 </style>
