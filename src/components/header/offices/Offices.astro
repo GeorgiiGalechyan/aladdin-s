@@ -159,8 +159,7 @@ const defOff = offices[0] // default visible office
     font-size: 1rem;
   }
 
-  .visible > p,
-  .visible > pre {
+  .visible :is(p, pre) {
     font-size: 0.8rem;
   }
 </style>

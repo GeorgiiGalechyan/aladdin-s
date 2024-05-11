@@ -11,18 +11,13 @@
     color: orangered;
   }
 
-  a:focus {
-    color: inherit;
-  }
-
-  /* mouse over link */
-  a:hover {
+  a:is(:hover, :focus) {
     color: green;
   }
 
   /* visited link */
   a:visited {
-    color: inherit;
+    color: blueviolet;
   }
 
   /* selected link */
