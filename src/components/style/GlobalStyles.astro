@@ -1,14 +1,32 @@
 <style is:global>
-	:root { }
-
-
-
-  a { 
-    text-decoration:none; color: black; 
+  :root {
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* unvisited link */
+  a:link {
+    color: orangered;
+  }
+
   a:focus {
-    color: brown ;
+    color: inherit;
   }
-   
 
+  /* mouse over link */
+  a:hover {
+    color: green;
+  }
+
+  /* visited link */
+  a:visited {
+    color: inherit;
+  }
+
+  /* selected link */
+  a:active {
+    color: inherit;
+  }
 </style>

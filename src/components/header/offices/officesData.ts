@@ -1,11 +1,11 @@
-import { type IOffice } from "@interfaces/webComponents/office"
+import { type IOffice } from '@interfaces/webComponents/office'
 
 const offices: IOffice[] = []
 
 const volskaya: IOffice = {
   id: 'volskaya',
   name: 'оф. Вольская',
-  address: 'Вольская, 11',
+  address: 'ул. Вольская, 11',
   phone: '+7 (917) 302-63-08',
   phoneUrl: 'tel:+79173026308',
   working: 'Пн-Пт: 08:00-19:00\n  Cб: 10:00-17:00\n  Вс: Выходной',
@@ -15,7 +15,7 @@ const volskaya: IOffice = {
 const rabochaya: IOffice = {
   id: 'rabochaya',
   name: 'оф. Рабочая',
-  address: 'Рабочая, 41/43',
+  address: 'ул. Рабочая, 41/43',
   phone: '+7 (917) 980-94-62',
   phoneUrl: 'tel:+79179809462',
   working: 'Пн-Пт: 08:00-19:00\n  Cб: 10:00-17:00\n  Вс: Выходной',

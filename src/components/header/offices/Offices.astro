@@ -5,16 +5,19 @@ const defOff = offices[0] // default visible office
 ---
 
 <div class="offices-component">
-  <h2>Пункты приёма документов</h2>
   <div class="offices-container">
     <div class="select-container">
-      <select id="office-select">
-        <optgroup label="Саратов">
-          {offices.map((i) => <option value={i.id}> {i.address} </option>)}
-        </optgroup>
-      </select>
-      <span class="select-arrow"></span>
+      <h2>Пункты приёма документов:</h2>
+      <div class="select">
+        <select id="office-select">
+          <optgroup label="Саратов">
+            {offices.map((i) => <option value={i.id}> {i.address} </option>)}
+          </optgroup>
+        </select>
+        <span class="custom-select-arrow"></span>
+      </div>
     </div>
+
     <div id="default-office" class="office-info visible">
       <a href={defOff.phoneUrl}>{defOff.phone}</a>
       <pre>{defOff.working}</pre>
@@ -74,51 +77,90 @@ const defOff = offices[0] // default visible office
   }
 
   .select-container {
+    width: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .select {
     position: relative;
-    border-right: 1px solid black;
-    margin-right: 1rem;
+    padding: 0;
   }
 
   select {
-    padding: 0 0 0 0;
-    background-color: gray;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    padding: 0 4rem 0 0;
     border: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    /* appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none; */
   }
 
-  .select-arrow {
+  .custom-select-arrow {
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    width: 1rem;
-    height: 1rem;
-    background-color: blue;
+    width: 2rem;
+    height: 100%;
+    background-color: white;
+    pointer-events: none;
   }
 
-  /* .select-arrow::after {
-     z-index: 1;
-    --size: 1rem;
-    content'';
+  .custom-select-arrow::before,
+  .custom-select-arrow::after {
+    --size: 0.4em;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-select-arrow::before {
     border-left: var(--size) solid transparent;
     border-right: var(--size) solid transparent;
-    border-bottom: var(--size) solid violet;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 1rem;
-    height: 1rem; 
-  } */
+    border-top: var(--size) solid orangered;
+
+    top: 70%;
+  }
+
+  .custom-select-arrow::after {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid orangered;
+
+    top: 30%;
+  }
 
   .hidden {
     display: none;
   }
 
   .visible {
-    padding: 0 1rem;
-    font-size: 0.8rem;
+    width: 10rem;
+    border-left: 1px solid black;
+    padding: 0 0 0 1rem;
+    margin-left: 2rem;
+    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
     align-items: end;
+  }
+
+  .visible a {
+    font-size: 1rem;
+  }
+
+  .visible > p,
+  .visible > pre {
+    font-size: 0.8rem;
   }
 </style>
