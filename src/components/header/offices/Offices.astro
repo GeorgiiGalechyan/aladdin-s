@@ -7,7 +7,7 @@ const defOff = offices[0] // default visible office
 <div class="offices-component">
   <div class="offices-container">
     <div class="select-container">
-      <h2>Пункты приёма документов:</h2>
+      <label for="office-select">Пункты приёма документов:</label>
       <div class="select">
         <select id="office-select">
           <optgroup label="Саратов">
@@ -65,7 +65,7 @@ const defOff = offices[0] // default visible office
 </script>
 
 <style>
-  .offices-component h2 {
+  label {
     font-size: 0.9rem;
   }
 
@@ -88,7 +88,7 @@ const defOff = offices[0] // default visible office
     padding: 0;
   }
 
-  select {
+  #office-select {
     height: 100%;
     width: 100%;
     background-color: transparent;
@@ -98,6 +98,26 @@ const defOff = offices[0] // default visible office
     /* appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none; */
+  }
+
+  #office-select optgroup {
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: normal;
+    color: aliceblue;
+    background-color: cadetblue;
+  }
+
+  #office-select option {
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: normal;
+    color: black;
+    background-color: white;
+  }
+  #office-select option:is(:hover, :focus) {
+    color: orangered;
+    opacity: 0.8;
   }
 
   .custom-select-arrow {
@@ -113,7 +133,7 @@ const defOff = offices[0] // default visible office
 
   .custom-select-arrow::before,
   .custom-select-arrow::after {
-    --size: 0.4em;
+    --size: 0.45em;
     content: '';
     position: absolute;
     width: 0;
@@ -128,7 +148,6 @@ const defOff = offices[0] // default visible office
     border-left: var(--size) solid transparent;
     border-right: var(--size) solid transparent;
     border-top: var(--size) solid orangered;
-
     top: 70%;
   }
 
@@ -136,7 +155,6 @@ const defOff = offices[0] // default visible office
     border-left: var(--size) solid transparent;
     border-right: var(--size) solid transparent;
     border-bottom: var(--size) solid orangered;
-
     top: 30%;
   }
 
@@ -152,14 +170,14 @@ const defOff = offices[0] // default visible office
     font-size: 0.9rem;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    text-align: end;
+  }
+
+  .visible :is(a, p, pre) {
+    font-size: 0.8rem;
   }
 
   .visible a {
-    font-size: 1rem;
-  }
-
-  .visible :is(p, pre) {
-    font-size: 0.8rem;
+    font-weight: 600;
   }
 </style>
