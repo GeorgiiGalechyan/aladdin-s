@@ -85,23 +85,27 @@ const defOff = offices[0] // default visible office
 
   .select {
     position: relative;
-    padding: 0;
   }
 
   #office-select {
     height: 100%;
     width: 100%;
     background-color: transparent;
-    padding: 0 4rem 0 0;
     border: 0;
     font-size: 1rem;
-    /* appearance: none;
+    appearance: none;
     -moz-appearance: none;
-    -webkit-appearance: none; */
+    -webkit-appearance: none;
+    outline: none;
+  }
+
+  #office-select :is(:hover, :focus, :active) {
+    border: 0;
   }
 
   #office-select optgroup {
     font-size: 0.9rem;
+    line-height: 10px;
     font-style: normal;
     font-weight: normal;
     color: aliceblue;
@@ -115,10 +119,10 @@ const defOff = offices[0] // default visible office
     color: black;
     background-color: white;
   }
-  #office-select option:is(:hover, :focus) {
+  /* #office-select option:is(:checked) {
     color: orangered;
-    opacity: 0.8;
-  }
+    background-color: white;
+  } */
 
   .custom-select-arrow {
     display: block;
