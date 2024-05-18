@@ -39,7 +39,6 @@ const defOff = offices[0] // default visible office
     let defaultOff = document.getElementById('default-office') as HTMLDivElement | null
     if (defaultOff) {
       defaultOff.remove()
-      console.log('defaultOffice is delete')
     }
 
     const select = document.getElementById('office-select') as HTMLSelectElement
@@ -49,7 +48,6 @@ const defOff = offices[0] // default visible office
       const isChoise: boolean = elem.id === value
 
       const refreshVisible = () => {
-        console.log(isChoise)
         if (isChoise) {
           elem.classList.remove(...elem.classList)
           elem.classList.add('office-info', 'visible')
