@@ -1,31 +1,23 @@
 ---
-import Layout from "@layouts/Layout.astro"
+import Layout from '@layouts/Layout.astro'
 
-const {title} = Astro.props
+const { title } = Astro.props
 ---
+
 <Layout title={title}>
   <main class="main">
-    <div class="main-wrapper">
-      <slot>
-        <h1 style="text-align: center;">{title}</h1>
-      </slot>
-    </div>
+    <slot>
+      <h1 style="text-align: center;">{title}</h1>
+    </slot>
   </main>
 </Layout>
 
 <style>
-  
   .main {
     display: flex;
     flex: 1 0 auto;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    
   }
-  
-  .main-wrapper {
-    width: 1080px;
-  }
-
 </style>

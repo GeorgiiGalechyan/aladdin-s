@@ -1,52 +1,36 @@
 ---
 interface Props {
-	title: string;
+  title: string
 }
 
-import ResetCSS from '@components/style/ResetCSS.astro';
-import GlobalStyles from '@components/style/GlobalStyles.astro';
-import Header from '@components/header/Header.astro';
-import Footer from '@components/Footer.astro';
+import '@styles/styles.scss'
+import Header from '@components/header/Header.astro'
+import Footer from '@components/Footer.astro'
 
-
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
-
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
 
-	<body>
-		<ResetCSS />
-		<GlobalStyles/>
-		<Header></Header>
-		<slot />
-		<Footer></Footer>
-	</body>
-
+  <body>
+    <div class="page-wrapper">
+      <Header />
+      <slot>
+        <h1>Заглушка</h1>
+      </slot>
+      <Footer />
+    </div>
+  </body>
 </html>
 
-
 <!--Стили  -->
-<style is:global>
-
-html { 
-	height: 100%;
-}
-
-body {
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 1 0 auto;
-  }
-
-</style>
+<style></style>

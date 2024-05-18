@@ -2,51 +2,43 @@
 const {} = Astro.props
 ---
 
-<footer class="footer">
-  <div class="footer-wrapper">
-    <div class="fl-row">
-      <div class="fl-col">
-        <p> Колонка 1, Строка 1 </p>
-        <p> Колонка 1, Строка 2 </p>
-        <p> Колонка 1, Строка 3 </p>
-      </div>
-      <div class="fl-col">
-        <p> Колонка 2, Строка 1 </p>
-        <p> Колонка 2, Строка 2 </p>
-        <p> Колонка 2, Строка 3 </p>
-      </div>
-      <div class="fl-col">
-        <p> Колонка 3, Строка 1 </p>
-        <p> Колонка 3, Строка 2 </p>
-        <p> Колонка 3, Строка 3 </p>
-      </div>
+<footer>
+  <div class="fl-row">
+    <div class="fl-col">
+      <p>Колонка 1, Строка 1</p>
+      <p>Колонка 1, Строка 2</p>
+      <p>Колонка 1, Строка 3</p>
+    </div>
+    <div class="fl-col">
+      <p>Колонка 2, Строка 1</p>
+      <p>Колонка 2, Строка 2</p>
+      <p>Колонка 2, Строка 3</p>
+    </div>
+    <div class="fl-col">
+      <p>Колонка 3, Строка 1</p>
+      <p>Колонка 3, Строка 2</p>
+      <p>Колонка 3, Строка 3</p>
     </div>
   </div>
 </footer>
 
 <style>
-
-  .footer {
+  footer {
     display: flex;
+    flex-direction: column;
     flex: 0 0 auto;
-    flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
-  }
-
-
-  .footer-wrapper {
-    width: 1080px;
-    background-color: darkgreen ;
   }
 
   .fl-row {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
   }
 
-
-
+  .fl-col {
+    display: flex;
+    flex-direction: column;
+  }
 </style>
