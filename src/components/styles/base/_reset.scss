@@ -1,414 +1,93 @@
+/* Объяснение (обоснование): https://piccalil.li/blog/a-more-modern-css-reset/
+Этот 'reset' порекоммендовал Kewin Powel в одном из своих видео. */
+
+/* Box sizing rules */
 *,
-::before,
-::after {
+*::before,
+*::after {
   box-sizing: border-box;
-  /* 1 */
-  border-width: 0;
-  /* 2 */
-  border-style: solid;
-  /* 2 */
-  border-color: #e5e7eb;
-  /* 2 */
 }
 
-/*
-1. Используйте единую разумную высоту линий во всех браузерах.
-2. Предотвращение изменения размера шрифта после смены ориентации в iOS.
-3. Используйте более удобный для чтения размер табуляции.
-4. По умолчанию использовать настроенное пользователем начертание шрифта `sans.
-5. По умолчанию используйте настроенный пользователем шрифт `sans` font-feature-settings.
-*/
-
+/* Prevent font size inflation */
 html {
-  line-height: 1.5;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
-  -moz-tab-size: 4;
-  /* 3 */
-  -o-tab-size: 4;
-  tab-size: 4;
-  /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  /* 4 */
-  font-feature-settings: normal;
-  /* 5 */
-  scroll-behavior: smooth;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-/*
-1. Уберите отступ во всех браузерах.
-2. Унаследовать line-height от `html`, чтобы пользователи могли задавать их как класс непосредственно в элементе `html`.
-*/
-
-body {
-  margin: 0;
-  /* 1 */
-  line-height: inherit;
-  /* 2 */
-  scroll-behavior: smooth;
-}
-
-/*
-1. Добавьте нужную высоту в Firefox.
-2. Исправьте наследование цвета границы в Firefox. 
-(https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
-3. Убедитесь, что горизонтальные правила видны по умолчанию.
-*/
-
-hr {
-  height: 0;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  border-top-width: 1px;
-  /* 3 */
-}
-
-/*
-Добавьте правильное оформление текста в Chrome, Edge и Safari.
-*/
-
-abbr:where([title]) {
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
-}
-
-/*
-Уберите размер и толщину шрифта по умолчанию для заголовков.
-*/
-
+/* Remove default margin in favour of better control in authored CSS */
+body,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-/*
-Сбросьте ссылки, чтобы оптимизировать их под стилистику opt-in, а не opt-out.
-*/
-
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-/*
-Добавьте правильную толщину шрифта в Edge и Safari.
-*/
-
-b,
-strong {
-  font-weight: bolder;
-}
-
-/*
-1. По умолчанию использовать настроенное пользователем семейство шрифтов `mono`.
-2. Исправление странного размера шрифта `em` во всех браузерах.
-*/
-
-code,
-kbd,
-samp,
-pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  /* 1 */
-  font-size: 1em;
-  /* 2 */
-}
-
-/*
-Добавьте правильный размер шрифта во всех браузерах.
-*/
-
-small {
-  font-size: 80%;
-}
-
-/*
-Запретите элементам `sub` и `sup` влиять на высоту строки во всех браузерах.
-*/
-
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-sup {
-  top: -0.5em;
-}
-
-/*
-1. Убрать отступы текста в содержимом таблиц в Chrome и Safari. 
-(https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
-
-2. Исправить наследование цвета границы таблицы во всех браузерах Chrome и Safari. 
-(https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
-*/
-
-table {
-  text-indent: 0;
-  /* 1 */
-  border-color: inherit;
-  /* 2 */
-  border-collapse: collapse;
-  /* 3 */
-}
-
-/*
-1. Измените стили шрифтов во всех браузерах.
-2. Уберите поля в Firefox и Safari.
-3. Удалите стандартную подложку во всех браузерах.
-*/
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 1 */
-  font-weight: inherit;
-  /* 1 */
-  line-height: inherit;
-  /* 1 */
-  color: inherit;
-  /* 1 */
-  margin: 0;
-  /* 2 */
-  padding: 0;
-  /* 3 */
-}
-
-/*
-Устраните наследование преобразования текста в Edge и Firefox.
-*/
-
-button,
-select {
-  text-transform: none;
-}
-
-/*
-1. Исправление невозможности стилизовать кликабельные типы в iOS и Safari.
-2. Удаление стилей кнопок по умолчанию.
-*/
-
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-  /* 1 */
-  background-color: transparent;
-  /* 2 */
-  background-image: none;
-  /* 2 */
-}
-
-/*
-Используйте современный стиль фокусировки Firefox для всех элементов.
-*/
-
-:-moz-focusring {
-  outline: auto;
-}
-
-/*
-Уберите дополнительные стили `:invalid` в Firefox. 
-(https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
-*/
-
-:-moz-ui-invalid {
-  box-shadow: none;
-}
-
-/*
-Добавьте правильное вертикальное выравнивание в Chrome и Firefox.
-*/
-
-progress {
-  vertical-align: baseline;
-}
-
-/*
-Исправление стиля курсора для кнопок увеличения и уменьшения в Safari.
-*/
-
-::-webkit-inner-spin-button,
-::-webkit-outer-spin-button {
-  height: auto;
-}
-
-/*
-1. Исправьте странный внешний вид в Chrome и Safari.
-2. Исправьте стиль контура в Safari.
-*/
-
-[type='search'] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
-}
-
-/*
-Уберите внутреннюю подложку в Chrome и Safari на macOS.
-*/
-
-::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-
-/*
-1. Исправление невозможности стилизовать кликабельные типы в iOS и Safari.
-2. Измените свойства шрифта на `наследуемый` в Safari.
-*/
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button; /* 1 */
-  font: inherit; /* 2 */
-}
-
-/*
-Добавьте правильное отображение в Chrome и Safari.
-*/
-
-summary {
-  display: list-item;
-}
-
-/*
-Удаляет установленные по умолчанию интервалы и границы для соответствующих элементов.
-*/
-
+p,
+figure,
 blockquote,
 dl,
-dd,
+dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
-hr,
-figure,
-p,
-pre {
-  margin: 0;
-}
-
-fieldset {
-  margin: 0;
-  padding: 0;
-}
-
-legend {
-  padding: 0;
-}
-
-ol,
-ul,
-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/*
-Запретите изменять размер текстовых областей по горизонтали по умолчанию.
-*/
-
-textarea {
-  resize: vertical;
-}
-
-/*
-1. Сбросьте полупрозрачность заполнителя по умолчанию в Firefox.
-(https://github.com/tailwindlabs/tailwindcss/issues/3300)
-2. Установите цвет плагина по умолчанию на настроенный пользователем серый цвет 400.
-*/
-
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
-input::placeholder,
-textarea::placeholder {
-  opacity: 1;
-  /* 1 */
-  color: #9ca3af;
-  /* 2 */
-}
-
-/*
-Установите курсор по умолчанию для кнопок.
-*/
-
 button,
-[role='button'] {
-  cursor: pointer;
+input,
+label {
+  line-height: 1.1;
 }
 
-/*
-Убедитесь, что отключенные кнопки не попадают под курсор указателя.
-*/
-
-:disabled {
-  cursor: default;
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
-/*
-1. Сделать заменяемые элементы `display: block` по умолчанию. 
-(https://github.com/mozdevs/cssremedy/issues/14)
-2. Добавить `vertical-align: middle` для более разумного выравнивания заменяемых элементов по умолчанию. 
-(https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-P.S. Может привести к плохо продуманной ошибке lint в некоторых инструментах, но включено специально.
-*/
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
 
+/* Make images easier to work with */
 img,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
-  display: block;
-  /* 1 */
-  vertical-align: middle;
-  /* 2 */
-}
-
-/*
-Ограничьте изображения и видео шириной родителя и сохраните присущее им соотношение сторон.
-(https://github.com/mozdevs/cssremedy/issues/14)
-*/
-
-img,
-video {
+picture {
   max-width: 100%;
-  height: auto;
+  display: block;
 }
 
-/* Заставьте элементы с атрибутом hidden оставаться скрытыми по умолчанию */
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
 
-[hidden] {
-  display: none;
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
 }
