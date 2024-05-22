@@ -4,13 +4,11 @@ import logo from './logo_v1.webp'
 
 import Offices from '@components/header/offices/Offices.astro'
 import Navbar from '@components/header/navbar/Navbar.astro'
-
-const {} = Astro.props
 ---
 
 <header>
   <div class="header-info">
-    <a class="logo" href="/">
+    <a class="header-logo" href="/">
       <!-- Логотип -->
       <Picture src={logo} formats={['avif', 'webp']} alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
     </a>
@@ -32,49 +30,3 @@ const {} = Astro.props
   </div>
   <Navbar />
 </header>
-
-<style>
-  header {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
-    justify-content: center;
-  }
-
-  .header-info {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .logo {
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-  }
-
-  .contacts {
-    display: flex;
-    flex-flow: row nowrap;
-    flex: 1 0 auto;
-    justify-content: right;
-    row-gap: 1rem;
-  }
-
-  .contacts li {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    margin-left: 2rem;
-  }
-
-  .contacts p {
-    font-size: 0.9rem;
-  }
-
-  .contacts a {
-    font-size: 1rem;
-  }
-</style>

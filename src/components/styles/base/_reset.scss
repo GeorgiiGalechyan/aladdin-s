@@ -1,3 +1,5 @@
+@charset 'utf-8';
+
 /* Объяснение (обоснование): https://piccalil.li/blog/a-more-modern-css-reset/
 Этот 'reset' порекоммендовал Kewin Powel в одном из своих видео. */
 
@@ -8,11 +10,22 @@
   box-sizing: border-box;
 }
 
+* {
+  margin: 0px;
+  padding: 0px;
+  font: inherit;
+}
+
 /* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -37,7 +50,7 @@ ol[role='list'] {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
+  text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
 
@@ -68,18 +81,10 @@ a:not([class]) {
 
 /* Make images easier to work with */
 img,
-picture {
+picture,
+svg {
   max-width: 100%;
   display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */
@@ -90,4 +95,19 @@ textarea:not([rows]) {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

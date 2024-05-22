@@ -1,43 +1,39 @@
 ---
 import headerMenu from './headerMenuData'
 
-const  { } = Astro.props;
+const {} = Astro.props
 ---
-<nav id="header-menu">
+
+<nav class="header-menu">
   <ul class="menu">
-    {headerMenu.map( (i) => (
-    <li  class="menu-item"> 
-      <a href={i.url}>{i.title}</a>
-    </li>))
+    {
+      headerMenu.map((i) => (
+        <li class="menu-item">
+          <a href={i.url}>{i.title}</a>
+        </li>
+      ))
     }
   </ul>
 </nav>
 
 <style>
-
-  #header-menu {
-    display: flex;
-    flex: 1 1 auto;
+  .header-menu {
     background-color: chocolate;
   }
 
-  .menu {
+  .header-menu .menu {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
-    flex: 1 1 auto;
-
   }
 
   .menu-item {
-    display: flex;
-    flex: 1 1 auto;
-    justify-content: center;
-    align-items: flex-start;
+    width: 100%;
+    list-style: none;
   }
 
   .menu-item a {
-    padding: 0.3rem 1rem  ;
+    padding: 0.3rem 1rem;
     color: white;
     font-size: 1.3rem;
     font-weight: 500;
@@ -46,4 +42,10 @@ const  { } = Astro.props;
     flex: 1 1 auto;
   }
 
+  .menu-item:hover a,
+  .menu-item:focus a {
+    color: white;
+    background-color: cadetblue;
+    opacity: 100;
+  }
 </style>

@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+header {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  justify-content: center;
+}
+
+.header-info {
+  font-size: 0.9rem;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2em;
+}
+
+.header-logo img {
+  height: 100%;
+  min-width: 4em;
+  width: 6em;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.contacts li {
+  line-height: 1.3rem;
+  display: flex;
+  flex-direction: column;
+}

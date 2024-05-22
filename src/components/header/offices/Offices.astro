@@ -5,32 +5,30 @@ const defOff = offices[0] // default visible office
 ---
 
 <div class="offices-component">
-  <div class="offices-container">
+  <div class="select-column">
+    <label for="office-select">Пункты приёма документов:</label>
     <div class="select-container">
-      <label for="office-select">Пункты приёма документов:</label>
-      <div class="select">
-        <select id="office-select">
-          <optgroup label="Саратов">
-            {offices.map((i) => <option value={i.id}> {i.address} </option>)}
-          </optgroup>
-        </select>
-        <span class="custom-select-arrow"></span>
-      </div>
+      <select id="office-select">
+        <optgroup label="Саратов">
+          {offices.map((i) => <option value={i.id}> {i.address} </option>)}
+        </optgroup>
+      </select>
+      <span class="custom-select-arrow"></span>
     </div>
-
-    <div id="default-office" class="office-info visible">
-      <a href={defOff.phoneUrl}>{defOff.phone}</a>
-      <pre>{defOff.working}</pre>
-    </div>
-    {
-      offices.map((i) => (
-        <div id={i.id} class="office-info hidden">
-          <a href={i.phoneUrl}>{i.phone}</a>
-          <pre>{i.working}</pre>
-        </div>
-      ))
-    }
   </div>
+
+  <div id="default-office" class="office-info visible">
+    <a href={defOff.phoneUrl}>{defOff.phone}</a>
+    <pre>{defOff.working}</pre>
+  </div>
+  {
+    offices.map((i) => (
+      <div id={i.id} class="office-info hidden">
+        <a href={i.phoneUrl}>{i.phone}</a>
+        <pre>{i.working}</pre>
+      </div>
+    ))
+  }
 </div>
 
 <script>
@@ -63,70 +61,49 @@ const defOff = offices[0] // default visible office
 </script>
 
 <style>
-  label {
-    font-size: 0.9rem;
-  }
-
-  .offices-container {
+  .offices-component {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
   }
 
-  .select-container {
+  .select-column {
     width: 12rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .select {
+  .select-column > label {
+    line-height: 1.3rem;
+  }
+
+  .select-container {
     position: relative;
   }
 
   #office-select {
-    height: 100%;
-    width: 100%;
     background-color: transparent;
     border: 0;
-    font-size: 1rem;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     outline: none;
   }
 
-  #office-select :is(:hover, :focus, :active) {
-    border: 0;
-  }
-
   #office-select optgroup {
-    font-size: 0.9rem;
-    line-height: 10px;
     font-style: normal;
-    font-weight: normal;
-    color: aliceblue;
+    color: white;
     background-color: cadetblue;
   }
 
   #office-select option {
-    font-size: 0.9rem;
     font-style: normal;
     font-weight: normal;
     color: black;
-    background-color: white;
   }
-  /* #office-select option:is(:checked) {
-    color: orangered;
-    background-color: white;
-  } */
 
   .custom-select-arrow {
     display: block;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 3.5em;
     width: 2rem;
     height: 100%;
     background-color: white;
@@ -135,29 +112,28 @@ const defOff = offices[0] // default visible office
 
   .custom-select-arrow::before,
   .custom-select-arrow::after {
-    --size: 0.45em;
+    --arrow-size: 0.35em;
     content: '';
     position: absolute;
     width: 0;
     height: 0;
-
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 
   .custom-select-arrow::before {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-top: var(--size) solid orangered;
-    top: 70%;
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-top: var(--arrow-size) solid orangered;
+    top: 67%;
   }
 
   .custom-select-arrow::after {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-bottom: var(--size) solid orangered;
-    top: 30%;
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-bottom: var(--arrow-size) solid orangered;
+    top: 32%;
   }
 
   .hidden {
@@ -165,21 +141,14 @@ const defOff = offices[0] // default visible office
   }
 
   .visible {
-    width: 10rem;
-    border-left: 1px solid black;
-    padding: 0 0 0 1rem;
-    margin-left: 2rem;
-    font-size: 0.9rem;
+    width: 9rem;
+    border-left: 1px solid chocolate;
     display: flex;
     flex-direction: column;
     text-align: end;
   }
 
   .visible :is(a, p, pre) {
-    font-size: 0.8rem;
-  }
-
-  .visible a {
-    font-weight: 600;
+    line-height: 1.3rem;
   }
 </style>
