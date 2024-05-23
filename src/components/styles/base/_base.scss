@@ -1,12 +1,15 @@
 @charset 'utf-8';
 
 body {
+  font-family: 'Arimo', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 400;
   display: flex;
   justify-content: center;
 }
 
 .page-wrapper {
-  width: 75em;
+  width: 80rem;
+  padding-inline: 1rem;
   display: flex;
   flex-direction: column;
 }

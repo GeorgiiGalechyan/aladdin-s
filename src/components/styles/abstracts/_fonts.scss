@@ -1,3 +1,39 @@
 @charset 'utf-8';
 
 // Fonts
+
+// Roboto
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/Roboto/roboto-regular.woff2') format('woff2'),
+    url('/fonts/Roboto/roboto-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/Roboto/roboto-medium.woff2') format('woff2'), url('/fonts/Roboto/roboto-medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/Roboto/roboto-bold.woff2') format('woff2'), url('/fonts/Roboto/roboto-bold.woff') format('woff');
+}
+
+//Arimo
+@font-face {
+  font-family: 'Arimo';
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  src: url(/fonts/Arimo/arimo-variablefont_wght.woff2) format('woff2'),
+    url(/fonts/Arimo/arimo-variablefont_wght.woff) format('woff');
+}

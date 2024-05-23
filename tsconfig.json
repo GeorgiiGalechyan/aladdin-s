@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@fonts/*": ["./public/fonts/*"],
       "@enums/*": ["./public/enums/*"],
       "@interfaces/*": ["./public/interfaces/*"],
       "@types/*": ["./public/types/*"],
