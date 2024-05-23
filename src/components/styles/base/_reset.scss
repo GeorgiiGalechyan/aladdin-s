@@ -18,14 +18,10 @@
 
 /* Prevent font size inflation */
 html {
+  text-size-adjust: none;
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-html,
-body {
-  height: 100%;
+  -ms-text-size-adjust: none;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -85,13 +81,6 @@ picture,
 svg {
   max-width: 100%;
   display: block;
-}
-
-select,
-optgroup,
-option {
-  font-family: inherit;
-  line-height: 1.5rem;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */

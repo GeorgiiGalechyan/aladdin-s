@@ -1,6 +1,7 @@
 @charset 'utf-8';
 
 header {
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
@@ -17,9 +18,10 @@ header {
 }
 
 .header-logo img {
+  margin-block: 0.5rem;
   height: 100%;
-  min-width: 4em;
-  width: 6em;
+  min-width: 4rem;
+  max-width: 7rem;
 }
 
 .contacts {

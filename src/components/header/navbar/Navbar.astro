@@ -5,10 +5,10 @@ const {} = Astro.props
 ---
 
 <nav class="header-menu">
-  <ul class="menu">
+  <ul>
     {
       headerMenu.map((i) => (
-        <li class="menu-item">
+        <li>
           <a href={i.url}>{i.title}</a>
         </li>
       ))
@@ -21,19 +21,18 @@ const {} = Astro.props
     background-color: chocolate;
   }
 
-  .header-menu .menu {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
+  .header-menu ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 
-  .menu-item {
-    width: 100%;
+  .header-menu li {
     list-style: none;
+    width: 100%;
   }
 
-  .menu-item a {
-    padding: 0.3rem 1rem;
+  .header-menu a {
+    padding-block: 0.3rem;
     color: white;
     font-size: 1.3rem;
     font-weight: 500;
@@ -42,8 +41,8 @@ const {} = Astro.props
     flex: 1 1 auto;
   }
 
-  .menu-item:hover a,
-  .menu-item:focus a {
+  .header-menu li:hover a,
+  .header-menu li:focus a {
     color: white;
     background-color: cadetblue;
     opacity: 100;

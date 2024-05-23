@@ -10,7 +10,13 @@ const defOff = offices[0] // default visible office
     <div class="select-container">
       <select id="office-select">
         <optgroup label="Саратов">
-          {offices.map((i) => <option value={i.id}> {i.address} </option>)}
+          {
+            offices.map((i) => (
+              <option value={i.id} label={i.address}>
+                {i.address}
+              </option>
+            ))
+          }
         </optgroup>
       </select>
       <span class="custom-select-arrow"></span>
@@ -79,13 +85,11 @@ const defOff = offices[0] // default visible office
 
   .select-container {
     position: relative;
+    overflow: visible;
   }
 
   #office-select {
-    width: 100%;
     background: transparent;
-    border: 0;
-    outline: none;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -93,15 +97,13 @@ const defOff = offices[0] // default visible office
   }
 
   #office-select optgroup {
-    font-style: normal;
     color: white;
     background-color: cadetblue;
   }
 
   #office-select option {
-    font-style: normal;
-    font-weight: normal;
     color: black;
+    background-color: white;
   }
 
   .custom-select-arrow {
