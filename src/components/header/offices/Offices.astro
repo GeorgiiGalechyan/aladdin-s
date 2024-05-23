@@ -6,7 +6,7 @@ const defOff = offices[0] // default visible office
 
 <div class="offices-component">
   <div class="select-column">
-    <label for="office-select">Пункты приёма документов:</label>
+    <label for="office-select" class="header-title">Пункты приёма документов:</label>
     <div class="select-container">
       <select id="office-select">
         <optgroup label="Саратов">
@@ -67,7 +67,7 @@ const defOff = offices[0] // default visible office
   }
 
   .select-column {
-    width: 12rem;
+    width: 13rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,9 +82,14 @@ const defOff = offices[0] // default visible office
   }
 
   #office-select {
-    background-color: transparent;
+    width: 100%;
+    background: transparent;
     border: 0;
     outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
   }
 
   #office-select optgroup {
@@ -103,10 +108,10 @@ const defOff = offices[0] // default visible office
     display: block;
     position: absolute;
     top: 0;
-    right: 3.5em;
+    right: 2.5em;
     width: 2rem;
     height: 100%;
-    background-color: white;
+    background-color: transparent;
     pointer-events: none;
   }
 

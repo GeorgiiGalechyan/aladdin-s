@@ -34,3 +34,10 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+.header-title {
+  font-family: 'Roboto';
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.25rem !important;
+}
