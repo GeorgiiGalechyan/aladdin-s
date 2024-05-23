@@ -16,9 +16,11 @@ const {} = Astro.props
   </ul>
 </nav>
 
-<style>
+<style lang="scss">
+  @import '../../styles//abstracts//_variables.scss';
+
   .header-menu {
-    background-color: chocolate;
+    background-color: $clr-brand;
   }
 
   .header-menu ul {

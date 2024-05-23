@@ -14,7 +14,7 @@ header {
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  gap: 2em;
+  gap: 1.5rem;
 }
 
 .header-logo img {
@@ -32,7 +32,6 @@ header {
 }
 
 .contacts li {
-  line-height: 1.3rem;
   display: flex;
   flex-direction: column;
 }

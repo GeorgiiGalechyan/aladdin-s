@@ -1,5 +1,6 @@
 ---
 import offices from './officesData'
+import '@styles/style.scss'
 
 const defOff = offices[0] // default visible office
 ---
@@ -66,34 +67,41 @@ const defOff = offices[0] // default visible office
   })
 </script>
 
-<style>
+<style lang="scss">
+  @import '../../styles/abstracts/_variables';
+
   .offices-component {
     display: flex;
     flex-direction: row;
   }
 
   .select-column {
-    width: 13rem;
+    max-width: 12.5rem;
+    margin-right: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   .select-column > label {
-    line-height: 1.3rem;
+    margin-bottom: 0.2rem;
   }
 
   .select-container {
     position: relative;
-    overflow: visible;
   }
 
   #office-select {
-    background: transparent;
+    max-width: 100%;
+    padding-left: 1rem;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
+    background: transparent;
+    border: $clr-brand solid 1px;
+    border-radius: 0.5rem;
+    line-height: 1.75rem;
   }
 
   #office-select optgroup {
@@ -107,13 +115,16 @@ const defOff = offices[0] // default visible office
   }
 
   .custom-select-arrow {
+    z-index: -1;
     display: block;
     position: absolute;
     top: 0;
-    right: 2.5em;
+    right: 0;
     width: 2rem;
     height: 100%;
-    background-color: transparent;
+    background-color: $clr-brand;
+    border: $clr-brand solid 1px;
+    border-radius: 0 0.5rem 0.5rem 0;
     pointer-events: none;
   }
 
@@ -132,14 +143,14 @@ const defOff = offices[0] // default visible office
   .custom-select-arrow::before {
     border-left: var(--arrow-size) solid transparent;
     border-right: var(--arrow-size) solid transparent;
-    border-top: var(--arrow-size) solid orangered;
+    border-top: var(--arrow-size) solid white;
     top: 67%;
   }
 
   .custom-select-arrow::after {
     border-left: var(--arrow-size) solid transparent;
     border-right: var(--arrow-size) solid transparent;
-    border-bottom: var(--arrow-size) solid orangered;
+    border-bottom: var(--arrow-size) solid white;
     top: 32%;
   }
 
@@ -149,7 +160,7 @@ const defOff = offices[0] // default visible office
 
   .visible {
     width: 9rem;
-    border-left: 1px solid chocolate;
+    border-left: 1px solid $clr-brand;
     display: flex;
     flex-direction: column;
     text-align: end;
