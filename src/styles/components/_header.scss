@@ -1,11 +1,16 @@
 @charset 'utf-8';
 
+@use '../abstracts//' as *;
+//@import '../abstracts//' as *;
+
+// Headers components coclors
 header {
+  --clr-header-primary: $clr-brand-300;
+  --clr-header-nav: $clr-header-primary;
+  --clr-header-select-offices: $clr-header-primary;
+  --clr-header-link: $clr-link-base;
+
   min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 auto;
-  justify-content: center;
 }
 
 .header-info {

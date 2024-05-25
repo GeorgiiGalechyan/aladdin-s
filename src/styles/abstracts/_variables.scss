@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+//colors
+$lg-bg-clr: #f5f5dc;
+$dr-bg-clr: #5f9ea0;
+$lg-clr: black;
+$dr-clr: white;
+
+$clr-brand-600: chocolate;
+$clr-brand-500: orangered;
+$clr-brand-300: darkorange;
+$clr-brand-200: orange;
+$clr-brand-100: peru;
+
+// Base html elements coolors
+$clr-link-base: $clr-brand-500;
+
+
+
+// font-family
+$ff-primary: 'Roboto';
+$ff-secondary: 'Arimo';
+
+// font-size
+$fs-100: 0.2rem;
+$fs-200: 0.75rem;
+$fs-300: 0.9rem;
+$fs-400: 1rem;
+$fs-500: 1.3rem;
+$fs-600: 1.5rem;
+$fs-700: 2rem;
+$fs-800: 2.5rem;
+$fs-900: 3.5rem;
+
+// font-weight
+$fw-regular: 400;
+$fw-semibold: 500;
+$fw-bold: 600;
+
+// font-size
+$fs-body: $fs-400;
+$fs-primary-heading: $fs-800;
+$fs-secondary-heading: $fs-600;
+$fs-header-nav: $fs-500;
+$fs-btn: $fs-400;

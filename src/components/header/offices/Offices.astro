@@ -38,37 +38,8 @@ const defOff = offices[0] // default visible office
   }
 </div>
 
-<script>
-  ;(document.getElementById('office-select') as HTMLOptionElement).value = 'volskaya'
-  ;(document.getElementById('office-select') as HTMLSelectElement).addEventListener('change', () => {
-    let defaultOff = document.getElementById('default-office') as HTMLDivElement | null
-    if (defaultOff) {
-      defaultOff.remove()
-    }
-
-    const select = document.getElementById('office-select') as HTMLSelectElement
-    const value: string = select.value
-
-    ;(document.querySelectorAll('.office-info') as NodeListOf<HTMLDivElement>).forEach((elem: HTMLDivElement): void => {
-      const isChoise: boolean = elem.id === value
-
-      const refreshVisible = () => {
-        if (isChoise) {
-          elem.classList.remove(...elem.classList)
-          elem.classList.add('office-info', 'visible')
-        } else {
-          elem.classList.remove(...elem.classList)
-          elem.classList.add('office-info', 'hidden')
-        }
-      }
-
-      refreshVisible()
-    })
-  })
-</script>
-
 <style lang="scss">
-  @import '../../styles/abstracts/_variables';
+  // @import '../../styles/components/_header.scss';
 
   .offices-component {
     display: flex;
@@ -84,7 +55,7 @@ const defOff = offices[0] // default visible office
   }
 
   .select-column > label {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.3rem;
   }
 
   .select-container {
@@ -93,13 +64,14 @@ const defOff = offices[0] // default visible office
 
   #office-select {
     max-width: 100%;
+    min-width: 10.25rem;
     padding-left: 1rem;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
     background: transparent;
-    border: $clr-brand solid 1px;
+    border: var(--clr-header-select-offices) solid 1px;
     border-radius: 0.5rem;
     line-height: 1.75rem;
   }
@@ -122,8 +94,8 @@ const defOff = offices[0] // default visible office
     right: 0;
     width: 2rem;
     height: 100%;
-    background-color: $clr-brand;
-    border: $clr-brand solid 1px;
+    background-color: var(--clr-header-select-offices);
+    border: var(clr-header-select-offices) solid 1px;
     border-radius: 0 0.5rem 0.5rem 0;
     pointer-events: none;
   }
@@ -160,7 +132,7 @@ const defOff = offices[0] // default visible office
 
   .visible {
     width: 9rem;
-    border-left: 1px solid $clr-brand;
+    border-left: 1px solid var(--clr-header-select-offices);
     display: flex;
     flex-direction: column;
     text-align: end;
@@ -170,3 +142,32 @@ const defOff = offices[0] // default visible office
     line-height: 1.3rem;
   }
 </style>
+
+<script>
+  ;(document.getElementById('office-select') as HTMLOptionElement).value = 'volskaya'
+  ;(document.getElementById('office-select') as HTMLSelectElement).addEventListener('change', () => {
+    let defaultOff = document.getElementById('default-office') as HTMLDivElement | null
+    if (defaultOff) {
+      defaultOff.remove()
+    }
+
+    const select = document.getElementById('office-select') as HTMLSelectElement
+    const value: string = select.value
+
+    ;(document.querySelectorAll('.office-info') as NodeListOf<HTMLDivElement>).forEach((elem: HTMLDivElement): void => {
+      const isChoise: boolean = elem.id === value
+
+      const refreshVisible = () => {
+        if (isChoise) {
+          elem.classList.remove(...elem.classList)
+          elem.classList.add('office-info', 'visible')
+        } else {
+          elem.classList.remove(...elem.classList)
+          elem.classList.add('office-info', 'hidden')
+        }
+      }
+
+      refreshVisible()
+    })
+  })
+</script>

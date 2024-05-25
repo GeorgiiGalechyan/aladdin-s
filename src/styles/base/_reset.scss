@@ -44,6 +44,11 @@ ol[role='list'] {
   list-style: none;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 /* Set core body defaults */
 body {
   text-rendering: optimizeSpeed;

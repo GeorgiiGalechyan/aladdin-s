@@ -1,10 +1,13 @@
 ---
+import '@styles/abstracts/_variables.scss'
+import '@styles/components/_header.scss'
+
 import headerMenu from './headerMenuData'
 
 const {} = Astro.props
 ---
 
-<nav class="header-menu">
+<nav id="header-menu">
   <ul>
     {
       headerMenu.map((i) => (
@@ -17,23 +20,18 @@ const {} = Astro.props
 </nav>
 
 <style lang="scss">
-  @import '../../styles//abstracts//_variables.scss';
+  @use '../../../styles/components/_header.scss';
 
-  .header-menu {
-    background-color: $clr-brand;
+  #header-menu {
+    background-color: $clr-header-nav;
   }
 
-  .header-menu ul {
+  #header-menu ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 
-  .header-menu li {
-    list-style: none;
-    width: 100%;
-  }
-
-  .header-menu a {
+  #header-menu a {
     padding-block: 0.3rem;
     color: white;
     font-size: 1.3rem;
@@ -43,8 +41,8 @@ const {} = Astro.props
     flex: 1 1 auto;
   }
 
-  .header-menu li:hover a,
-  .header-menu li:focus a {
+  #header-menu li:hover a,
+  #header-menu li:focus a {
     color: white;
     background-color: cadetblue;
     opacity: 100;

@@ -1,8 +1,10 @@
 @charset 'utf-8';
+@use '../abstracts/' as *;
 
 body {
-  font-family: 'Arimo', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: 400;
+  font-family: $ff-primary, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: $fw-regular;
+  font-size: $fs-body;
 }
 
 .page-wrapper {
@@ -17,7 +19,7 @@ a {
 
 /* unvisited link */
 a:link {
-  color: orangered;
+  color: $clr-brand-500;
 }
 
 a:is(:hover, :focus) {
@@ -26,7 +28,7 @@ a:is(:hover, :focus) {
 
 /* visited link */
 a:visited {
-  color: blueviolet;
+  color: red;
 }
 
 /* selected link */
@@ -40,18 +42,19 @@ select {
   width: 100%;
   border: 0;
   outline: none;
-  font-family: 'Arimo', 'Roboto';
+  font-weight: $fw-regular;
+  font-family: $ff-secondary, $ff-primary;
   line-height: 1.3rem;
 }
 
 optgroup {
   font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-weight: $fw-semibold;
   line-height: 1.3rem;
 }
 
 option {
   font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+  font-weight: $fw-regular;
   line-height: 1.3rem;
 }
