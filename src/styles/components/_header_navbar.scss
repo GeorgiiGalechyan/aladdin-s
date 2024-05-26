@@ -1,0 +1,29 @@
+@charset 'utf-8';
+
+@use './header.scss' as *;
+
+#header-menu {
+  background-color: $clr-header-nav;
+}
+
+#header-menu > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+#header-menu a {
+  padding-block: 0.3rem;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  flex: 1 1 auto;
+}
+
+#header-menu li:hover a,
+#header-menu li:focus a {
+  color: white;
+  background-color: cadetblue;
+  opacity: 100;
+}

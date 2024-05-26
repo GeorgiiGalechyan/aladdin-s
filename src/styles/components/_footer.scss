@@ -1,1 +1,16 @@
 @charset 'utf-8';
+
+@use '../abstracts//' as *;
+
+// Footer components coclors
+$clr-bg-footer-primary: $clr-brand-200;
+$clr-footer-link: $clr-link-base;
+
+footer {
+  display: grid;
+  place-items: center;
+
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  min-height: 200px;
+  background-color: $clr-bg-footer-primary;
+}

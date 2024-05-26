@@ -1,15 +1,14 @@
 @charset 'utf-8';
 
 @use '../abstracts//' as *;
-//@import '../abstracts//' as *;
 
 // Headers components coclors
-header {
-  --clr-header-primary: $clr-brand-300;
-  --clr-header-nav: $clr-header-primary;
-  --clr-header-select-offices: $clr-header-primary;
-  --clr-header-link: $clr-link-base;
+$clr-header-primary: $clr-brand-300;
+$clr-header-nav: $clr-header-primary;
+$clr-header-select-offices: $clr-header-primary;
+$clr-header-link: $clr-link-base;
 
+header {
   min-height: 200px;
 }
 
@@ -39,6 +38,10 @@ header {
 .contacts li {
   display: flex;
   flex-direction: column;
+}
+
+.contacts a {
+  color: $clr-header-link;
 }
 
 .header-title {
