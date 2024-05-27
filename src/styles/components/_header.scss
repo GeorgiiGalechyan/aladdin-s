@@ -8,45 +8,50 @@ $clr-header-nav: $clr-header-primary;
 $clr-header-select-offices: $clr-header-primary;
 $clr-header-link: $clr-link-base;
 
+// Header font-size
+$fs-header: $fs-100;
+$fs-header-heading: $fs-300;
+
 header {
-  min-height: 200px;
+  font-size: $fs-header;
 }
 
-.header-info {
-  font-size: 0.9rem;
+.header-line-1 {
+  padding-inline: 1em;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1.5rem;
 }
 
 .header-logo img {
-  margin-block: 0.5rem;
+  margin-block: 0.5em;
   height: 100%;
-  min-width: 4rem;
-  max-width: 7rem;
+  min-width: 4em;
 }
 
 .contacts {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 2em;
-}
+  display: none;
 
-.contacts li {
-  display: flex;
-  flex-direction: column;
-}
+  @media screen and (min-width: $xs) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+  }
 
-.contacts a {
-  color: $clr-header-link;
+  & li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & a {
+    color: $clr-header-link;
+  }
 }
 
 .header-title {
-  font-family: 'Roboto';
   font-size: 0.9rem;
   font-weight: 500;
-  line-height: 1.25rem !important;
+  line-height: 1em;
 }

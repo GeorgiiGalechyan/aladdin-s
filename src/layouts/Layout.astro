@@ -22,16 +22,10 @@ const { title } = Astro.props
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <Header />
-      <slot>
-        <h1>Заглушка</h1>
-      </slot>
-      <Footer />
-    </div>
+    <Header />
+    <slot>
+      <h1>Заглушка</h1>
+    </slot>
+    <Footer />
   </body>
 </html>
-
-<style lang="scss" is:global>
-  @import '../styles/style.scss';
-</style>

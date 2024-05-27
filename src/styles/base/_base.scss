@@ -1,59 +1,60 @@
 @charset 'utf-8';
 @use '../abstracts/' as *;
 
-body {
-  font-family: $ff-primary, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: $fw-regular;
-  font-size: $fs-body;
-}
+$ff-body: $ff-primary;
+$fs-body: $fs-200;
+$fw-body: $fw-regular;
 
-.page-wrapper {
-  max-width: 80rem;
-  margin-inline: auto;
-  padding-inline: 1rem;
+body {
+  font-family: $ff-body, $ff-secondary;
+  font-size: $fs-body;
+  font-weight: $fw-body;
 }
 
 a {
   text-decoration: none;
-}
 
-/* unvisited link */
-a:link {
-  color: $clr-brand-500;
-}
+  /* unvisited link */
+  &:link {
+    color: $clr-brand-500;
+  }
 
-a:is(:hover, :focus) {
-  opacity: 0.7;
-}
+  &:is(:hover, :focus) {
+    opacity: 0.7;
+  }
 
-/* visited link */
-a:visited {
-  color: red;
-}
+  &:visited {
+    color: red;
+  }
 
-/* selected link */
-a:active {
-  color: inherit;
+  &:active {
+    color: inherit;
+  }
 }
 
 // select
 select {
   overflow: visible;
-  width: 100%;
+  max-width: 100%;
   border: 0;
   outline: none;
-  font-weight: $fw-regular;
-  font-family: $ff-secondary, $ff-primary;
-  line-height: 1.3rem;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
 }
 
 optgroup {
+  color: white;
+  background-color: cadetblue;
   font-family: 'Roboto', sans-serif;
   font-weight: $fw-semibold;
   line-height: 1.3rem;
 }
 
 option {
+  color: black;
+  background-color: white;
   font-family: 'Roboto', sans-serif;
   font-weight: $fw-regular;
   line-height: 1.3rem;

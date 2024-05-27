@@ -1,11 +1,13 @@
 ---
 import headerMenu from './headerMenuData'
+import ThemeButton from '../ThemeButton.astro'
 
 const {} = Astro.props
 ---
 
 <nav id="header-menu">
-  <ul>
+  <button id="menu-toggle"></button>
+  <ul class="hidden">
     {
       headerMenu.map((i) => (
         <li>
@@ -14,4 +16,7 @@ const {} = Astro.props
       ))
     }
   </ul>
+  <ThemeButton />
 </nav>
+
+<script></script>

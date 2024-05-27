@@ -8,16 +8,19 @@
 }
 
 .select-column {
-  max-width: 12.5rem;
-  margin-right: 1.5rem;
+  min-width: 27ch;
+
+  margin-left: 2em;
+  margin-right: 1em;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
 
-.select-column > label {
-  margin-bottom: 0.3rem;
+  & > label {
+    font-size: 1.1rem;
+    margin-bottom: 0.3em;
+  }
 }
 
 .select-container {
@@ -25,27 +28,33 @@
 }
 
 #office-select {
-  max-width: 100%;
-  min-width: 10.25rem;
-  padding-left: 1rem;
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -ms-appearance: none;
+  min-width: 100%;
+  padding-left: 1.75ch;
   background: transparent;
   border: $clr-header-select-offices solid 1px;
-  border-radius: 0.5rem;
-  line-height: 1.75rem;
+  border-radius: 0.5em;
+  font-size: $fs-header-heading;
+  line-height: 2.3em;
 }
 
-#office-select optgroup {
-  color: white;
-  background-color: cadetblue;
+.hidden {
+  display: none;
 }
 
-#office-select option {
-  color: black;
-  background-color: white;
+.visible {
+  margin-right: 1.25em;
+  min-width: 18ch;
+  border-left: 1px solid $clr-header-select-offices;
+
+  text-align: end;
+
+  & :is(a, p, pre) {
+    line-height: 1.3rem;
+  }
+
+  & a {
+    color: $clr-header-link;
+  }
 }
 
 .custom-select-arrow {
@@ -60,50 +69,30 @@
   border: $clr-header-select-offices solid 1px;
   border-radius: 0 0.5rem 0.5rem 0;
   pointer-events: none;
-}
 
-.custom-select-arrow::before,
-.custom-select-arrow::after {
-  --arrow-size: 0.35em;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+  &::before,
+  &::after {
+    --arrow-size: 0.35em;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-.custom-select-arrow::before {
-  border-left: var(--arrow-size) solid transparent;
-  border-right: var(--arrow-size) solid transparent;
-  border-top: var(--arrow-size) solid white;
-  top: 67%;
-}
+  &::before {
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-top: var(--arrow-size) solid white;
+    top: 67%;
+  }
 
-.custom-select-arrow::after {
-  border-left: var(--arrow-size) solid transparent;
-  border-right: var(--arrow-size) solid transparent;
-  border-bottom: var(--arrow-size) solid white;
-  top: 32%;
-}
-
-.hidden {
-  display: none;
-}
-
-.visible {
-  width: 9rem;
-  border-left: 1px solid $clr-header-select-offices;
-  display: flex;
-  flex-direction: column;
-  text-align: end;
-}
-
-.visible :is(a, p, pre) {
-  line-height: 1.3rem;
-}
-
-.visible a {
-  color: $clr-header-link;
+  &::after {
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-bottom: var(--arrow-size) solid white;
+    top: 32%;
+  }
 }
