@@ -2,12 +2,10 @@
 @use '../abstracts/' as *;
 
 $ff-body: $ff-primary;
-$fs-body: $fs-200;
 $fw-body: $fw-regular;
 
 body {
   font-family: $ff-body, $ff-secondary;
-  font-size: $fs-body;
   font-weight: $fw-body;
 }
 

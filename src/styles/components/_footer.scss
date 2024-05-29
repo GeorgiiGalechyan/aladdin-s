@@ -13,12 +13,15 @@ $fs-footer: $fs-100;
 $fw-footer: $fw-regular;
 
 footer {
-  font-size: $fs-footer;
-  font-weight: $fw-footer;
+  --fs-footer: #{$fs-100};
+  --fw-footer: #{fw-regular};
+
+  font-size: var(--fs-footer);
+  font-weight: var(--fw-footer);
   display: grid;
   place-items: center;
 
   grid-template-columns: repeat(3, minmax(50px, 1fr));
-  min-height: 200px;
+  min-height: 75px;
   background-color: $clr-bg-footer-primary;
 }
