@@ -42,20 +42,25 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
+  font-family: $ff-body, $ff-secondary;
 }
 
 optgroup {
   color: white;
   background-color: cadetblue;
-  font-family: 'Roboto', sans-serif;
+  font-family: $ff-body, $ff-secondary;
   font-weight: $fw-semibold;
-  line-height: 1.3rem;
+  line-height: 1.5rem;
 }
 
 option {
   color: black;
   background-color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: $ff-body, $ff-secondary;
   font-weight: $fw-regular;
-  line-height: 1.3rem;
+  line-height: 1.5rem;
+}
+
+.hidden {
+  display: none;
 }

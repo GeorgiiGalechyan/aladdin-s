@@ -4,11 +4,11 @@ import offices from './officesData'
 const defOff = offices[0] // default visible office
 ---
 
-<div class="header-offices">
-  <div class="select-column">
+<div class="header-select-office">
+  <div class="header-select-column">
     <label for="office-select" class="header-title">Пункты приёма документов:</label>
-    <div class="select-container">
-      <select id="office-select">
+    <div class="office-select-container">
+      <select>
         <optgroup label="Саратов">
           {
             offices.map((i) => (
@@ -19,7 +19,7 @@ const defOff = offices[0] // default visible office
           }
         </optgroup>
       </select>
-      <span class="custom-select-arrow"></span>
+      <span class="custom-office-select-arrow"></span>
     </div>
   </div>
 

@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets'
+import { Image } from 'astro:assets'
 import logo from './logo_v1.webp'
 
 import Offices from '@components/header/offices/Offices.astro'
@@ -11,7 +11,7 @@ import Navbar from '@components/header/navbar/Navbar.astro'
   <div class="header-line-1">
     <a class="header-logo" href="/">
       <!-- Логотип -->
-      <Picture src={logo} formats={['avif', 'webp']} alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
+      <Image src={logo} alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
     </a>
     <Offices />
     <Contacts />

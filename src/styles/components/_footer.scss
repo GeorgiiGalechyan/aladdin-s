@@ -6,11 +6,19 @@
 $clr-bg-footer-primary: $clr-brand-200;
 $clr-footer-link: $clr-link-base;
 
+// Footer font-size
+$fs-footer: $fs-100;
+
+// Footer font-size
+$fw-footer: $fw-regular;
+
 footer {
+  font-size: $fs-footer;
+  font-weight: $fw-footer;
   display: grid;
   place-items: center;
 
-  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
   min-height: 200px;
   background-color: $clr-bg-footer-primary;
 }
