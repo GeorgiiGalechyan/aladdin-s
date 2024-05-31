@@ -12,10 +12,9 @@ header {
   --fw-header: #{$fw-regular};
   --fw-header-heading: #{$fw-semibold};
 
-  --fs-header: clamp(0.4rem, 3vw, 0.62rem);
-  --fs-header-heading: clamp(0.575rem, 3.3vw, 0.62rem);
+  --fs-header: #{$fs-100};
+  --fs-header-heading: #{$fs-100};
 
-  --fs-header: 0.6rem;
   // --fs-header-heading: 0.62rem;
 }
 
@@ -30,24 +29,23 @@ header {
   font-size: var(--fs-header-heading);
   font-weight: var(--fw-header-heading);
 
-  @media only screen and (min-width: $xxs) {
-    --fs-header-heading: #{$fs-200};
-    --fw-header-heading: #{$fw-regular};
+  @media only screen and ($xs < width < $sm) {
+    --fs-header-heading: #{$fs-100};
   }
 }
 
 .header-line-1 {
   min-height: 6em;
+  padding-inline: 0.5rem;
   font-size: var(--fs-header);
   font-weight: var(--fw-header);
 
-  padding-inline: 0.5rem;
-
   display: flex;
+  column-gap: 1em;
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and (min-width: $xxs) {
+  @media only screen and ($xs < width < $sm) {
     --fs-header: #{$fs-200};
   }
 }
@@ -56,21 +54,20 @@ header {
 
 .header-logo {
   margin-right: 1.5em;
-
   display: none;
+
+  @media only screen and (width < $xs) {
+    display: block;
+  }
 
   & img {
     max-width: 4.5em;
-  }
-
-  @media only screen and (min-width: $xxs) {
-    display: block;
   }
 }
 
 .header-select-office {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   flex: 1 1 auto;
   justify-content: space-between;
 
@@ -80,12 +77,12 @@ header {
 
 .header-select-column {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   flex-direction: column;
   justify-content: center;
 
   & > label {
-    min-width: 25ch;
+    white-space: nowrap;
     line-height: 2em;
   }
 }
@@ -95,7 +92,7 @@ header {
   position: relative;
 
   & > select {
-    min-width: 100%;
+    width: 100%;
     padding-left: 1.5ch;
     background: transparent;
     border: $clr-header-select-offices solid 1px;
@@ -113,6 +110,10 @@ header {
   flex: 1 1 auto;
   text-align: end;
   line-height: 1.5em;
+
+  @media screen and ($xs < width < $sm) {
+    border-left: 0;
+  }
 
   & a {
     color: $clr-header-link;
@@ -184,6 +185,7 @@ header {
 .header-menu {
   display: flex;
   flex-direction: row;
+  display: none;
 
   & > ul {
     display: grid;
@@ -203,8 +205,24 @@ header {
       opacity: 100;
     }
   }
+}
 
-  & .hidden {
-    display: none;
+.theme-select-container {
+  --size: 2em;
+  height: var(--size);
+  width: var(--size);
+
+  & #theme-select {
+    height: var(--size);
+    width: var(--size);
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 1 solid violet;
+  }
+
+  & option {
+    color: white;
+    background-color: transparent;
   }
 }
