@@ -1,21 +1,21 @@
 ---
-import { Image } from 'astro:assets'
-import logo from './logo_v1.webp'
+import Logo from '@components/img/logo.astro'
 
 import Offices from '@components/header/offices/Offices.astro'
 import Contacts from './Contacts.astro'
 import Navbar from '@components/header/navbar/Navbar.astro'
+import ThemeButton from './ThemeButton.astro'
 ---
 
 <header>
   <div class="header-line-1">
-    <a class="header-logo" href="/">
-      <!-- Логотип -->
-      <Image src={logo} alt=`Логотип лучшего в городе Бюро переводов "Аладдин"` />
-    </a>
+    <Logo />
     <Offices />
     <Contacts />
   </div>
-  <Navbar />
-  <div class="header-line-2"></div>
+  <div class="header-line-2">
+    <Navbar />
+    <ThemeButton />
+  </div>
 </header>
+

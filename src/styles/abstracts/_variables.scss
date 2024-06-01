@@ -1,16 +1,16 @@
 @charset 'utf-8';
 
 //colors
-$lg-bg-clr: #f5f5dc;
-$dr-bg-clr: #5f9ea0;
-$lg-clr: black;
-$dr-clr: white;
+$lg-bg-clr: hsl(60, 56%, 91%);
+$dr-bg-clr: hsl(182, 25%, 50%);
+$lg-clr: hsl(0, 0%, 0%);
+$dr-clr: hsl(0, 0%, 100%);
 
-$clr-brand-600: chocolate;
-$clr-brand-500: orangered;
-$clr-brand-300: darkorange;
-$clr-brand-200: orange;
-$clr-brand-100: peru;
+$clr-brand-100: hsl(30, 59%, 53%);
+$clr-brand-200: hsl(39, 100%, 50%);
+$clr-brand-300: hsl(33, 100%, 50%);
+$clr-brand-500: hsl(16, 100%, 50%);
+$clr-brand-600: hsl(25, 75%, 47%);
 
 // Base html elements coolors
 $clr-link-base: $clr-brand-500;
@@ -35,10 +35,3 @@ $fs-900: 3.5rem;
 $fw-regular: 400;
 $fw-semibold: 500;
 $fw-bold: 600;
-
-// font-size
-$fs-body: $fs-400;
-$fs-primary-heading: $fs-800;
-$fs-secondary-heading: $fs-600;
-$fs-header-nav: $fs-500;
-$fs-btn: $fs-400;
