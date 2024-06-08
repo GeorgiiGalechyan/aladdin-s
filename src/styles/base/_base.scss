@@ -7,6 +7,7 @@ $fw-body: $fw-regular;
 body {
   font-family: $ff-body, $ff-secondary;
   font-weight: $fw-body;
+  overflow-x: hidden;
 }
 
 a {

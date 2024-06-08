@@ -10,11 +10,11 @@ $clr-header-theme-toggle: clr-header-primary;
 $clr-header-link: clr-header-primary;
 
 //navigation styles
-$clr-header-nav: hsl(33, 100%, 50% / 0.3);
-$clr-header-nav-unsup: hsl(0, 0%, 0% / 0.1);
+$clr-bg-header-nav: hsl(0, 0%, 100%, 0.1);
+$clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
 
 $fs-header-nav: $fs-300;
-$fw-header-nav: $fw-semibold;
+$fw-header-nav: $fw-bold;
 
 // CSS variables (custom...)
 header {
@@ -24,8 +24,8 @@ header {
   --fs-header-heading: #{$fs-100};
   --fw-header-heading: #{$fw-semibold};
 
-  --clr-header-nav: #{$clr-header-nav};
-  --clr-header-nav-unsup: #{$clr-header-nav-unsup};
+  --clr-bg-header-nav: #{$clr-bg-header-nav};
+  --clr-bg-header-nav-unsup: #{$clr-bg-header-nav-unsup};
   --fs-header-nav: #{$fs-header-nav};
   --fw-header-nav: #{$fw-header-nav};
 }
@@ -33,7 +33,6 @@ header {
 header {
   display: flex;
   flex-direction: column;
-  border: 1px red solid;
 }
 
 // Заголовки в шапке
@@ -202,47 +201,63 @@ header {
   // background-color: $clr-header-nav;
 }
 
+// UL список
 .header-menu {
+  --gap: 1.5em;
   position: fixed;
+  z-index: 1000;
   inset: 0 0 0 30%;
-  padding: min(30vh, 10rem) 2em;
 
-  color: hsl(0, 0%, 100%);
-  background-color: var(--clr-header-nav-unsup);
+  background-color: var(--clr-bg-header-nav-unsup);
   font-size: var(--fs-header-nav);
   font-weight: var(--fw-header-nav);
 
-  & > ul {
-    display: flex;
-    gap: 1em;
-    flex-direction: column;
-    & a {
-      color: hsl(0, 0%, 100%);
-      text-transform: uppercase;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: min(30vh, 10rem) 2em;
 
-    & li:hover a,
-    & li:focus a {
-      background-color: hsl(182, 25%, 50%);
-      opacity: 100;
-    }
+  transform: translateX(100%);
+  transition: transform 150ms ease-out;
+
+  & a {
+    color: hsl(0, 0%, 0%);
+    text-transform: uppercase;
+  }
+
+  & li:hover a,
+  & li:focus a {
+    opacity: 100;
   }
 }
 
-// @supports (backdrop-filter: blur(1rem)) {
-//   .header-menu {
-//     background-color: var(--clr-header-nav);
-//     backdrop-filter: blur(1rem);
-//   }
-// }
+.header-menu[data-visible='true'] {
+  transform: translateX(0%);
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+  .header-menu {
+    background-color: var(--clr-bg-header-nav);
+    backdrop-filter: blur(0.75rem);
+  }
+}
 
 .header-menu-toggle {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: white;
-  border: 0;
+  z-index: 9999;
   background-color: transparent;
+  background-image: url('/images/icon-burger.svg');
+  background-repeat: no-repeat;
+  top: 2rem;
+  right: 2rem;
+  width: 2rem;
+  border: 0;
+  aspect-ratio: 1;
+  color: hsl(0, 0%, 0%);
+
+  &[aria-expanded='true'] {
+    background-image: url('/images/icon-close.svg');
+  }
 }
 
 .theme-select-container {
