@@ -1,12 +1,8 @@
 @charset 'utf-8';
 @use '../abstracts/' as *;
 
-$ff-body: $ff-primary;
-$fw-body: $fw-regular;
-
 body {
-  font-family: $ff-body, $ff-secondary;
-  font-weight: $fw-body;
+  font-family: $ff-primary, $ff-secondary;
   overflow-x: hidden;
 }
 
@@ -15,7 +11,7 @@ a {
 
   /* unvisited link */
   &:link {
-    color: $clr-brand-500;
+    color: $clr-brand-5;
   }
 
   &:is(:hover, :focus) {
@@ -41,21 +37,21 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
-  font-family: $ff-body, $ff-secondary;
+  font-family: $ff-primary, $ff-secondary;
 }
 
 optgroup {
   color: white;
   background-color: cadetblue;
-  font-family: $ff-body, $ff-secondary;
-  font-weight: $fw-semibold;
+  font-family: $ff-primary, $ff-secondary;
+  font-weight: $fw-semi;
   line-height: 1.5rem;
 }
 
 option {
   color: black;
   background-color: white;
-  font-family: $ff-body, $ff-secondary;
+  font-family: $ff-primary, $ff-secondary;
   font-weight: $fw-regular;
   line-height: 1.5rem;
 }

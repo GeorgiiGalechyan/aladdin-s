@@ -2,26 +2,33 @@
 
 @use '../abstracts//' as *;
 
-// Footer components coclors
-$clr-bg-footer-primary: $clr-brand-200;
-$clr-footer-link: $clr-link-base;
+.footer {
+  // Поверхности | Surfaces
+  --clr-bg-footer: #{$surface-1-light};
+  --clr-bg-footer-column: #{$surface-2-light};
 
-// Footer font-size
-$fs-footer: $fs-100;
+  // Шрифты | Fonts
+  --fs-footer: #{$fs-200};
+  --fw-footer: #{$fw-regular};
 
-// Footer font-size
-$fw-footer: $fw-regular;
+  // Ссылки | Links
+  --clr-footer-link: #{$clr-link-base};
+}
 
-footer {
-  --fs-footer: #{$fs-100};
-  --fw-footer: #{fw-regular};
+.footer {
+  background-color: var(--clr-bg-footer);
+  padding: 1em;
 
   font-size: var(--fs-footer);
   font-weight: var(--fw-footer);
+
   display: grid;
   place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  column-gap: 2em;
+}
 
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
-  min-height: 75px;
-  background-color: $clr-bg-footer-primary;
+.footer__column {
+  padding: 1rem;
+  background-color: var(--clr-bg-footer-column);
 }

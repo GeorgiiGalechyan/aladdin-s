@@ -3,31 +3,28 @@
 @use '../abstracts//' as *;
 
 // Sass variables
-$clr-header-primary: $clr-brand-300;
+$clr-header-primary: $clr-brand-3;
 
 $clr-header-select-offices: clr-header-primary;
 $clr-header-theme-toggle: clr-header-primary;
 $clr-header-link: clr-header-primary;
 
-//navigation styles
-$clr-bg-header-nav: hsl(0, 0%, 100%, 0.1);
-$clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
-
-$fs-header-nav: $fs-300;
-$fw-header-nav: $fw-bold;
-
 // CSS variables (custom...)
 header {
+  //Текст
   --fs-header: #{$fs-100};
   --fw-header: #{$fw-regular};
 
+  // Заголовки
   --fs-header-heading: #{$fs-100};
-  --fw-header-heading: #{$fw-semibold};
+  --fw-header-heading: #{$fw-semi};
 
-  --clr-bg-header-nav: #{$clr-bg-header-nav};
-  --clr-bg-header-nav-unsup: #{$clr-bg-header-nav-unsup};
-  --fs-header-nav: #{$fs-header-nav};
-  --fw-header-nav: #{$fw-header-nav};
+  // Навигация
+  --clr-bg-header-nav: hsl(0, 0%, 100%, 0.1);
+  --clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
+  --clr-header-nav:hsl(0, 0%, 100%);
+  --fs-header-nav: #{$fs-300};
+  --fw-header-nav: #{$fw-bold};
 }
 
 header {
@@ -47,6 +44,7 @@ header {
   }
 }
 
+// Первая линия шапки
 .header-line-1 {
   min-height: 6em;
   padding-inline: 0.5rem;
@@ -65,6 +63,7 @@ header {
   }
 }
 
+// Логотип
 .header-logo {
   margin-right: 1.5em;
   display: none;
@@ -80,6 +79,7 @@ header {
   }
 }
 
+// Блок с выбором офисов
 .header-select-office {
   display: flex;
   flex-flow: row;
@@ -116,6 +116,7 @@ header {
   }
 }
 
+// Стили информации о выбранном пункте приёма документов
 .visible {
   margin-left: 2ch;
   padding-left: 2ch;
@@ -175,7 +176,7 @@ header {
   }
 }
 
-/* Display:none на маленьких экранах */
+// Контакты в шапке
 .contacts {
   display: none;
 
@@ -196,9 +197,10 @@ header {
   }
 }
 
-// Стили навигационного меню
+// Вторая линия шапки
 .header-line-2 {
-  // background-color: $clr-header-nav;
+  background-color: var(--clr-bg-header-nav);
+  border: 1px solid black;
 }
 
 // UL список
@@ -243,6 +245,7 @@ header {
 }
 
 .header-menu-toggle {
+  --size: 2rem,
   position: absolute;
   z-index: 9999;
   background-color: transparent;
@@ -250,7 +253,7 @@ header {
   background-repeat: no-repeat;
   top: 2rem;
   right: 2rem;
-  width: 2rem;
+  width: var(--size);
   border: 0;
   aspect-ratio: 1;
   color: hsl(0, 0%, 0%);
