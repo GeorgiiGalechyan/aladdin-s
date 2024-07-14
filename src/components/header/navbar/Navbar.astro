@@ -4,7 +4,7 @@ import headerMenu from './headerMenuData'
 const {} = Astro.props
 ---
 
-<button class="header-menu-toggle" aria-controls="header-menu" aria-expanded="false"></button>
+<button class="header-menu-toggle" aria-controls="header-menu" aria-expanded="false"> </button>
 <nav>
   <ul id="header-menu" data-visible="false" class="header-menu">
     {
@@ -19,17 +19,17 @@ const {} = Astro.props
 
 <script>
   const headerMenu = document.querySelector('.header-menu') as HTMLUListElement
-  const menuToggle = document.querySelector('.header-menu-toggle') as HTMLButtonElement
+  const headerMenuToggle = document.querySelector('.header-menu-toggle') as HTMLButtonElement
 
-  menuToggle?.addEventListener('click', () => {
+  headerMenuToggle?.addEventListener('click', () => {
     const visibility: string | null = headerMenu.getAttribute('data-visible')
 
     if (visibility === 'false') {
       headerMenu.setAttribute('data-visible', 'true')
-      menuToggle.setAttribute('aria-expanded', 'true')
+      headerMenuToggle.setAttribute('aria-expanded', 'true')
     } else if (visibility === 'true') {
       headerMenu.setAttribute('data-visible', 'false')
-      menuToggle.setAttribute('aria-expanded', 'false')
+      headerMenuToggle.setAttribute('aria-expanded', 'false')
     }
   })
 </script>

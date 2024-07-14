@@ -3,15 +3,22 @@
 @use '../abstracts//' as *;
 
 // Sass variables
-$clr-header-primary: $clr-brand-3;
-
-$clr-header-select-offices: clr-header-primary;
-$clr-header-theme-toggle: clr-header-primary;
-$clr-header-link: clr-header-primary;
+$clr-header-primary: $clr-brand-7;
+$clr-header-nav: $clr-neutral-0;
+$clr-bg-header-nav: $clr-gray-7;
 
 // CSS variables (custom...)
 header {
-  //Текст
+  // Цвета текста и ссылок
+  --clr-header-select-office: #{$clr-header-primary};
+  --clr-header-link: #{$clr-header-primary};
+
+  // Цвета навигационного меню
+  --clr-header-nav: #{$clr-header-nav};
+  --clr-bg-header-nav: #{$clr-bg-header-nav};
+  --clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
+
+  // Текст
   --fs-header: #{$fs-100};
   --fw-header: #{$fw-regular};
 
@@ -19,10 +26,7 @@ header {
   --fs-header-heading: #{$fs-100};
   --fw-header-heading: #{$fw-semi};
 
-  // Навигация
-  --clr-bg-header-nav: hsl(0, 0%, 100%, 0.1);
-  --clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
-  --clr-header-nav:hsl(0, 0%, 100%);
+  // Ссылки
   --fs-header-nav: #{$fs-300};
   --fw-header-nav: #{$fw-bold};
 }
@@ -38,26 +42,26 @@ header {
   font-weight: var(--fw-header-heading);
 }
 
-@media only screen and ($xs < width < $sm) {
+@media only screen and ($xs < width <= $sm) {
   .header-title {
-    --fs-header-heading: #{$fs-100};
+    --fs-header-heading: #{$fs-200};
   }
 }
 
 // Первая линия шапки
 .header-line-1 {
-  min-height: 6em;
   padding-inline: 0.5rem;
   font-size: var(--fs-header);
   font-weight: var(--fw-header);
 
   display: flex;
-  column-gap: 1em;
   justify-content: space-between;
   align-items: center;
+
+  order: 1;
 }
 
-@media only screen and ($xs < width < $sm) {
+@media only screen and ($xs < width <= $sm) {
   .header-line-1 {
     --fs-header: #{$fs-200};
   }
@@ -73,26 +77,22 @@ header {
   }
 }
 
-@media only screen and (width < $xs) {
+@media only screen and ($sm < width) {
   .header-logo {
-    display: block;
+    display: inline-block;
   }
 }
 
 // Блок с выбором офисов
 .header-select-office {
   display: flex;
-  flex-flow: row;
   flex: 1 1 auto;
-  justify-content: space-between;
-
-  display: flex;
   justify-content: space-between;
 }
 
 .header-select-column {
   display: flex;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   justify-content: center;
 
@@ -103,36 +103,36 @@ header {
 }
 
 .office-select-container {
+  --padding-right: 7%;
   --select-border-radius: 0.4em;
   position: relative;
 
   & > select {
-    width: 100%;
+    width: calc(100% - var(--padding-right));
     padding-left: 1.5ch;
     background: transparent;
-    border: $clr-header-select-offices solid 1px;
+    border: 1px solid var(--clr-header-select-office);
     border-radius: var(--select-border-radius);
-    padding-block: 0.5ch;
+    padding-top: 0.3ch;
+    padding-bottom: 0.5ch;
   }
 }
 
 // Стили информации о выбранном пункте приёма документов
 .visible {
-  margin-left: 2ch;
-  padding-left: 2ch;
-  border-left: 1px solid $clr-header-select-offices;
+  border-left: 1px solid var(--clr-header-select-office);
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   text-align: end;
-  line-height: 1.5em;
+  line-height: 1.25rem;
 
   @media screen and ($xs < width < $sm) {
     border-left: 0;
   }
 
   & a {
-    color: $clr-header-link;
+    color: var(--clr-header-link);
   }
 }
 
@@ -141,10 +141,10 @@ header {
   display: block;
   position: absolute;
   top: 0;
-  right: 0;
+  right: var(--padding-right);
   width: 2.25em;
   height: 100%;
-  background-color: $clr-header-select-offices;
+  background-color: var(--clr-header-select-office);
   border-start-end-radius: var(--select-border-radius);
   border-end-end-radius: var(--select-border-radius);
   pointer-events: none;
@@ -180,7 +180,7 @@ header {
 .contacts {
   display: none;
 
-  @media screen and (min-width: $xs) {
+  @media screen and ($md <= width) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -191,16 +191,58 @@ header {
     display: flex;
     flex-direction: column;
   }
-
-  & a {
-    color: $clr-header-link;
-  }
 }
 
 // Вторая линия шапки
 .header-line-2 {
+  position: relative;
+  padding-inline: 0.5rem;
   background-color: var(--clr-bg-header-nav);
-  border: 1px solid black;
+  height: 5rem;
+  width: 100%;
+  order: 0;
+}
+
+.theme-select-container {
+  display: block;
+  margin-block: auto;
+  display: inline-block;
+  border: 1px solid var(--clr-header-select-office);
+
+  & .header-theme-select {
+    --size: 1.75em;
+    height: var(--size);
+    width: var(--size);
+    border: 1 solid violet;
+    text-align: center;
+    background-color: transparent;
+
+    & option {
+      color: black;
+      background-color: white;
+      text-align: center;
+    }
+  }
+}
+
+.header-menu-toggle {
+  --size: 1rem;
+  stroke: var(--clr-header-select-office);
+  fill: none;
+  position: absolute;
+  z-index: 9999;
+  background-color: transparent;
+  background-image: url('/images/icon-burger.svg');
+  background-repeat: no-repeat;
+  top: 2rem;
+  right: 2rem;
+  width: var(--size);
+  border: 0;
+  aspect-ratio: 1;
+
+  &[aria-expanded='true'] {
+    background-image: url('/images/icon-close.svg');
+  }
 }
 
 // UL список
@@ -210,6 +252,7 @@ header {
   z-index: 1000;
   inset: 0 0 0 30%;
 
+  color: var(--clr-header-nav);
   background-color: var(--clr-bg-header-nav-unsup);
   font-size: var(--fs-header-nav);
   font-weight: var(--fw-header-nav);
@@ -223,7 +266,7 @@ header {
   transition: transform 150ms ease-out;
 
   & a {
-    color: hsl(0, 0%, 0%);
+    color: var(--clr-header-nav);
     text-transform: uppercase;
   }
 
@@ -241,44 +284,5 @@ header {
   .header-menu {
     background-color: var(--clr-bg-header-nav);
     backdrop-filter: blur(0.75rem);
-  }
-}
-
-.header-menu-toggle {
-  --size: 2rem,
-  position: absolute;
-  z-index: 9999;
-  background-color: transparent;
-  background-image: url('/images/icon-burger.svg');
-  background-repeat: no-repeat;
-  top: 2rem;
-  right: 2rem;
-  width: var(--size);
-  border: 0;
-  aspect-ratio: 1;
-  color: hsl(0, 0%, 0%);
-
-  &[aria-expanded='true'] {
-    background-image: url('/images/icon-close.svg');
-  }
-}
-
-.theme-select-container {
-  display: inline-block;
-  border: solid #{$clr-header-theme-toggle} 1px;
-
-  & .header-theme-select {
-    --size: 1.75em;
-    height: var(--size);
-    width: var(--size);
-    border: 1 solid violet;
-    text-align: center;
-    background-color: transparent;
-
-    & option {
-      color: black;
-      background-color: white;
-      text-align: center;
-    }
   }
 }

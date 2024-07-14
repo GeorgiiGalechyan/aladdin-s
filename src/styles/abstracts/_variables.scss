@@ -82,7 +82,9 @@ $ff-secondary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
   'Helvetica Neue', sans-serif;
 
 // font-size
+
 $fs-100: 0.6175rem;
+$fs-100: clamp(0.6175rem, 0.04775210084033632rem + 3.7983193277310914vw, 0.9rem);
 $fs-200: 0.8rem;
 $fs-300: 0.9rem;
 $fs-400: 1rem;
