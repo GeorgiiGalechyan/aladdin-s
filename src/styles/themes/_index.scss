@@ -1,1 +1,38 @@
 @charset 'utf-8';
+
+@use '../abstracts//' as *;
+
+:root {
+  --clr-text: hsl(0, 0%, 0%);
+  --clr-bg: hsl(0, 0%, 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-text: hsl(0, 0%, 100%);
+    --clr-bg: hsl(0, 0%, 0%);
+  }
+}
+
+html {
+  color-scheme: dark light;
+  --clr-text: hsl(0, 0%, 0%);
+  --clr-bg: hsl(0, 0%, 100%);
+}
+
+:root:has(#header-theme [value='light']:checked) {
+  color-scheme: light;
+  --clr-text: hsl(0, 0%, 0%);
+  --clr-bg: hsl(0, 0%, 100%);
+}
+
+:root:has(#header-theme [value='dark']:checked) {
+  color-scheme: dark;
+  --clr-text: hsl(0, 0%, 100%);
+  --clr-bg: hsl(0, 0%, 0%);
+}
+
+body {
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+}

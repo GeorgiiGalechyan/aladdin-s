@@ -196,17 +196,18 @@ header {
 // Вторая линия шапки
 .header-line-2 {
   position: relative;
+  margin-bottom: 0.5rem;
   padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  display: flex;
+  justify-content: end;
+
   background-color: var(--clr-bg-header-nav);
-  height: 5rem;
   width: 100%;
   order: 0;
 }
 
 .theme-select-container {
-  display: block;
-  margin-block: auto;
-  display: inline-block;
   border: 1px solid var(--clr-header-select-office);
 
   & .header-theme-select {
@@ -215,6 +216,7 @@ header {
     width: var(--size);
     border: 1 solid violet;
     text-align: center;
+    color: var(--clr-header-link);
     background-color: transparent;
 
     & option {
@@ -226,22 +228,24 @@ header {
 }
 
 .header-menu-toggle {
-  --size: 1rem;
-  stroke: var(--clr-header-select-office);
-  fill: none;
+  --size: 1.5rem;
+  // stroke: var(--clr-header-select-office);
+  // fill: none;
   position: absolute;
   z-index: 9999;
   background-color: transparent;
   background-image: url('/images/icon-burger.svg');
   background-repeat: no-repeat;
-  top: 2rem;
-  right: 2rem;
+  top: 0.5rem;
+  left: 0.75rem;
   width: var(--size);
   border: 0;
   aspect-ratio: 1;
 
   &[aria-expanded='true'] {
     background-image: url('/images/icon-close.svg');
+    fill: var(--clr-header-link);
+    stroke: var(--clr-header-link);
   }
 }
 
@@ -250,10 +254,10 @@ header {
   --gap: 1.5em;
   position: fixed;
   z-index: 1000;
-  inset: 0 0 0 30%;
+  inset: 0 30% 0 0;
 
   color: var(--clr-header-nav);
-  background-color: var(--clr-bg-header-nav-unsup);
+  background-color: var(--clr-bg-header-nav);
   font-size: var(--fs-header-nav);
   font-weight: var(--fw-header-nav);
 
@@ -262,7 +266,7 @@ header {
   gap: var(--gap);
   padding: min(30vh, 10rem) 2em;
 
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: transform 150ms ease-out;
 
   & a {
@@ -282,7 +286,7 @@ header {
 
 @supports (backdrop-filter: blur(1rem)) {
   .header-menu {
-    background-color: var(--clr-bg-header-nav);
+    background-color: var(--clr-bg-header-nav-unsup);
     backdrop-filter: blur(0.75rem);
   }
 }
