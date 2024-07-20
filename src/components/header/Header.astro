@@ -1,5 +1,5 @@
 ---
-import Logo from '@components/img/logo.astro'
+import Logo from '@components/header/logo/Logo.astro'
 
 import Offices from '@components/header/offices/Offices.astro'
 import Contacts from './Contacts.astro'
@@ -9,12 +9,12 @@ import ThemeButton from './ThemeButton.astro'
 
 <header>
   <div class="header-line-1">
-    <Logo />
     <Offices />
     <Contacts />
   </div>
   <div class="header-line-2">
     <Navbar />
+    <Logo />
     <ThemeButton />
   </div>
 </header>

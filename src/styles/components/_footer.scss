@@ -4,19 +4,15 @@
 
 .footer {
   // Поверхности | Surfaces
-  --clr-bg-footer: #{$surface-1-light};
-  --clr-bg-footer-column: #{$surface-2-light};
+  // --clr-bg-footer: #{$surface-1-light};
+  // --clr-bg-footer-column: #{$surface-2-light};
 
   // Шрифты | Fonts
   --fs-footer: #{$fs-200};
   --fw-footer: #{$fw-regular};
-
-  // Ссылки | Links
-  --clr-footer-link: #{$clr-link-base};
 }
 
 .footer {
-  background-color: var(--clr-bg-footer);
   padding: 1em;
 
   font-size: var(--fs-footer);
@@ -30,5 +26,5 @@
 
 .footer__column {
   padding: 1rem;
-  background-color: var(--clr-bg-footer-column);
+  border: 1px solid $clr-brand-7;
 }

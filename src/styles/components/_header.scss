@@ -4,7 +4,7 @@
 
 // Sass variables
 $clr-header-primary: $clr-brand-7;
-$clr-header-nav: $clr-neutral-0;
+$clr-header-nav: $clr-brand-7;
 $clr-bg-header-nav: $clr-gray-7;
 
 // CSS variables (custom...)
@@ -16,7 +16,7 @@ header {
   // Цвета навигационного меню
   --clr-header-nav: #{$clr-header-nav};
   --clr-bg-header-nav: #{$clr-bg-header-nav};
-  --clr-bg-header-nav-unsup: hsl(0, 0%, 0%, 0.75);
+  --clr-bg-header-nav-unsup: hsl(0, 0%, 100%, 0.1);
 
   // Текст
   --fs-header: #{$fs-100};
@@ -64,22 +64,6 @@ header {
 @media only screen and ($xs < width <= $sm) {
   .header-line-1 {
     --fs-header: #{$fs-200};
-  }
-}
-
-// Логотип
-.header-logo {
-  margin-right: 1.5em;
-  display: none;
-
-  & img {
-    max-width: 4.5em;
-  }
-}
-
-@media only screen and ($sm < width) {
-  .header-logo {
-    display: inline-block;
   }
 }
 
@@ -195,57 +179,50 @@ header {
 
 // Вторая линия шапки
 .header-line-2 {
+  --height-line-2: 4rem;
+  height: max-content;
   position: relative;
   margin-bottom: 0.5rem;
-  padding-inline: 0.5rem;
+  padding-right: 1.25rem;
   padding-block: 0.5rem;
   display: flex;
   justify-content: end;
+  align-items: center;
 
   background-color: var(--clr-bg-header-nav);
-  width: 100%;
+
   order: 0;
 }
 
-.theme-select-container {
-  border: 1px solid var(--clr-header-select-office);
+// Логотип
+.header-logo {
+  --logo-size: 3rem;
+  margin-inline: 3rem auto;
 
-  & .header-theme-select {
-    --size: 1.75em;
-    height: var(--size);
-    width: var(--size);
-    border: 1 solid violet;
-    text-align: center;
-    color: var(--clr-header-link);
-    background-color: transparent;
-
-    & option {
-      color: black;
-      background-color: white;
-      text-align: center;
-    }
+  & img {
+    height: var(--logo-size);
+    width: var(--logo-size);
   }
 }
 
 .header-menu-toggle {
   --size: 1.5rem;
-  // stroke: var(--clr-header-select-office);
-  // fill: none;
   position: absolute;
   z-index: 9999;
   background-color: transparent;
   background-image: url('/images/icon-burger.svg');
+  // color  is changeed in svg file
   background-repeat: no-repeat;
   top: 0.5rem;
   left: 0.75rem;
   width: var(--size);
+
   border: 0;
   aspect-ratio: 1;
 
   &[aria-expanded='true'] {
     background-image: url('/images/icon-close.svg');
-    fill: var(--clr-header-link);
-    stroke: var(--clr-header-link);
+    // color is changeed in svg file
   }
 }
 
@@ -254,7 +231,7 @@ header {
   --gap: 1.5em;
   position: fixed;
   z-index: 1000;
-  inset: 0 30% 0 0;
+  inset: var(--height-line-2) 30% 0 0;
 
   color: var(--clr-header-nav);
   background-color: var(--clr-bg-header-nav);
@@ -289,4 +266,30 @@ header {
     background-color: var(--clr-bg-header-nav-unsup);
     backdrop-filter: blur(0.75rem);
   }
+}
+
+.theme-select-container {
+  border: 1px solid var(--clr-header-select-office);
+
+  & .header-theme-select {
+    --size: 1.75em;
+    height: var(--size);
+    width: var(--size);
+    text-align: center;
+    color: var(--clr-header-select-office);
+    background-color: transparent;
+
+    & option {
+      color: white;
+      background-color: var(--clr-bg-header-nav);
+      text-align: center;
+      appearance: none;
+    }
+  }
+}
+
+.theme-select-container:hover,
+.theme-select-container:focus {
+  // Добавить какой-нить эффект при наведении
+  opacity: 0.7;
 }
