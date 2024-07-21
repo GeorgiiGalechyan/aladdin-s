@@ -1,8 +1,6 @@
 @charset 'utf-8';
 @use '../abstracts/' as *;
 
-
-
 body {
   font-family: $ff-primary, $ff-secondary;
   overflow-x: hidden;
@@ -58,6 +56,21 @@ option {
   line-height: 1.5rem;
 }
 
+// Служебные классы
 .hidden {
   display: none;
+}
+
+.visible-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.visible-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.visible {
+  display: inline-block;
 }

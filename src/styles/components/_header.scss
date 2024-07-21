@@ -42,12 +42,6 @@ header {
   font-weight: var(--fw-header-heading);
 }
 
-@media only screen and ($xs < width <= $sm) {
-  .header-title {
-    --fs-header-heading: #{$fs-200};
-  }
-}
-
 // Первая линия шапки
 .header-line-1 {
   padding-inline: 0.5rem;
@@ -55,16 +49,9 @@ header {
   font-weight: var(--fw-header);
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   order: 1;
-}
-
-@media only screen and ($xs < width <= $sm) {
-  .header-line-1 {
-    --fs-header: #{$fs-200};
-  }
 }
 
 // Блок с выбором офисов
@@ -103,17 +90,13 @@ header {
 }
 
 // Стили информации о выбранном пункте приёма документов
-.visible {
+.office-info {
   border-left: 1px solid var(--clr-header-select-office);
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   text-align: end;
   line-height: 1.25rem;
-
-  @media screen and ($xs < width < $sm) {
-    border-left: 0;
-  }
 
   & a {
     color: var(--clr-header-link);
@@ -197,7 +180,7 @@ header {
 // Логотип
 .header-logo {
   --logo-size: 3rem;
-  margin-inline: 3rem auto;
+  margin-inline: 4rem auto;
 
   & img {
     height: var(--logo-size);
@@ -205,6 +188,7 @@ header {
   }
 }
 
+// Бургер
 .header-menu-toggle {
   --size: 1.5rem;
   position: absolute;
@@ -213,8 +197,8 @@ header {
   background-image: url('/images/icon-burger.svg');
   // color  is changeed in svg file
   background-repeat: no-repeat;
-  top: 0.5rem;
-  left: 0.75rem;
+  top: 1.25rem;
+  left: 1.25rem;
   width: var(--size);
 
   border: 0;
@@ -268,6 +252,7 @@ header {
   }
 }
 
+// Переключатель темы
 .theme-select-container {
   border: 1px solid var(--clr-header-select-office);
 
@@ -290,6 +275,43 @@ header {
 
 .theme-select-container:hover,
 .theme-select-container:focus {
-  // Добавить какой-нить эффект при наведении
   opacity: 0.7;
+}
+
+// 361px < width < 575px
+@media ($xs < width < $sm) {
+  .header-title {
+    --fs-header-heading: #{$fs-200};
+  }
+
+  .header-line-1 {
+    --fs-header: #{$fs-200};
+    padding-inline: 1rem;
+  }
+
+  .header-select-column {
+  }
+
+  .office-select-container {
+    width: 13rem;
+  }
+}
+
+// Служебные классы
+.hidden {
+  display: none;
+}
+
+.visible-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.visible-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.visible {
+  display: inline-block;
 }

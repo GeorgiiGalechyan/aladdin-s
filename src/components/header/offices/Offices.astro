@@ -23,7 +23,7 @@ const defOff = offices[0] // default visible office
     </div>
   </div>
 
-  <div id="default-office" class="office-info visible">
+  <div id="default-office" class="office-info visible-flex-col">
     <a href={defOff.phoneUrl}>{defOff.phone}</a>
     <pre>{defOff.working}</pre>
   </div>
@@ -54,7 +54,7 @@ const defOff = offices[0] // default visible office
       const refreshVisible = () => {
         if (isChoise) {
           elem.classList.remove(...elem.classList)
-          elem.classList.add('office-info', 'visible')
+          elem.classList.add('office-info', 'visible-flex-col')
         } else {
           elem.classList.remove(...elem.classList)
           elem.classList.add('office-info', 'hidden')
