@@ -31,11 +31,6 @@ header {
   --fw-header-nav: #{$fw-bold};
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-}
-
 // Заголовки в шапке
 .header-title {
   font-size: var(--fs-header-heading);
@@ -44,125 +39,7 @@ header {
 
 // Первая линия шапки
 .header-line-1 {
-  padding-inline: 0.5rem;
-  font-size: var(--fs-header);
-  font-weight: var(--fw-header);
-
-  display: flex;
-  align-items: center;
-
-  order: 1;
-}
-
-// Блок с выбором офисов
-.header-select-office {
-  display: flex;
-  flex: 1 1 auto;
-  justify-content: space-between;
-}
-
-.header-select-column {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  justify-content: center;
-
-  & > label {
-    white-space: nowrap;
-    line-height: 2em;
-  }
-}
-
-.office-select-container {
-  --padding-right: 7%;
-  --select-border-radius: 0.4em;
-  position: relative;
-
-  & > select {
-    width: calc(100% - var(--padding-right));
-    padding-left: 1.5ch;
-    background: transparent;
-    border: 1px solid var(--clr-header-select-office);
-    border-radius: var(--select-border-radius);
-    padding-top: 0.3ch;
-    padding-bottom: 0.5ch;
-  }
-}
-
-// Стили информации о выбранном пункте приёма документов
-.office-info {
-  border-left: 1px solid var(--clr-header-select-office);
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  text-align: end;
-  line-height: 1.25rem;
-
-  & a {
-    color: var(--clr-header-link);
-  }
-}
-
-// Cтили стрелок select элемента
-.custom-office-select-arrow {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: var(--padding-right);
-  width: 2.25em;
-  height: 100%;
-  background-color: var(--clr-header-select-office);
-  border-start-end-radius: var(--select-border-radius);
-  border-end-end-radius: var(--select-border-radius);
-  pointer-events: none;
-
-  &::before,
-  &::after {
-    --arrow-size: 0.45em;
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &::before {
-    border-left: var(--arrow-size) solid transparent;
-    border-right: var(--arrow-size) solid transparent;
-    border-top: var(--arrow-size) solid white;
-    top: 67%;
-  }
-
-  &::after {
-    border-left: var(--arrow-size) solid transparent;
-    border-right: var(--arrow-size) solid transparent;
-    border-bottom: var(--arrow-size) solid white;
-    top: 32%;
-  }
-}
-
-// Контакты в шапке
-.contacts {
-  display: none;
-
-  @media screen and ($md <= width) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 2em;
-  }
-
-  & li {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-// Вторая линия шапки
-.header-line-2 {
-  --height-line-2: 4rem;
+  --height-line-1: 4rem;
   height: max-content;
   position: relative;
   margin-bottom: 0.5rem;
@@ -175,17 +52,6 @@ header {
   background-color: var(--clr-bg-header-nav);
 
   order: 0;
-}
-
-// Логотип
-.header-logo {
-  --logo-size: 3rem;
-  margin-inline: 4rem auto;
-
-  & img {
-    height: var(--logo-size);
-    width: var(--logo-size);
-  }
 }
 
 // Бургер
@@ -210,12 +76,23 @@ header {
   }
 }
 
-// UL список
+// Логотип
+.header-logo {
+  --logo-size: 3rem;
+  margin-inline: 4rem auto;
+
+  & img {
+    height: var(--logo-size);
+    width: var(--logo-size);
+  }
+}
+
+// Меню ul > li (скрыто на маленьких экранах)
 .header-menu {
   --gap: 1.5em;
   position: fixed;
   z-index: 1000;
-  inset: var(--height-line-2) 30% 0 0;
+  inset: var(--height-line-1) 30% 0 0;
 
   color: var(--clr-header-nav);
   background-color: var(--clr-bg-header-nav);
@@ -278,22 +155,156 @@ header {
   opacity: 0.7;
 }
 
-// 361px < width < 575px
+// Вторая линия шапки
+.header-line-2 {
+  padding-inline: 0.5rem;
+  font-size: var(--fs-header);
+  font-weight: var(--fw-header);
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+// Блок с выбором офисов
+.header-select-office {
+  display: flex;
+}
+
+.header-select-column {
+  display: flex;
+  flex: 3 0 auto;
+  flex-direction: column;
+  justify-content: center;
+
+  & > label {
+    white-space: nowrap;
+    line-height: 2em;
+  }
+}
+
+.office-select-container {
+  --padding-right: 5%;
+  --select-border-radius: 0.2em;
+  position: relative;
+  max-width: 13rem;
+
+  & > select {
+    width: calc(100% - var(--padding-right));
+    padding-left: 1.5ch;
+    background: transparent;
+    border: 1px solid var(--clr-header-select-office);
+    border-radius: var(--select-border-radius);
+    padding-top: 0.3ch;
+    padding-bottom: 0.5ch;
+  }
+}
+
+// Стили информации о выбранном пункте приёма документов
+.office-info {
+  border-left: 1px solid var(--clr-header-select-office);
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  text-align: end;
+  padding-left: 3%;
+
+  & a {
+    color: var(--clr-header-link);
+  }
+}
+
+// Cтили стрелок select элемента
+.custom-office-select-arrow {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: var(--padding-right);
+  width: 2.25em;
+  height: 100%;
+  background-color: var(--clr-header-select-office);
+  border-start-end-radius: var(--select-border-radius);
+  border-end-end-radius: var(--select-border-radius);
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    --arrow-size: 0.45em;
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-top: var(--arrow-size) solid white;
+    top: 67%;
+  }
+
+  &::after {
+    border-left: var(--arrow-size) solid transparent;
+    border-right: var(--arrow-size) solid transparent;
+    border-bottom: var(--arrow-size) solid white;
+    top: 32%;
+  }
+}
+
+// Контакты в шапке (скрыты при width < 576px)
+.contacts {
+  container: contacts / inline-size;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2em;
+
+  // По умолчанию - скрыт!!!
+  display: none;
+}
+
+// Медиа запросы
+
+// 360px < width < 576px   (361px-575px)
 @media ($xs < width < $sm) {
   .header-title {
     --fs-header-heading: #{$fs-200};
   }
 
-  .header-line-1 {
+  .header-line-2 {
+    --fs-header: #{$fs-200};
+    padding-inline: 1rem;
+  }
+}
+
+// 576px <= width < 768px   (576px-767px)
+@media ($sm < width < $md) {
+  .header-title {
+    --fs-header-heading: #{$fs-200};
+  }
+
+  .header-line-2 {
     --fs-header: #{$fs-200};
     padding-inline: 1rem;
   }
 
-  .header-select-column {
-  }
+  .contacts {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
 
-  .office-select-container {
-    width: 13rem;
+    & li {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+//
+@container contacts (min-width: 576px) {
+  .contacts {
+    font-size: 2em;
   }
 }
 
