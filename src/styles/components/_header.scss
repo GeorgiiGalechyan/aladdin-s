@@ -155,14 +155,11 @@ header {
   border-radius: 50%;
   position: relative;
   margin-right: 5rem;
+  text-align: center;
 }
 
 #theme-toggle svg {
   fill: var(--clr-header-select-office);
-}
-
-.toggle-circle {
-  transform: translateX(-15%);
 }
 
 #theme-toggle::after {
@@ -172,16 +169,18 @@ header {
   background-color: black;
   width: max-content;
   font-size: var(--fs-header);
+
   left: 0;
   right: 0;
   top: 95%;
+  text-align: center;
   margin: 0 auto;
   padding: 0.5em 1em;
   border-radius: 0.125rem;
   opacity: 0;
   transform: scale(0);
   transform-origin: top;
-  transition: opacity 70ms linear;
+  transition: transform 0 ms linear 100ms, 70ms linear;
 }
 
 #theme-toggle:hover,
@@ -197,7 +196,11 @@ header {
   transition: transform linear 70ms, opacity 70ms linear;
 }
 
-// Переключатель темы
+.light-theme .toggle-circle {
+  transform: translateX(-15%);
+}
+
+// Переключатель темы Select
 .theme-select-container {
   border: 1px solid var(--clr-header-select-office);
 

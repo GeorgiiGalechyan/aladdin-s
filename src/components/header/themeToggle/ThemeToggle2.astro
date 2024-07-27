@@ -13,13 +13,11 @@
 </button>
 
 <script>
-  const themeToggle = document.querySelector('#theme-toggle') as HTMLButtonElement
-
+  const themeToggle = document.querySelector('#theme-toggle')
   const isLightMode: boolean = document.body.classList.contains('light-theme')
 
   themeToggle.addEventListener('click', () => {
     const isLightMode = document.body.classList.contains('light-theme')
-
     isLightMode ? enableDarkMode() : enableLightMode()
   })
 
@@ -36,4 +34,12 @@
     // themeToggle.ariaLabel = 'Switch to dark theme'
     themeToggle.ariaLabel = 'Переключиться на темную тему'
   }
+
+  const setThemePreferencs = () => {
+    isDarkPreferColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    console.log(isDarkPreferColorScheme)
+  }
+
+  document.onload = setThemePreferencs()
 </script>
