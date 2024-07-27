@@ -29,6 +29,15 @@ header {
   // Ссылки
   --fs-header-nav: #{$fs-300};
   --fw-header-nav: #{$fw-bold};
+
+  // Отступы (padding-inline)
+  --header-padding-inline: 1rem;
+}
+
+// header styles
+header {
+  font-size: var(--fs-header);
+  font-weight: var(--fw-header);
 }
 
 // Заголовки в шапке
@@ -37,26 +46,30 @@ header {
   font-weight: var(--fw-header-heading);
 }
 
+.header-line-1,
+.header-line-2 {
+  padding-inline: var(--header-padding-inline);
+}
+
 // Первая линия шапки
 .header-line-1 {
+  --header-icon-size: 1.5rem;
   --height-line-1: 4rem;
   height: max-content;
   position: relative;
-  margin-bottom: 0.5rem;
-  padding-right: 1.25rem;
   padding-block: 0.5rem;
   display: flex;
   justify-content: end;
   align-items: center;
 
   background-color: var(--clr-bg-header-nav);
-
-  order: 0;
 }
 
 // Бургер
 .header-menu-toggle {
-  --size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.75;
+
   position: absolute;
   z-index: 9999;
   background-color: transparent;
@@ -64,8 +77,8 @@ header {
   // color  is changeed in svg file
   background-repeat: no-repeat;
   top: 1.25rem;
-  left: 1.25rem;
-  width: var(--size);
+  left: var(--header-padding-inline);
+  width: var(--header-icon-size);
 
   border: 0;
   aspect-ratio: 1;
@@ -76,24 +89,13 @@ header {
   }
 }
 
-// Логотип
-.header-logo {
-  --logo-size: 3rem;
-  margin-inline: 4rem auto;
-
-  & img {
-    height: var(--logo-size);
-    width: var(--logo-size);
-  }
-}
-
-// Меню ul > li (скрыто на маленьких экранах)
+// Навигационное меню ul > li (скрыто на маленьких экранах)
 .header-menu {
   --gap: 1.5em;
+
   position: fixed;
   z-index: 1000;
   inset: var(--height-line-1) 30% 0 0;
-
   color: var(--clr-header-nav);
   background-color: var(--clr-bg-header-nav);
   font-size: var(--fs-header-nav);
@@ -114,7 +116,7 @@ header {
 
   & li:hover a,
   & li:focus a {
-    opacity: 100;
+    opacity: 1;
   }
 }
 
@@ -127,6 +129,40 @@ header {
     background-color: var(--clr-bg-header-nav-unsup);
     backdrop-filter: blur(0.75rem);
   }
+}
+
+// Логотип
+.header-logo {
+  --logo-size: calc(var(--header-icon-size) * 2);
+  margin-inline: 2.75rem auto;
+
+  & img {
+    max-height: var(--logo-size);
+    max-width: var(--logo-size);
+  }
+}
+
+// Кнопка переключения темы (Btn > svg)
+#theme-toggle {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  opacity: 0.75;
+  max-width: var(--header-icon-size);
+}
+
+#theme-toggle svg {
+  fill: var(--clr-header-select-office);
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus {
+  opacity: 1;
+  background: hsl(0 0% 50% / 0.2);
+}
+
+.toggle-circle {
+  transform: translateX(-15%);
 }
 
 // Переключатель темы
@@ -155,23 +191,28 @@ header {
   opacity: 0.7;
 }
 
+// ==========================================================
+
 // Вторая линия шапки
 .header-line-2 {
-  padding-inline: 0.5rem;
-  font-size: var(--fs-header);
-  font-weight: var(--fw-header);
+  padding-inline: var(--header-padding-inline);
+  margin-block: 0.5rem;
   display: flex;
-  flex-wrap: nowrap;
+  flex-direction: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 // Блок с выбором офисов
 .header-select-office {
   display: flex;
+  justify-content: space-evenly;
+  flex: 1 1 auto;
 }
 
 .header-select-column {
   display: flex;
-  flex: 3 0 auto;
+  flex: 1 0 auto;
   flex-direction: column;
   justify-content: center;
 
@@ -254,61 +295,50 @@ header {
 
 // Контакты в шапке (скрыты при width < 576px)
 .contacts {
-  container: contacts / inline-size;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 2em;
-
-  // По умолчанию - скрыт!!!
   display: none;
+
+  & > li {
+    display: flex;
+  }
+
+  & > li::before {
+    content: 'as';
+  }
 }
 
-// Медиа запросы
+// Медиа запросы ===========================
 
+@media (width < $xs) {
+  header {
+    --header-padding-inline: 0.5rem;
+    --fs-header: #{$fs-100};
+    --fs-header-heading: #{$fs-100};
+  }
+}
 // 360px < width < 576px   (361px-575px)
 @media ($xs < width < $sm) {
-  .header-title {
-    --fs-header-heading: #{$fs-200};
-  }
-
-  .header-line-2 {
-    --fs-header: #{$fs-200};
-    padding-inline: 1rem;
-  }
 }
 
 // 576px <= width < 768px   (576px-767px)
 @media ($sm < width < $md) {
-  .header-title {
-    --fs-header-heading: #{$fs-200};
-  }
-
-  .header-line-2 {
-    --fs-header: #{$fs-200};
-    padding-inline: 1rem;
+  .header-select-office {
+    max-width: 60%;
   }
 
   .contacts {
+    margin-left: auto;
     display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
+    flex: 1 1 auto;
+  }
 
-    & li {
-      display: flex;
-      flex-direction: column;
-    }
+  .contacts-translate,
+  .contacts-law {
+    display: none;
   }
 }
 
-//
-@container contacts (min-width: 576px) {
-  .contacts {
-    font-size: 2em;
-  }
-}
+// Служебные классы =========================
 
-// Служебные классы
 .hidden {
   display: none;
 }
