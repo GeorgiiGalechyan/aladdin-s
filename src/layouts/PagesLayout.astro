@@ -7,7 +7,7 @@ const { title } = Astro.props
 <Layout title={title}>
   <main class="main">
     <slot>
-      <h1 style="color: red">{title}</h1>
+      <h1 style="color: red">{title || 'Cтраница без аттрибута TITLE, добавь его!'}</h1>
     </slot>
   </main>
 </Layout>
