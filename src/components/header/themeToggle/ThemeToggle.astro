@@ -33,16 +33,20 @@
 
   // Меняем тему по клику на кнопку
   themeToggle.addEventListener('click', () => {
-    const isLightMode: boolean = document.body.classList.contains('light-theme')
+    const isLightMode = document.body.classList.contains('light-theme')
 
     isLightMode ? enableDarkMode() : enableLightMode()
   })
 
   // Задаёт тему исходя из prefers-color-scheme
   const setThemePreferencs = (): any => {
-    const isDarkPrefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightPrefersColorScheme = window.matchMedia('(prefers-color-scheme: light)').matches
 
-    isDarkPrefersColorScheme ? enableDarkMode() : enableLightMode()
+    if (isLightPrefersColorScheme) {
+      // body.light-theme установлена по умолчанию
+      return
+    }
+    enableDarkMode()
   }
 
   // Задаёт тему исходя из Local Storage и prefers-color-scheme
@@ -50,7 +54,8 @@
     const localStorageTheme = localStorage.getItem('theme')
 
     if (localStorageTheme === 'light-theme') {
-      enableLightMode()
+      // body.light-theme установлена по умолчанию
+      return
     } else if (localStorageTheme === 'dark-theme') {
       enableDarkMode()
     } else {
