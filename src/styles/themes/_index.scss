@@ -20,13 +20,13 @@ html {
   --clr-bg: hsl(0, 0%, 100%);
 }
 
-:root:has(#header-theme [value='light']:checked) {
+:root:has(body.lihgt-theme) {
   color-scheme: light;
   --clr-text: hsl(0, 0%, 0%);
   --clr-bg: hsl(0, 0%, 100%);
 }
 
-:root:has(#header-theme [value='dark']:checked) {
+:root:has(body.dark-theme) {
   color-scheme: dark;
   --clr-text: hsl(0, 0%, 100%);
   --clr-bg: hsl(0, 0%, 0%);

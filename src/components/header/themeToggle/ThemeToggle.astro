@@ -2,12 +2,62 @@
 
 ---
 
-<div class="theme-select-container">
-  <select class="header-theme-select" id="header-theme">
-    <option value="system">S</option>
-    <option value="light">L</option>
-    <option value="dark">D</option>
-  </select>
-</div>
+<button id="theme-toggle" aria-label="Переключиться на темную тему">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="610.94" height="610.94" viewBox="0 0 610.94 610.94">
+    <path
+      class="toggle-sun"
+      d="M521.47,216v-127.53h-127.53L305.47,0l-88.47,88.47h-127.53v127.53L0,305.47l89.47,89.47v125.53h125.53l90.47,90.47,90.47-90.47h125.53v-125.53l89.47-89.47-89.47-89.47ZM305.47,472.97c-92.51,0-167.5-74.99-167.5-167.5s74.99-167.5,167.5-167.5,167.5,74.99,167.5,167.5-74.99,167.5-167.5,167.5Z"
+    ></path>
+    <circle class="toggle-circle" cx="305.47" cy="305.47" r="127"></circle>
+  </svg>
+</button>
 
+<script>
+  const themeToggle = document.querySelector('#theme-toggle') as HTMLButtonElement
 
+  // Переключает на тёмную тему
+  const enableDarkMode = () => {
+    document.body.classList.remove('light-theme')
+    document.body.classList.add('dark-theme')
+    themeToggle.ariaLabel = 'Переключиться на светлую тему'
+    localStorage.setItem('theme', 'dark-theme')
+  }
+
+  // Переключает на светлую тему
+  const enableLightMode = () => {
+    document.body.classList.remove('dark-theme')
+    document.body.classList.add('light-theme')
+    themeToggle.ariaLabel = 'Переключиться на темную тему'
+    localStorage.setItem('theme', 'light-theme')
+  }
+
+  // Меняем тему по клику на кнопку
+  themeToggle.addEventListener('click', () => {
+    const isLightMode: boolean = document.body.classList.contains('light-theme')
+
+    isLightMode ? enableDarkMode() : enableLightMode()
+  })
+
+  // Задаёт тему исходя из prefers-color-scheme
+  const setThemePreferencs = (): any => {
+    const isDarkPrefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    isDarkPrefersColorScheme ? enableDarkMode() : enableLightMode()
+  }
+
+  // Задаёт тему исходя из Local Storage и prefers-color-scheme
+  const setThemeOnBoot = (): any => {
+    const localStorageTheme = localStorage.getItem('theme')
+
+    if (localStorageTheme === 'light-theme') {
+      enableLightMode()
+    } else if (localStorageTheme === 'dark-theme') {
+      enableDarkMode()
+    } else {
+      setThemePreferencs()
+    }
+  }
+
+  // document.onload - Задаём тему при загрузке
+  document.onload = setThemeOnBoot()
+</script>
