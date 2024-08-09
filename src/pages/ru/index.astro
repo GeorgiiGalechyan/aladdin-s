@@ -3,12 +3,39 @@ import PagesLayout from '@layouts/PagesLayout.astro'
 ---
 
 <PagesLayout title="Домашняя">
-  <section class="hero">
-    <div class="111">
-      <h1>АБВ</h1>
+  <div class="main-hero">
+    <div class="main-hero-wrapper">
+      <hgroup class="main-hero-text-container">
+        <h3 class:list={['main-title', 'hero-title']}>Нужна помощь с переводом?</h3>
+        <p class="hero-text">Давайте обсудим ваши потребности и составим индивидуальный план именно для вас!</p>
+      </hgroup>
+      <div class="main-hero-form-container">
+        <form action="main-hero-form"></form>
+      </div>
     </div>
-    <div class="111">
-      <h1>ГДЕ</h1>
+  </div>
+  <div class="sub-hero">
+    <div class="sub-hero-wrapper">
+      <h1 class:list={['main-title', 'sub-hero-title']}>Почему выбирают нас?</h1>
+      <div class=""></div>
     </div>
-  </section>
+  </div>
+  <div class="main-services">
+    <div class="main-services-wrapper">
+      <h1 class:list={['main-title', 'services-title']}>Услуги бюро переводов</h1>
+      <p></p>
+    </div>
+  </div>
+  <div class="testimonials">
+    <div class="testimonials-wrapper">
+      <h1 class:list={['main-title', 'testimonials-title']}>Отзывы</h1>
+      <div class="testimonials-carousel">
+        <div class="testimonial-1">Отзыв 1</div>
+        <div class="testimonial-2">Отзыв 2</div>
+        <div class="testimonial-3">Отзыв 3</div>
+        <div class="testimonial-4">Отзыв 4</div>
+        <div class="testimonial-5">Отзыв 5</div>
+      </div>
+    </div>
+  </div>
 </PagesLayout>
