@@ -1,6 +1,7 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config';
+import icon from 'astro-icon';
 
-import icon from 'astro-icon'
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
     routing: {
-      prefixDefaultLocale: true,
+      prefixDefaultLocale: true
     },
     // Резервные локали
     fallback: {
@@ -18,8 +19,8 @@ export default defineConfig({
       fr: 'ru',
       tm: 'ru',
       kz: 'ru',
-      uz: 'ru',
-    },
+      uz: 'ru'
+    }
   },
-  integrations: [icon()],
-})
+  integrations: [icon(), react()]
+});

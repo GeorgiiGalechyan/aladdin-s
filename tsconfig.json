@@ -3,14 +3,32 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@fonts/*": ["./public/fonts/*"],
-      "@enums/*": ["./public/enums/*"],
-      "@interfaces/*": ["./public/interfaces/*"],
-      "@types/*": ["./public/types/*"],
-      "@components/*": ["./src/components/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@layouts/*": ["./src/layouts/*"]
-    }
+      "@fonts/*": [
+        "./public/fonts/*"
+      ],
+      "@enums/*": [
+        "./public/enums/*"
+      ],
+      "@interfaces/*": [
+        "./public/interfaces/*"
+      ],
+      "@types/*": [
+        "./public/types/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@layouts/*": [
+        "./src/layouts/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

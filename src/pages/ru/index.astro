@@ -1,33 +1,25 @@
 ---
 import PagesLayout from '@layouts/PagesLayout.astro'
+import HomePageHero from '@components/sections/hero/home-page-hero.astro'
+
+const {} = Astro.props
 ---
 
 <PagesLayout title="Домашняя">
-  <div class="main-hero">
-    <div class="main-hero-wrapper">
-      <hgroup class="main-hero-text-container">
-        <h3 class:list={['main-title', 'hero-title']}>Нужна помощь с переводом?</h3>
-        <p class="hero-text">Давайте обсудим ваши потребности и составим индивидуальный план именно для вас!</p>
-      </hgroup>
-      <div class="main-hero-form-container">
-        <form action="main-hero-form"></form>
-      </div>
-    </div>
-  </div>
-  <div class="sub-hero">
-    <div class="sub-hero-wrapper">
+  <HomePageHero />
+  <div class:list={['main-section', 'sub-hero-section']}>
+    <div class:list={['section-wrapper', 'sub-hero-wrapper']}>
       <h1 class:list={['main-title', 'sub-hero-title']}>Почему выбирают нас?</h1>
-      <div class=""></div>
     </div>
   </div>
-  <div class="main-services">
-    <div class="main-services-wrapper">
+  <div class:list={['main-section', 'services-section']}>
+    <div class:list={['section-wrapper', 'services-wrapper']}>
       <h1 class:list={['main-title', 'services-title']}>Услуги бюро переводов</h1>
       <p></p>
     </div>
   </div>
-  <div class="testimonials">
-    <div class="testimonials-wrapper">
+  <div class:list={['main-section', 'testimonials-section']}>
+    <div class:list={['section-wrapper', 'testimonials-wrapper']}>
       <h1 class:list={['main-title', 'testimonials-title']}>Отзывы</h1>
       <div class="testimonials-carousel">
         <div class="testimonial-1">Отзыв 1</div>
