@@ -1,7 +1,11 @@
 @use '../abstracts//' as *;
 
 .home-page-hero-section {
-  background-color: hsl(44, 54%, 64%);
+  --hero-heading-size: #{$fs-600};
+  --hero-sub-heading-size: #{$fs-500};
+
+  --form-text-size: #{$fs-500};
+  --form-placeholder-size: #{$fs-500};
 }
 
 #home-page-hero {
@@ -18,26 +22,39 @@
   & > h3 {
     margin-bottom: 1rem;
 
-    font-size: 1.4rem;
-    font-weight: $fw-bold;
+    font-size: var(--hero-heading-size);
+    font-weight: 600;
   }
 
   & > p {
-    font-size: 1.1rem;
-    font-weight: $fw-semi;
+    font-size: var(--hero-sub-heading-size);
+    font-weight: 500;
   }
 }
 
 #home-page-hero .form-container {
   padding: 1rem;
-
   border: 1px solid red;
 }
 
 #home-page-hero-form {
+  max-width: 90%;
+  margin: 0 auto;
+
   display: grid;
   grid-auto-flow: row;
   row-gap: 1rem;
+
+  & input {
+    padding: 0.15rem 0.3rem;
+    border: 1px solid var(--brand);
+    border-radius: 3px;
+    color: var(--brand);
+  }
+
+  & input::placeholder {
+    color: var(--brand);
+  }
 }
 
 #home-page-hero-form button {

@@ -4,48 +4,50 @@
 
 // Цвета под темы
 html {
-    color-scheme: dark light;
+  color-scheme: dark light;
 
   // Light
-  --brand-light: #{$clr-orange-7};
+  --brand-light: #{$orange-7};
 
-  --surface-1-light: #{$clr-gray-0};
-  --surface-2-light: #{$clr-gray-1};
-  --surface-3-light: #{$clr-gray-2};
-  --surface-4-light: #{$clr-gray-3};
+  --surface-1-light: #{$neutral-0};
+  --surface-2-light: #{$neutral-1};
+  --surface-3-light: #{$neutral-2};
+  --surface-4-light: #{$neutral-3};
 
-  --text-light: #{$clr-gray-12};
+  --text-light: #{$neutral-12};
+
+  --link-light: var(--brand-light);
 
   // Dark
-  --brand-dark: #{$clr-orange-5};
+  --brand-dark: #{$orange-5};
 
-  --surface-1-dark: #{$clr-gray-12};
-  --surface-2-dark: #{$clr-gray-11};
-  --surface-3-dark: #{$clr-gray-10};
-  --surface-4-dark: #{$clr-gray-9};
+  --surface-1-dark: #{$neutral-12};
+  --surface-2-dark: #{$neutral-11};
+  --surface-3-dark: #{$neutral-10};
+  --surface-4-dark: #{$neutral-9};
 
-  --text-dark: #{$clr-gray-4};
+  --text-dark: #{$neutral-4};
+
+  --link-dark: var(--brand-dark);
 }
 
 /* Default     | По умолчанию*/
 /* Preferences | Предпочтения */
 /* Light theme | Светлая тема */
 :root {
-    color-scheme: light;
+  color-scheme: light;
 
-  --brand: var(--brand-light)
+  --brand: var(--brand-light);
 
   --surface-1: var(--surface-1-light);
   --surface-2: var(--surface-2-light);
   --surface-3: var(--surface-3-light);
   --surface-4: var(--surface-4-light);
 
-  --text: var(--text-light)
-  --link: var(--brand);
+  --text: var(--text-light);
+  --link: var(--link-light);
 
-  --clr-bg: var(--surface-1);
-  --clr-text: var(--text);
-  --clr-link: var(--link);
+  --bg: var(--surface-1);
 }
 
 /* Preferences | Предпочтения */
@@ -54,61 +56,55 @@ html {
   :root {
     color-scheme: dark;
 
-    --brand: var(--brand-dark)
+    --brand: var(--brand-dark);
 
     --surface-1: var(--surface-1-dark);
     --surface-2: var(--surface-2-dark);
     --surface-3: var(--surface-3-dark);
     --surface-4: var(--surface-4-dark);
 
-    --text: var(--text-dark)
-    --link: var(--brand);
+    --text: var(--text-dark);
+    --link: var(--link-dark);
 
-    --clr-bg: var(--surface-1);
-    --clr-text: var(--text);
-    --clr-link: var(--link);
+    --bg: var(--surface-1);
   }
 }
 
 /* Light theme | Светлая тема */
 :root:has(body.lihgt-theme) {
-    color-scheme: light;
+  color-scheme: light;
 
-  --brand: var(--brand-light)
+  --brand: var(--brand-light);
 
   --surface-1: var(--surface-1-light);
   --surface-2: var(--surface-2-light);
   --surface-3: var(--surface-3-light);
   --surface-4: var(--surface-4-light);
 
-  --text: var(--text-light)
-  --link: var(--brand);
+  --text: var(--text-light);
+  --link: var(--link-light);
 
-  --clr-bg: var(--surface-1);
-  --clr-text: var(--text);
-  --clr-link: var(--link);
+  --bg: var(--surface-1);
 }
 
 /* Dark theme  | Тёмная тема */
 :root:has(body.dark-theme) {
   color-scheme: dark;
 
-  --brand: var(--brand-dark)
+  --brand: var(--brand-dark);
 
   --surface-1: var(--surface-1-dark);
   --surface-2: var(--surface-2-dark);
   --surface-3: var(--surface-3-dark);
   --surface-4: var(--surface-4-dark);
 
-  --text: var(--text-dark)
-  --link: var(--brand);
+  --text: var(--text-dark);
+  --link: var(--link-dark);
 
-  --clr-bg: var(--surface-1);
-  --clr-text: var(--text);
-  --clr-link: var(--link);
+  --bg: var(--surface-1);
 }
 
 body {
-  color: var(--clr-text);
-//   background-color: var(--surface-1);
+  color: var(--text);
+  background-color: var(--surface-1);
 }
