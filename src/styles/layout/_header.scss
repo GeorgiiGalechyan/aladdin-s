@@ -10,8 +10,8 @@ $clr-bg-header-nav: $clr-gray-7;
 // CSS variables (custom...)
 header {
   // Цвета текста и ссылок
-  --clr-header-select-office: #{$clr-header-primary};
-  --clr-header-link: #{$clr-header-primary};
+  --clr-header-select-office: var(--brand);
+  --clr-header-link: var(--link);
 
   // Цвета навигационного меню
   --clr-header-nav: #{$clr-header-nav};

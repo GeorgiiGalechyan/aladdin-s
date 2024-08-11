@@ -1,4 +1,6 @@
 ---
+import Button from '@components/buttons/polymorp-react-btn'
+
 const {} = Astro.props
 ---
 
@@ -14,7 +16,7 @@ const {} = Astro.props
 
     <div>
       <label for="document-photo">Прикрепите фото документа</label>
-      <input type="file" placeholder="Прикрепите фото документа" accept="image/*" name="document-photo" multiple />
+      <input type="file" accept="image/*" name="document-photo" multiple />
     </div>
 
     <div style="font-size: 0.7rem;">
@@ -24,6 +26,6 @@ const {} = Astro.props
       >
     </div>
 
-    <button type="submit">ЗАПРОСИТЬ ЦЕНУ</button>
+    <Button type="submit">ЗАПРОСИТЬ ЦЕНУ</Button>
   </form>
 </div>

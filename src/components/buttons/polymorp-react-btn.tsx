@@ -18,8 +18,8 @@ export default function Button<E extends ElementType = typeof defaultElement>({
   secondary,
   as,
   ...otherProps
-}: ButtonOwnProps) {
-  const classes = clsx()
+}: ButtonProps<E>) {
+  const classes = clsx({ primary, secondary })
   const TagName = as || defaultElement
 
   return (

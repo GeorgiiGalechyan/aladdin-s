@@ -1,0 +1,49 @@
+---
+import PagesLayout from '@layouts/PagesLayout.astro'
+---
+
+<PagesLayout title="Стили">
+  <div class="surface-1">
+    <div class="surface-2">
+      <div class="surface-3">
+        <div class="surface-4">
+          <p>Какой-то текст</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</PagesLayout>
+
+<style lang="css">
+  .surface-1 {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--surface-1);
+  }
+
+  .surface-2 {
+    width: 85vw;
+    height: 85vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--surface-2);
+  }
+
+  .surface-3 {
+    width: 55vw;
+    height: 55vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--surface-3);
+  }
+
+  .surface-4 {
+    width: 25vw;
+    height: 25vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--surface-4);
+  }
+</style>

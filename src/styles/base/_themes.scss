@@ -1,0 +1,114 @@
+@charset 'utf-8';
+
+@use '../abstracts//' as *;
+
+// Цвета под темы
+html {
+    color-scheme: dark light;
+
+  // Light
+  --brand-light: #{$clr-orange-7};
+
+  --surface-1-light: #{$clr-gray-0};
+  --surface-2-light: #{$clr-gray-1};
+  --surface-3-light: #{$clr-gray-2};
+  --surface-4-light: #{$clr-gray-3};
+
+  --text-light: #{$clr-gray-12};
+
+  // Dark
+  --brand-dark: #{$clr-orange-5};
+
+  --surface-1-dark: #{$clr-gray-12};
+  --surface-2-dark: #{$clr-gray-11};
+  --surface-3-dark: #{$clr-gray-10};
+  --surface-4-dark: #{$clr-gray-9};
+
+  --text-dark: #{$clr-gray-4};
+}
+
+/* Default     | По умолчанию*/
+/* Preferences | Предпочтения */
+/* Light theme | Светлая тема */
+:root {
+    color-scheme: light;
+
+  --brand: var(--brand-light)
+
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --surface-3: var(--surface-3-light);
+  --surface-4: var(--surface-4-light);
+
+  --text: var(--text-light)
+  --link: var(--brand);
+
+  --clr-bg: var(--surface-1);
+  --clr-text: var(--text);
+  --clr-link: var(--link);
+}
+
+/* Preferences | Предпочтения */
+/* Dark theme  | Тёмная тема  */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --brand: var(--brand-dark)
+
+    --surface-1: var(--surface-1-dark);
+    --surface-2: var(--surface-2-dark);
+    --surface-3: var(--surface-3-dark);
+    --surface-4: var(--surface-4-dark);
+
+    --text: var(--text-dark)
+    --link: var(--brand);
+
+    --clr-bg: var(--surface-1);
+    --clr-text: var(--text);
+    --clr-link: var(--link);
+  }
+}
+
+/* Light theme | Светлая тема */
+:root:has(body.lihgt-theme) {
+    color-scheme: light;
+
+  --brand: var(--brand-light)
+
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --surface-3: var(--surface-3-light);
+  --surface-4: var(--surface-4-light);
+
+  --text: var(--text-light)
+  --link: var(--brand);
+
+  --clr-bg: var(--surface-1);
+  --clr-text: var(--text);
+  --clr-link: var(--link);
+}
+
+/* Dark theme  | Тёмная тема */
+:root:has(body.dark-theme) {
+  color-scheme: dark;
+
+  --brand: var(--brand-dark)
+
+  --surface-1: var(--surface-1-dark);
+  --surface-2: var(--surface-2-dark);
+  --surface-3: var(--surface-3-dark);
+  --surface-4: var(--surface-4-dark);
+
+  --text: var(--text-dark)
+  --link: var(--brand);
+
+  --clr-bg: var(--surface-1);
+  --clr-text: var(--text);
+  --clr-link: var(--link);
+}
+
+body {
+  color: var(--clr-text);
+//   background-color: var(--surface-1);
+}

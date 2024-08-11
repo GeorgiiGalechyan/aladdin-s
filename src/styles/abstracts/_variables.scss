@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-//Сolors
+// Сolors
 $lg-bg-clr: hsl(60, 56%, 91%);
 $dr-bg-clr: hsl(182, 25%, 50%);
 $lg-clr: hsl(0, 0%, 0%);
@@ -18,7 +18,7 @@ $clr-gray-8: hsl(210 10.3% 22.7%);
 $clr-gray-9: hsl(210 10.8% 14.5%);
 $clr-gray-10: hsl(214 13.7% 10%);
 $clr-gray-11: hsl(216 16.1% 6.1%);
-$clr-gray-12: hsl(210 40% 2%);
+$clr-gray-12: hsl(210, 40%, 2%);
 
 $clr-orange-0: hsl(34 100% 95.1%);
 $clr-orange-1: hsl(33 100% 90%);
@@ -27,7 +27,7 @@ $clr-orange-3: hsl(32 100% 73.5%);
 $clr-orange-4: hsl(31 100% 65.1%);
 $clr-orange-5: hsl(29 100% 58.4%);
 $clr-orange-6: hsl(27 98.3% 53.5%);
-$clr-orange-7: #f76707;
+$clr-orange-7: hsl(24, 94%, 50%);
 $clr-orange-7: hsl(24 94.5% 49.8%);
 $clr-orange-8: hsl(21 90.2% 47.8%);
 $clr-orange-9: hsl(17 87.1% 45.5%);
@@ -64,15 +64,17 @@ $clr-brand-10: $clr-orange-10;
 $clr-brand-11: $clr-orange-11;
 $clr-brand-12: $clr-orange-12;
 
-// Цвета под темы
-
 // Ligt mode | Светлая тема
 $surface-1-light: $clr-gray-0;
 $surface-2-light: $clr-gray-2;
+$surface-3-light: $clr-gray-3;
+$surface-4-light: $clr-gray-4;
 
 // Dark mode | Тёмная тема
 $surface-1-dark: $clr-gray-9;
 $surface-2-dark: $clr-gray-8;
+$surface-3-dark: $clr-gray-7;
+$surface-4-dark: $clr-gray-6;
 
 // Base html elements coolors
 $clr-link-base: $clr-orange-5;
