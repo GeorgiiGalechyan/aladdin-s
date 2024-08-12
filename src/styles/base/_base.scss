@@ -9,7 +9,6 @@ body {
 a {
   text-decoration: none;
 
-  /* unvisited link */
   &:is(:link, :any-link, :visited) {
     color: var(--link);
   }
@@ -34,6 +33,7 @@ select {
   -webkit-appearance: none;
   -ms-appearance: none;
   font-family: $ff-primary, $ff-secondary;
+  font-weight: $regular;
 }
 
 optgroup {
