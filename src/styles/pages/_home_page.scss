@@ -1,16 +1,12 @@
 @charset 'utf-8';
 
-
-.main {
-  display: grid;
-  place-items: center;
+.page-main {
 }
 
 .main-section {
-  width: 100%;
 }
 
 .section-wrapper {
-  width: 95%;
+  max-width: 95%;
   margin: 0 auto;
 }

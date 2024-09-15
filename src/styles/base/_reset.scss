@@ -63,7 +63,7 @@ h4,
 button,
 input,
 label {
-  line-height: 1.1;
+  line-height: 1.5;
 }
 
 /* Balance text wrapping on headings */
@@ -98,6 +98,8 @@ svg {
 textarea:not([rows]) {
   min-height: 10em;
 }
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!  May be error   5ex or 5px*/
 
 /* Anything that has been anchored to should have extra scroll margin */
 :target {

@@ -3,6 +3,7 @@
 @use '../abstracts//' as *;
 
 header {
+  // основной цвет
   --header-primary-color: var(--brand);
 
   // Фоновые цвета
@@ -60,14 +61,14 @@ header {
 .header-line-1 {
   --header-icon-size: 1.5rem;
   --height-line-1: 4rem;
-  height: max-content;
-  position: relative;
+  position: sticky;
   padding-block: 0.5rem;
   display: flex;
   justify-content: end;
   align-items: center;
 
   background-color: var(--line-1);
+  z-index: 1000;
 }
 
 // Бургер
@@ -76,7 +77,7 @@ header {
   opacity: 0.75;
 
   position: absolute;
-  z-index: 9999;
+  z-index: 1100;
   background-color: transparent;
   background-image: url('/images/icon-burger.svg');
   // color  is changeed in svg file
@@ -99,7 +100,7 @@ header {
   --gap: 1.5em;
 
   position: fixed;
-  z-index: 1000;
+
   inset: var(--height-line-1) 30% 0 0;
   color: var(--nav-text);
   background-color: var(--header-nav-bg);
@@ -113,6 +114,8 @@ header {
 
   transform: translateX(-100%);
   transition: transform 150ms ease-out;
+
+  z-index: 800;
 
   & a {
     color: var(--header-link);
@@ -131,7 +134,7 @@ header {
 
 @supports (backdrop-filter: blur(1rem)) {
   .header-menu {
-    background-color: var(--clr-bg-header-nav-unsup);
+    background-color: var(--header-nav-bg-unsup);
     backdrop-filter: blur(0.75rem);
   }
 }
@@ -148,7 +151,7 @@ header {
 }
 
 // Кнопка переключения темы (Btn > svg)
-#theme-toggle {
+#theme-toggle-btn {
   --btn-padding: 0.5rem;
   cursor: pointer;
   background: 0;
@@ -162,80 +165,88 @@ header {
   margin-right: 5rem;
   text-align: center;
   isolation: isolate;
+
+  z-index: 1100;
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    opacity: 1;
+    background: hsl(0 0% 50% / 0.15);
+  }
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background: hsl(0 0% 50% / 0.2);
+    border-radius: inherit;
+    transform: scale(0);
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &::after {
+    content: attr(aria-label);
+    position: absolute;
+    color: #{$neutral-4};
+    background: #{$neutral-10};
+    width: max-content;
+    font-size: 0.8rem;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border-radius: 0.125rem;
+    opacity: 0;
+
+    transform: scale(0) translateX(-40%);
+    transform-origin: left top;
+    transition: transform 0ms linear 100ms, 70ms linear;
+
+    z-index: 10000;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 0.7;
+    transform: scale(1) translateX(-40%);
+    transition: transform linear 70ms, opacity 70ms linear;
+  }
 }
 
-#theme-toggle svg {
+#theme-toggle-btn svg {
   fill: var(--header-select-office);
 }
 
-#theme-toggle::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: hsl(0 0% 50% / 0.2);
-  border-radius: inherit;
-  transform: scale(0);
-  opacity: 0;
-  z-index: -1;
-}
-
-.light-theme #theme-toggle::before {
+.light-theme #theme-toggle-btn::before {
   animation: pulseToLight 650ms ease-out;
 }
 
-.dark-theme #theme-toggle::before {
+.dark-theme #theme-toggle-btn::before {
   animation: pulseToDark 650ms ease-out;
 }
 
-#theme-toggle::after {
-  content: attr(aria-label);
-  position: absolute;
-  color: var(--clr-header-select-office);
-  background: black;
-  width: max-content;
-  font-size: 0.8rem;
-  left: 0;
-  right: 0;
-  top: 100%;
-  margin: 0 auto;
-  padding: 0.5em 1em;
-  border-radius: 0.125rem;
-  opacity: 0;
-
-  transform: scale(0) translateX(-40%);
-  transform-origin: left top;
-  transition: transform 0ms linear 100ms, 70ms linear;
+.dark-theme #theme-toggle-btn::after {
+  color: #{$neutral-12};
+  background: #{$neutral-4};
 }
 
-#theme-toggle:hover,
-#theme-toggle:focus {
-  outline: 0;
-  opacity: 1;
-  background: hsl(0 0% 50% / 0.15);
-}
-
-#theme-toggle:hover::after,
-#theme-toggle:focus-visible::after {
-  opacity: 0.7;
-  transform: scale(1) translateX(-40%);
-  transition: transform linear 70ms, opacity 70ms linear;
-}
-
-.toggle-circle {
-  transform: translateX(-15%);
-  transition: transform 500ms ease-in-out;
-}
-
-.light-theme .toggle-circle {
+.light-theme .theme-toggle-circle {
   transform: translateX(0%);
 }
 
-.toggle-sun {
+.dark-theme .theme-toggle-circle {
+  transform: translateX(15%);
+  transition: transform 500ms ease-in-out;
+}
+
+.theme-toggle-sun {
   transform-origin: center center;
   transition: transform 750ms cubic-bezier(0.16, 0.18, 0.45, 1.32);
 }
 
-.light-theme .toggle-sun {
+.dark-theme .theme-toggle-sun {
   transform: rotate(0.5turn);
 }
 
