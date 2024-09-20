@@ -106,5 +106,9 @@ html {
 
 body {
   color: var(--text);
-  background-color: var(--surface-1);
+  background-color: var(--bg);
+}
+
+a {
+  color: var(--link);
 }

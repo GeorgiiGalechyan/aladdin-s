@@ -3,6 +3,7 @@
 ---
 
 <button id="theme-toggle-btn" aria-label="Переключиться на темную тему">
+  <!-- Увы, анимации не работают на Firefox((( Поэтому оставим svg спрайты до лучших времен -->
   <!-- <svg width="610.94" height="610.94" viewBox="0 0 610.94 610.94">
     <use href="#theme-toggle-icon"></use>
   </svg> -->
@@ -66,6 +67,7 @@
     }
   }
 
-  // document.onload - Задаём тему при загрузке
+  // document.onload - выполняется при загрузке страницы
+  // Задаём тему при загрузке!
   document.onload = setThemeOnBoot()
 </script>
