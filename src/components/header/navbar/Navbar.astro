@@ -4,7 +4,18 @@ import headerMenu from './headerMenuData'
 const {} = Astro.props
 ---
 
-<button class="header-menu-toggle" aria-controls="header-menu" aria-expanded="false"> </button>
+<button id="header-menu-toggle" aria-controls="primary-navigation" aria-expanded="false">
+  <svg stroke="var(--header-icon)" fill="none" width="128" height="128" viewBox="0 0 100 100">
+    <path
+      class="line"
+      stroke-width="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="m 20 40 h 60 a 1 1 0 0 1 0 25 h -60 a 1 1 0 0 1 0 -50 h 30 v 80"
+    >
+    </path>
+  </svg>
+</button>
 <nav>
   <ul id="header-menu" data-visible="false" class="header-menu">
     {
@@ -19,7 +30,7 @@ const {} = Astro.props
 
 <script>
   const headerMenu = document.querySelector('.header-menu') as HTMLUListElement
-  const headerMenuToggle = document.querySelector('.header-menu-toggle') as HTMLButtonElement
+  const headerMenuToggle = document.querySelector('#header-menu-toggle') as HTMLButtonElement
 
   headerMenuToggle?.addEventListener('click', () => {
     const visibility: string | null = headerMenu.getAttribute('data-visible')
