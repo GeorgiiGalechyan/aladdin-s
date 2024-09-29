@@ -1,10 +1,12 @@
 ---
 // line 1
-import Navbar from '@components/header/navbar/Navbar.astro'
+import Hamburger from '@components/header/buttons/Hamburger.astro'
 import Logo from '@components/header/logo/Logo.astro'
-import ThemeToggle from '@components/header/themeToggle/ThemeToggle.astro'
-import Login from '@components/header/login/Login.astro'
-import Notices from '@components/header/notices/Notices.astro'
+import Navbar from '@components/header/navbar/Navbar.astro'
+
+import ThemeToggle from '@components/header/buttons/ThemeToggle.astro'
+import Login from '@components/header/buttons/Login.astro'
+import Notices from '@components/header/buttons/Notices.astro'
 
 // line 2
 import Offices from '@components/header/offices/Offices.astro'
@@ -13,10 +15,11 @@ import Contacts from '@components/header/contacts/Contacts.astro'
 
 <header>
   <div class="header-line-1">
-    <Navbar />
+    <Hamburger />
     <Logo />
+    <Navbar />
     <ThemeToggle />
-    <!-- <Notices /> -->
+    <Notices />
     <Login />
   </div>
   <div class="header-line-2">
