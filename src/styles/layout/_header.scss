@@ -109,6 +109,7 @@ header {
   }
 
   &::before {
+    content: '';
     position: absolute;
     inset: 0;
     background: hsl(0 0% 50% / 0.2);
@@ -119,12 +120,8 @@ header {
   }
 }
 
-.light-theme .header-icon-btn::before {
-  animation: pulseToLight 650ms ease-out;
-}
-
-.dark-theme .header-icon-btn::before {
-  animation: pulseToDark 650ms ease-out;
+.header-icon-btn[data-click='clicked']::before {
+  animation: pulseOnClick 650ms ease-out;
 }
 
 // Бургер
@@ -259,7 +256,7 @@ header {
 }
 
 // Анимация пульации при нажатии на кнопку
-@keyframes pulseToLight {
+@keyframes pulseOnClick {
   0% {
     transform: scale(0);
     opacity: 0.5;
@@ -272,22 +269,7 @@ header {
   }
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes pulseToDark {
-  0% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
-  10% {
-    transform: scale(1);
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
+    // transform: scale(1);
   }
 }
 

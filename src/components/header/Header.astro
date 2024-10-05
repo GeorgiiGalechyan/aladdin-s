@@ -27,3 +27,26 @@ import Contacts from '@components/header/contacts/Contacts.astro'
     <Contacts />
   </div>
 </header>
+
+<script>
+  const hamburgerBtn = document.querySelector('#hamburger')
+  const themeBtn = document.querySelector('#theme-toggle-btn')
+  const noticeBtn = document.querySelector('#header-notice-btn')
+  const loginBtn = document.querySelector('#header-login-btn')
+
+  const elems = []
+  elems.push(hamburgerBtn)
+  elems.push(themeBtn)
+  elems.push(noticeBtn)
+  elems.push(loginBtn)
+
+  elems.forEach((e: any | null) =>
+    e.addEventListener('click', () => {
+      console.log(e)
+      e.setAttribute('data-click', 'clicked')
+      setTimeout(() => {
+        e.removeAttribute('data-click')
+      }, 650)
+    })
+  )
+</script>
