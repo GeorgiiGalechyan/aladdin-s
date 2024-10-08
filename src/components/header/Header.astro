@@ -42,7 +42,6 @@ import Contacts from '@components/header/contacts/Contacts.astro'
 
   elems.forEach((e: any | null) =>
     e.addEventListener('click', () => {
-      console.log(e)
       e.setAttribute('data-click', 'clicked')
       setTimeout(() => {
         e.removeAttribute('data-click')

@@ -2,7 +2,7 @@
 
 ---
 
-<button id="theme-toggle-btn" class="header-icon-btn" aria-label="Переключиться на темную тему">
+<button id="theme-toggle-btn" class="header-icon-btn" aria-label="Переключиться на темную тему" data-first-start="true">
   <!-- Увы, анимации не работают на Firefox((( Поэтому оставим svg спрайты до лучших времен -->
   <!-- <svg width="610.94" height="610.94" viewBox="0 0 610.94 610.94">
     <use href="#theme-toggle-icon"></use>
@@ -16,11 +16,21 @@
   </svg>
 </button>
 
-<script>
-  const themeToggleBtn = document.querySelector('#theme-toggle-btn') as HTMLButtonElement
+<!-- Директива is:inline нужна чтобы устранить мерцание при первой загрузке страницы в режиме темной темы. 
+ P.S. Раньше тут были небольшие элементы TS, но в режиме is:inline скрипт переключается на JS, т.е. TS-код просто не работает. -->
+<script is:inline>
+  const themeToggleBtn = document.querySelector('#theme-toggle-btn')
 
   // Переключает на тёмную тему
   const enableDarkMode = () => {
+    // data-first-start='true' устанавливает скорость анимации на 0ms при первой загрузке сайта. CSS настроен так, что при наличии данного арибута при загрузке в темном редиме визуально анимация переключения не срабатывает, т.е. иконка загружается уже в режиме темной темы.
+    const isFirsStart = themeToggleBtn.getAttribute('data-first-start') === 'true'
+    if (isFirsStart) {
+      themeToggleBtn.removeAttribute('data-first-start')
+    }
+
+    // После удаления аттрибута data-first-start анимации срабатывают в штатном режиме и SVG-иконка внутри кнопки переключения темы красиво анимируется в зависимости от темы.
+
     document.body.classList.remove('light-theme')
     document.body.classList.add('dark-theme')
     themeToggleBtn.ariaLabel = 'Переключиться на светлую тему'
@@ -43,18 +53,19 @@
   })
 
   // Задаёт тему исходя из prefers-color-scheme
-  const setThemePreferencs = (): any => {
+  const setThemePreferencs = () => {
     const isLightPrefersColorScheme = window.matchMedia('(prefers-color-scheme: light)').matches
 
     if (isLightPrefersColorScheme) {
       // body.light-theme установлена по умолчанию
       return
     }
+    themeToggleBtn.setAttribute('data-first-start', 'true')
     enableDarkMode()
   }
 
   // Задаёт тему исходя из Local Storage и prefers-color-scheme
-  const setThemeOnBoot = (): any => {
+  const setThemeOnBoot = () => {
     const localStorageTheme = localStorage.getItem('theme')
 
     if (localStorageTheme === 'light-theme') {
