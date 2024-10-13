@@ -6,6 +6,7 @@
 header {
   // Отступы шапки
   --header-padding-inline: 1rem;
+  --height-line-1: 3.75rem;
 
   // Основной цвет
   --header-primary-color: var(--brand, red);
@@ -27,15 +28,15 @@ header {
   --header-nav-bg: #{$neutral-7};
   --header-nav-bg-unsup: hsl(0 0% 100% / 0.1);
 
-  // Заголовки
-  --fs-header-title: var(--text-size);
-  --fw-header-title: #{$semi};
-
   // Текст
-  --text-size: #{$fs-100};
+  --text-size: #{$fs-300};
 
   --fs-header-text: var(--text-size);
   --fw-header-text: #{$regular};
+
+  // Заголовки
+  --fs-header-title: var(--text-size);
+  --fw-header-title: #{$semi};
 
   // Иконки
   --header-icon-color: var(--header-primary-color, red);
@@ -63,7 +64,8 @@ header {
 
 // Первая линия шапки
 .header-line-1 {
-  --height-line-1: 3.75rem;
+  position: fixed;
+  inset: 0 0 calc(100% - var(--height-line-1)) 0;
   padding-inline: calc(var(--header-padding-inline) - var(--header-icon-padding));
   min-height: var(--height-line-1);
   display: flex;
@@ -132,9 +134,10 @@ header {
 
 // Бургер
 #hamburger {
-  margin-left: calc(var(--header-padding-inline));
-  padding: 0.2rem;
+  --hamburger-padding: 0.2rem;
+  padding: var(--hamburger-padding);
   overflow: hidden;
+  margin-right: 0.2rem;
 
   & svg {
     transition:
@@ -289,6 +292,7 @@ header {
 
 // Вторая линия шапки
 .header-line-2 {
+  margin-top: var(--height-line-1);
   padding: 0.5rem var(--header-padding-inline);
   display: flex;
   flex-direction: row nowrap;
@@ -321,7 +325,7 @@ header {
   --padding-right: 5%;
   --select-border-radius: 0.2em;
   position: relative;
-  max-width: 13rem;
+  max-width: 25ch;
 
   & > select {
     width: calc(100% - var(--padding-right));
@@ -394,41 +398,65 @@ header {
 
   & > li {
     display: flex;
+    flex-direction: column;
   }
 
   & > li::before {
-    content: 'as';
+    content: '';
   }
 }
 
 // Медиа запросы ===========================
 
-@media (width < $xs) {
+// width < 360px (от 0 до 359px)
+@media screen and (width < $xs) {
   header {
+    --text-size: #{$fs-100};
     --header-padding-inline: 0.5rem;
-    --fs-header: #{$fs-100};
-    --fs-header-heading: #{$fs-100};
   }
 }
-// 360px < width < 576px   (361px-575px)
-@media ($xs < width < $sm) {
+
+// 360px <= width < 576px (от 360px до 575px)
+@media screen and ($xs <= width < $sm) {
+  header {
+    --text-size: #{$fs-200};
+    --header-padding-inline: 0.75rem;
+  }
 }
 
-// 576px <= width < 768px   (576px-767px)
-@media ($sm < width < $md) {
+// 576px <= width <= 768px (от 576px до 767px)
+@media screen and ($md <= width < $lg) {
+  header {
+    --text-size: #{$fs-300};
+  }
+
   .header-select-office {
-    max-width: 60%;
-  }
-
-  .contacts {
-    margin-left: auto;
-    display: flex;
     flex: 1 1 auto;
   }
 
-  .contacts-translate,
-  .contacts-law {
-    display: none;
+  .contacts {
+    display: flex;
+    flex: 6 1 auto;
+    justify-content: end;
+
+    & .contacts-translate,
+    & .contacts-law {
+      display: none;
+    }
+  }
+}
+
+// width > 1024px (1024px и более)
+@media screen and (width >= $lg) {
+  .header-select-office {
+    flex: 1 1 auto;
+  }
+
+  .contacts {
+    display: flex;
+    flex: 3 1 auto;
+    justify-content: end;
+    gap: clamp(1.5rem, 6.9565vw + -2.9522rem, 2rem);
   }
 }
 
