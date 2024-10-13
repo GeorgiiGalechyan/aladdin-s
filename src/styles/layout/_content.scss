@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+.page-content-grid {
+  --inline-padding: clamp(1rem, 6vw, 3rem);
+  --content-width: min(60ch, calc(1200px - (var(var(--inline-padding) - 2))));
+  --popout-width: min(0, 2rem);
+  --features-width: min(0, 5rem);
+
+  display: grid;
+  place-content: center;
+  grid-template-columns:
+    [full-width-start] var(--inline-padding)
+    [features-start] var(--features-width)
+    [popout-start] var(--popout-width)
+    [content-start] var(--content-width) [content-end]
+    var(--popout-width) [popout-end]
+    var(--features-width) [features-end]
+    var(--inline-padding) [full-width-end];
+}
+
+.blog-content-grid {
+  --inline-padding: clamp(1rem, 6vw, 3rem);
+  --content-width: min(60ch, calc(100% - (var(var(--inline-padding) - 2))));
+  --popout-width: min(0, 2rem);
+  --features-width: min(0, 5rem);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--inline-padding)
+    [features-start] var(--features-width)
+    [popout-start] var(--popout-width)
+    [content-start] var(--content-width) [content-end]
+    var(--popout-width) [popout-end]
+    var(--features-width) [features-end]
+    var(--inline-padding) [full-end];
+}
+
+.page-content-grid > :not(.popout, .features, .full-width),
+.blog-content-grid > :not(.popout, .features, .full-width),
+.full-width > :not(.popout, .features, .full-width) {
+  grid-column: content;
+}
+
+.page-content-grid > .popout,
+.blog-content-grid > .popout {
+  grid-column: popout;
+}
+
+.page-content-grid > .features,
+.blog-content-grid > .features {
+  grid-column: features;
+}
+.page-content-grid > .full-width,
+.blog-content-grid > .full-width {
+  grid-column: full-width;
+}

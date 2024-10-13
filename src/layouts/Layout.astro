@@ -4,9 +4,6 @@ interface Props {
 }
 
 import '../styles/style.scss'
-import Header from '@components/header/Header.astro'
-import Footer from '@components/Footer.astro'
-import SVGs from 'public/images/svcCollection.astro'
 
 const { title } = Astro.props
 ---
@@ -23,18 +20,10 @@ const { title } = Astro.props
   </head>
 
   <body id="body" class:list={['light-theme']}>
-    <SVGs />
-    <Header />
     <slot>
       <h1>Заглушка</h1>
     </slot>
-    <Footer />
   </body>
 </html>
 
-<style>
-  body {
-    display: grid;
-    grid-template-columns: [content-start] 1fr [contend-end];
-  }
-</style>
+<style></style>

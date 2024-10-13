@@ -47,6 +47,7 @@ header {
 
 // header styles
 header {
+  display: grid;
   font-size: var(--fs-header-text);
   font-weight: var(--fw-header-text);
 }
@@ -66,7 +67,7 @@ header {
 .header-line-1 {
   position: fixed;
   inset: 0 0 calc(100% - var(--height-line-1)) 0;
-  padding-inline: calc(var(--header-padding-inline) - var(--header-icon-padding));
+  // padding-inline: calc(var(--header-padding-inline) - var(--header-icon-padding));
   min-height: var(--height-line-1);
   display: flex;
   align-items: center;
