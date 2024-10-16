@@ -3,7 +3,7 @@
 @use '../abstracts//' as *;
 
 // CSS variables | CSS переменные
-.page-header,
+header,
 .page-sub-header {
   // Отступы шапки
   --header-padding-inline: 1rem;
@@ -47,32 +47,65 @@
 }
 
 // header styles
-.page-header,
+header,
 .page-sub-header {
-  display: grid;
   font-size: var(--fs-header-text);
   font-weight: var(--fw-header-text);
+
+  // Заголовки в шапке
+  .header-title {
+    font-size: var(--fs-header-heading);
+    font-weight: var(--fw-header-heading);
+  }
 }
 
-// Заголовки в шапке
-.header-title {
-  font-size: var(--fs-header-heading);
-  font-weight: var(--fw-header-heading);
+// width < 360px (от 0 до 359px)
+@media screen and (width < $xs) {
+  header,
+  .page-sub-header {
+    --text-size: #{$fs-100};
+    --header-padding-inline: 0.5rem;
+  }
+}
+
+// 360px <= width < 576px (от 360px до 575px)
+@media screen and ($xs <= width < $sm) {
+  header,
+  .page-sub-header {
+    --text-size: #{$fs-200};
+    --header-padding-inline: 0.75rem;
+  }
+}
+
+// 768px <= width < 1024px (от 768px до 1023px)
+@media screen and ($md <= width < $lg) {
+  header,
+  .page-sub-header {
+    --text-size: #{$fs-300};
+  }
 }
 
 // Первая линия шапки
 .sticky {
+  grid-column: full-width;
   position: sticky;
   top: 0;
-  min-height: var(--height-sticky-header);
-
-  grid-auto-flow: column;
-  align-items: center;
-  justify-content: right;
-  gap: 0.5rem;
 
   background-color: var(--bg-clr-sticky-header);
   z-index: 1000;
+}
+
+.sticky-content {
+  display: grid;
+  grid-column: content;
+}
+
+.header-content {
+  min-height: var(--height-sticky-header);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 // Логотип
@@ -291,7 +324,7 @@
 
 // Вторая линия шапки
 .page-sub-header {
-  padding: 0.5rem var(--header-padding-inline);
+  padding-block: 0.25rem;
   display: flex;
   flex-direction: row nowrap;
   justify-content: space-between;
@@ -305,6 +338,10 @@
   display: flex;
   justify-content: space-evenly;
   flex: 1 1 auto;
+
+  @media screen and ($sm <= width) {
+    max-width: 43.75ch;
+  }
 }
 
 .header-select-column {
@@ -392,71 +429,46 @@
 
 // Контакты в шапке (скрыты при width < 576px)
 .contacts {
-  display: none;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: end;
 
-  & > li {
-    display: flex;
-    flex-direction: column;
+  @media screen and (width < $sm) {
+    display: none;
   }
 
-  & > li::before {
-    content: '';
+  @media screen and (width < $md) {
+    & .contacts-law,
+    & .contacts-translate {
+      display: none;
+    }
+  }
+
+  @media screen and (width < 940px) {
+    gap: clamp(2.2rem, 18.2456vw + -6.5579rem, 4.15rem);
+
+    & .contacts-translate {
+      display: none;
+    }
+  }
+
+  @media screen and (940px <= width < $lg) {
+    gap: clamp(2.5rem, 30.8434vw + -15.6205rem, 4.1rem);
+  }
+
+  @media screen and ($lg <= width) {
+    gap: clamp(4.1rem, 11.3386vw + -3.1496rem, 5rem);
+  }
+
+  & > li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
   }
 }
 
 // Медиа запросы ===========================
-
-// width < 360px (от 0 до 359px)
-@media screen and (width < $xs) {
-  header {
-    --text-size: #{$fs-100};
-    --header-padding-inline: 0.5rem;
-  }
-}
-
-// 360px <= width < 576px (от 360px до 575px)
-@media screen and ($xs <= width < $sm) {
-  header {
-    --text-size: #{$fs-200};
-    --header-padding-inline: 0.75rem;
-  }
-}
-
-// 576px <= width <= 768px (от 576px до 767px)
-@media screen and ($md <= width < $lg) {
-  header {
-    --text-size: #{$fs-300};
-  }
-
-  .header-select-office {
-    flex: 1 1 auto;
-  }
-
-  .contacts {
-    display: flex;
-    flex: 6 1 auto;
-    justify-content: end;
-
-    & .contacts-translate,
-    & .contacts-law {
-      display: none;
-    }
-  }
-}
-
-// width > 1024px (1024px и более)
-@media screen and (width >= $lg) {
-  .header-select-office {
-    flex: 1 1 auto;
-  }
-
-  .contacts {
-    display: flex;
-    flex: 3 1 auto;
-    justify-content: end;
-    gap: clamp(1.5rem, 6.9565vw + -2.9522rem, 2rem);
-  }
-}
 
 // Служебные классы =========================
 

@@ -13,13 +13,17 @@ import Offices from '@components/header/offices/Offices.astro'
 import Contacts from '@components/header/contacts/Contacts.astro'
 ---
 
-<header class:list={['page-header', 'sticky']}>
-  <Hamburger />
-  <Logo />
-  <Navbar />
-  <ThemeToggle />
-  <Notices />
-  <Login />
+<header class:list={['sticky', 'full-width']}>
+  <div class="sticky-content">
+    <div class="header-content">
+      <Hamburger />
+      <Logo />
+      <Navbar />
+      <ThemeToggle />
+      <Notices />
+      <Login />
+    </div>
+  </div>
 </header>
 <section class="page-sub-header">
   <Offices />
