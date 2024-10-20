@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-.page-content-grid {
+.base-layout {
   --gap: clamp(0.5rem, 0.4987rem + 2.0844vw, 3rem);
   --full: minmax(var(--gap), 1fr);
   --content: min(1080px, 100% - var(--gap) * 2);
@@ -20,44 +20,20 @@
     var(--full) [full-width-end];
 }
 
-.blog-content-grid {
-  --gap: clamp(0.5rem, 0.4987rem + 2.0844vw, 3rem);
-  --full: minmax(var(--gap), 1fr);
-  --content: min(1080px, 100% - var(--gap) * 2);
-  --breakout: minmax(0, 2rem);
-  --feature: minmax(0, 5rem);
-
-  width: 100%;
-  display: grid;
-  place-content: center;
-  grid-template-columns:
-    [full-width-start] var(--full)
-    [feature-start] var(--feature)
-    [breakout-start] var(--breakout)
-    [content-start] var(--content) [content-end]
-    var(--breakout) [breakout-end]
-    var(--feature) [feature-end]
-    var(--full) [full-width-end];
-}
-
-.page-content-grid > :not(.breakout, .feature, .full-width),
-.blog-content-grid > :not(.breakout, .feature, .full-width),
+.base-layout > :not(.breakout, .feature, .full-width),
 .full-width > :not(.breakout, .full-width) {
   grid-column: content;
 }
 
-.page-content-grid > .breakout,
-.blog-content-grid > .breakout {
+.base-layout > .breakout {
   grid-column: breakout;
 }
 
-.page-content-grid > .feature,
-.blog-content-grid > .feature {
+.base-layout > .feature {
   grid-column: feature;
 }
 
-.page-content-grid > .full-width,
-.blog-content-grid > .full-width {
+.base-layout > .full-width {
   grid-column: full-width;
 
   display: grid;
@@ -66,6 +42,5 @@
 
 img.full-width {
   width: 100%;
-  // max-height: 45vh;
   object-fit: cover;
 }
