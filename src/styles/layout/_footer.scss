@@ -4,25 +4,27 @@
 
 footer {
   // Поверхности | Surfaces
-  --clr-bg-footer: var(surface-4);
-  --clr-bg-footer-column: #{$neutral-7};
+  --bg-footer: var(--surface-1);
+  --bg-footer-column: var(--surface-2);
 
   // Шрифты | Fonts
-  --text-size: #{$fs-200};
-  --text-weight: #{$regular};
+  --text-size: var(--fs-200);
+  --text-weight: var(--regular);
 }
 
 footer {
+  --_columns-number: 3;
+  --_columns-gap: 1rem;
+
   font-size: var(--text-size);
   font-weight: var(--text-weight);
 
   display: grid;
   place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  column-gap: 1rem;
+  column-gap: var(--_columns-gap);
 }
 
 .footer__column {
   padding: 1rem;
-  border: 1px solid var(--brand);
 }

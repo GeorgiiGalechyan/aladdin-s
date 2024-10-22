@@ -1,11 +1,9 @@
 ---
 import headerMenu from './headerMenuData'
-
-const {} = Astro.props
 ---
 
-<nav class="header-nav">
-  <ul id="header-menu" class="header-menu">
+<nav id="primary-navigation">
+  <ul class="primary-menu-list">
     {
       headerMenu.map((i) => (
         <li>

@@ -1,8 +1,8 @@
 @charset 'utf-8';
 
 /*
-Источник: 
-https://www.a11yproject.com/posts/how-to-hide-content/#alternatives-to-display
+  Источник: 
+  https://www.a11yproject.com/posts/how-to-hide-content/#alternatives-to-display
 */
 .visually-hidden {
   clip: rect(0 0 0 0);
@@ -12,4 +12,24 @@ https://www.a11yproject.com/posts/how-to-hide-content/#alternatives-to-display
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+// Мои служебные классы
+
+.none {
+  display: none;
+}
+
+.flx-rw {
+  display: flex;
+  flex-direction: row;
+}
+
+.flx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.visible {
+  display: inline-block;
 }

@@ -2,16 +2,18 @@
 import Layout from '@layouts/Layout.astro'
 
 import Header from '@components/header/Header.astro'
+import SubHeader from '@components/subHeader/SubHeader.astro'
 import Footer from '@components/Footer.astro'
-import SVGs from 'public/images/svcCollection.astro'
+// import SVGs from 'public/images/svcCollection.astro' 
 
 const { title } = Astro.props
 ---
 
 <Layout title={title}>
-  <SVGs />
+  <!-- <SVGs />  SVG - спрайты. Увы, анимации работают не во всех браузерах -->
   <Header />
-  <main class:list={['page-main']}>
+  <SubHeader />
+  <main class="page-main">
     <slot>
       <h1 style="color: red">{title || 'Cтраница без аттрибута TITLE, добавь его!'}</h1>
     </slot>

@@ -1,19 +1,15 @@
 ---
 // line 1
-import Hamburger from '@components/header/buttons/Hamburger.astro'
+import Hamburger from '@components/header/SVGButtons/Hamburger.astro'
 import Logo from '@components/header/logo/Logo.astro'
 import Navbar from '@components/header/navbar/Navbar.astro'
 
-import ThemeToggle from '@components/header/buttons/ThemeToggle.astro'
-import Login from '@components/header/buttons/Login.astro'
-import Notices from '@components/header/buttons/Notices.astro'
-
-// line 2
-import Offices from '@components/header/offices/Offices.astro'
-import Contacts from '@components/header/contacts/Contacts.astro'
+import ThemeToggle from '@components/header/SVGButtons/ThemeToggle.astro'
+import Login from '@components/header/SVGButtons/Login.astro'
+import Notices from '@components/header/SVGButtons/Notices.astro'
 ---
 
-<header class:list={['sticky', 'full-width']}>
+<header class="sticky full-width">
   <div class="sticky-content">
     <div class="header-content">
       <Hamburger />
@@ -24,30 +20,26 @@ import Contacts from '@components/header/contacts/Contacts.astro'
       <Login />
     </div>
   </div>
+
+  <script>
+    const hamburgerBtn = document.querySelector('#hamburger')
+    const themeBtn = document.querySelector('#theme-toggle-btn')
+    const noticeBtn = document.querySelector('#header-notice-btn')
+    const loginBtn = document.querySelector('#header-login-btn')
+
+    const elems = []
+    elems.push(hamburgerBtn)
+    elems.push(themeBtn)
+    elems.push(noticeBtn)
+    elems.push(loginBtn)
+
+    elems.forEach((e: any | null) =>
+      e.addEventListener('click', () => {
+        e.setAttribute('data-click', 'clicked')
+        setTimeout(() => {
+          e.removeAttribute('data-click')
+        }, 650)
+      })
+    )
+  </script>
 </header>
-<section class="page-sub-header">
-  <Offices />
-  <Contacts />
-</section>
-
-<script>
-  const hamburgerBtn = document.querySelector('#hamburger')
-  const themeBtn = document.querySelector('#theme-toggle-btn')
-  const noticeBtn = document.querySelector('#header-notice-btn')
-  const loginBtn = document.querySelector('#header-login-btn')
-
-  const elems = []
-  elems.push(hamburgerBtn)
-  elems.push(themeBtn)
-  elems.push(noticeBtn)
-  elems.push(loginBtn)
-
-  elems.forEach((e: any | null) =>
-    e.addEventListener('click', () => {
-      e.setAttribute('data-click', 'clicked')
-      setTimeout(() => {
-        e.removeAttribute('data-click')
-      }, 650)
-    })
-  )
-</script>

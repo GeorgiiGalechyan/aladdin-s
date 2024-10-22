@@ -1,0 +1,32 @@
+---
+// line 2
+import Offices from '@components/header/offices/Offices.astro'
+import Contacts from '@components/header/contacts/Contacts.astro'
+---
+
+<section class="page-sub-header">
+  <Offices />
+  <Contacts />
+</section>
+
+<script>
+  const hamburgerBtn = document.querySelector('#hamburger')
+  const themeBtn = document.querySelector('#theme-toggle-btn')
+  const noticeBtn = document.querySelector('#header-notice-btn')
+  const loginBtn = document.querySelector('#header-login-btn')
+
+  const elems = []
+  elems.push(hamburgerBtn)
+  elems.push(themeBtn)
+  elems.push(noticeBtn)
+  elems.push(loginBtn)
+
+  elems.forEach((e: any | null) =>
+    e.addEventListener('click', () => {
+      e.setAttribute('data-click', 'clicked')
+      setTimeout(() => {
+        e.removeAttribute('data-click')
+      }, 650)
+    })
+  )
+</script>

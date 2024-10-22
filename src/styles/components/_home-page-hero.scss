@@ -1,20 +1,16 @@
 @use '../abstracts//' as *;
 
 .home-page-hero-section {
-  --hero-heading-size: #{$fs-600};
-  --hero-sub-heading-size: #{$fs-500};
+  --hero-heading-size: var(--fs-600);
+  --hero-sub-heading-size: var(--fs-500);
 
-  --form-text-size: #{$fs-500};
-  --form-placeholder-size: #{$fs-500};
-}
-
-#home-page-hero {
-  border: 1px solid black;
+  --form-text-size: var(--fs-500);
+  --form-placeholder-size: var(--fs-500);
 }
 
 #home-page-hero .text-container {
   padding: 2rem 1rem;
-  border: 1px solid blue;
+
   height: max-content;
   text-align: center;
   line-height: 1.2;
@@ -23,18 +19,17 @@
     margin-bottom: 1rem;
 
     font-size: var(--hero-heading-size);
-    font-weight: 600;
+    font-weight: var(--semi);
   }
 
   & > p {
     font-size: var(--hero-sub-heading-size);
-    font-weight: 500;
+    font-weight: var(--semi);
   }
 }
 
 #home-page-hero .form-container {
   padding: 1rem;
-  border: 1px solid red;
 }
 
 #home-page-hero-form {
@@ -47,13 +42,13 @@
 
   & input {
     padding: 0.15rem 0.3rem;
-    border: 1px solid var(--brand);
+    border: 1px solid var(--accent-color);
     border-radius: 3px;
-    color: var(--brand);
+    color: var(--accent-color);
   }
 
   & input::placeholder {
-    color: var(--brand);
+    color: var(--accent-color);
   }
 }
 
