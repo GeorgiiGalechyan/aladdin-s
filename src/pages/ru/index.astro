@@ -1,33 +1,28 @@
 ---
 import PagesLayout from '@layouts/PagesLayout.astro'
-import HomePageHero from '@components/sections/hero/home-page-hero.astro'
-
-const {} = Astro.props
+import HomePageHero from '@components/sections/hero/HomePageHero.astro'
+import HomePageSubHero from '@components/sections/subHero/HomePageSubHero.astro'
 ---
 
 <PagesLayout title="Домашняя">
   <HomePageHero />
-  <div class:list={['main-section', 'sub-hero-section']}>
-    <div class:list={['section-wrapper', 'sub-hero-wrapper']}>
-      <h1 class:list={['main-title', 'sub-hero-title']}>Почему выбирают нас?</h1>
-    </div>
+  <HomePageSubHero />
+  <div class="main-section services-section">
+    <h2 class="main-title services-title">Услуги бюро переводов</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas eum, natus officiis, asperiores et voluptate,
+      magnam laboriosam quas dolorem deserunt aut nostrum! Reiciendis placeat facilis, aspernatur nemo sapiente eveniet
+      commodi? Vero illo delectus incidunt deserunt illum minima fugiat numquam
+    </p>
   </div>
-  <div class:list={['main-section', 'services-section']}>
-    <div class:list={['section-wrapper', 'services-wrapper']}>
-      <h1 class:list={['main-title', 'services-title']}>Услуги бюро переводов</h1>
-      <p></p>
-    </div>
-  </div>
-  <div class:list={['main-section', 'testimonials-section']}>
-    <div class:list={['section-wrapper', 'testimonials-wrapper']}>
-      <h1 class:list={['main-title', 'testimonials-title']}>Отзывы</h1>
-      <div class="testimonials-carousel">
-        <div class="testimonial-1">Отзыв 1</div>
-        <div class="testimonial-2">Отзыв 2</div>
-        <div class="testimonial-3">Отзыв 3</div>
-        <div class="testimonial-4">Отзыв 4</div>
-        <div class="testimonial-5">Отзыв 5</div>
-      </div>
+  <div class="main-section testimonials-section">
+    <h2 class="main-title testimonials-title">Отзывы</h2>
+    <div class="testimonials-carousel flx-row">
+      <div class="testimonial-1">Отзыв 1</div>
+      <div class="testimonial-2">Отзыв 2</div>
+      <div class="testimonial-3">Отзыв 3</div>
+      <div class="testimonial-4">Отзыв 4</div>
+      <div class="testimonial-5">Отзыв 5</div>
     </div>
   </div>
 </PagesLayout>

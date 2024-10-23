@@ -1,0 +1,18 @@
+---
+import HomePageHeroForm from '@components/forms/HomePageHeroForm.astro'
+---
+
+<section class="main-section hp-hero-section">
+  <p class="hero-text">
+    Нотариальные переводы документов для поступления в ВУЗ, оформления РВП, ВНЖ, гражданства, шенгенской визы,.
+  </p>
+  <HomePageHeroForm />
+</section>
+
+<style>
+  .hp-hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 300px;
+  }
+</style>
