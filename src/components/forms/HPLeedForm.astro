@@ -1,0 +1,45 @@
+---
+let formResultMsg = {
+  failure: 'Произошла ошибка! Попробуйте связаться с нами по телефону.',
+  success: 'Запрос отправлен. Специалист свяжется с вами в ближайше время.',
+}
+---
+
+<script>
+  const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
+  let LeedData: FormData = new FormData(hpHeroForm)
+
+  let sendLeedDataToTelegram: Function = (event: Event, data: FormData) => {
+    event.preventDefault()
+    console.log(LeedData)
+  }
+
+  hpHeroForm.addEventListener('submit', sendLeedDataToTelegram())
+  // отправит
+</script>
+
+<!-- изучи формы!!! -->
+<form id="hp-hero-form" name="hpHeroForm" flx-col>
+  <input type="text" placeholder="Ваше имя" pattern="" name="name" required />
+  <input type="text" placeholder="Ваш телефон" name="phone" />
+
+  <div style="font-size: 0.7rem;">
+    <input type="checkbox" placeholder="Даю согласие на обработку" name="agree" checked />
+    Даю согласие на обработку<a href="/ru/law-info/personal-data-processing-policy" target="_blank">
+      персональных данных</a
+    >
+  </div>
+
+  <button type="submit">ЗАПРОСИТЬ ЦЕНУ</button>
+</form>
+<p class="send-resul none"></p>
+
+<style>
+  input[type='text'] {
+    appearance: none;
+  }
+
+  input[type='checkbox'] {
+    appearance: none;
+  }
+</style>
