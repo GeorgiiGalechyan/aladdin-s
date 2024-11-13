@@ -1,38 +1,66 @@
 ---
-let formResultMsg = {
-  failure: 'Произошла ошибка! Попробуйте связаться с нами по телефону.',
-  success: 'Запрос отправлен. Специалист свяжется с вами в ближайше время.',
-}
+const { origin } = Astro.url
+import FormResultMSG from './FormSendResultMsg.astro'
 ---
 
 <script>
+  import { LeadSourse } from 'back/models/LeadSourse'
+  import { Lead } from 'back/models/Lead'
+  import { Message } from 'back/models/Message'
+
+  const leadSourseId = '001'
+  const leadSourseName = 'hp-hero-lead-form'
+  const leadSourseType = 'Main site'
+  const leadSourseURL = origin
+  const leadSourseDescription = 'This is the LeadForm from the Hero section from the home page of the main site.'
+
+  // (id, name, type, url, description)
+  let hpFormLeadSourse = new LeadSourse(
+    leadSourseId, // '001'
+    leadSourseName, // 'hp-hero-lead-form'
+    leadSourseType, // 'Mine site'
+    leadSourseURL, // Astro.url.origin
+    leadSourseDescription // 'This is the LeadForm from the Hero section from the home page of the main site.'
+  )
+
   const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
-  let LeedData: FormData = new FormData(hpHeroForm)
 
-  let sendLeedDataToTelegram: Function = (event: Event, data: FormData) => {
-    event.preventDefault()
-    console.log(LeedData)
-  }
+  hpHeroForm.addEventListener('submit', (event: SubmitEvent) => {
+    event.preventDefault() // прерываем действие по умолчанию
 
-  hpHeroForm.addEventListener('submit', sendLeedDataToTelegram())
-  // отправит
+    let leadData: FormData = new FormData(hpHeroForm)
+
+    // Формируем объект
+    let leadName = leadData.get('leadName')
+    let leadPhone = leadData.get('leadPhone')
+    let message = new Message('Заявка с сайта')
+    console.log(message)
+
+    let hpFormLead = new Lead(hpFormLeadSourse, { leadName, leadPhone }, message)
+
+    // hpFormLead.sendLeadToMail()
+    // hpFormLead.sendLeadToTelegram()
+
+    console.log(hpFormLeadSourse)
+    console.log(leadData)
+    console.log(hpFormLead)
+  })
 </script>
 
-<!-- изучи формы!!! -->
-<form id="hp-hero-form" name="hpHeroForm" flx-col>
-  <input type="text" placeholder="Ваше имя" pattern="" name="name" required />
-  <input type="text" placeholder="Ваш телефон" name="phone" />
+<form id="hp-hero-form" name="hpHeroForm">
+  <input type="text" placeholder="Ваше имя" name="leadName" required />
+  <input type="text" placeholder="Ваш телефон" name="leadPhone" required />
 
   <div style="font-size: 0.7rem;">
-    <input type="checkbox" placeholder="Даю согласие на обработку" name="agree" checked />
-    Даю согласие на обработку<a href="/ru/law-info/personal-data-processing-policy" target="_blank">
-      персональных данных</a
-    >
+    <input type="checkbox" placeholder="Даю согласие на обработку" name="formConsent" checked required />
+    Даю согласие на обработку <a href="/ru/law-info/personal-data-processing-policy" target="_blank">
+      персональных данных
+    </a>
   </div>
 
   <button type="submit">ЗАПРОСИТЬ ЦЕНУ</button>
 </form>
-<p class="send-resul none"></p>
+<FormResultMSG />
 
 <style>
   input[type='text'] {

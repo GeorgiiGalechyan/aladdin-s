@@ -2,38 +2,59 @@
 // throw или return new Error()... Нужно определиться в будущем!!!
 
 /*
-    LeadSourse - должен сожержать информацию об источнике лида ()
-*/
+ * LeadSourse - должен сожержать информацию об источнике лида ()
+ */
 
 export class LeadSourse {
-  constructor(id, name, type, description, url) {
-    this.id = id
-    this.name = name
-    this.description = description
-
+  constructor(id, name, type, url, description) {
     try {
-      if (typeof type === String && typeof url === String) {
+      // Проверяем значение id
+      if (typeof id === 'string') {
+        this.id = id
+      } else {
+        throw new TypeError('"Id" должно иметь тип "string"!')
+      }
+
+      // Проверяем значение name
+      if (typeof name === 'string') {
+        this.name = name
+      } else {
+        throw new TypeError('"Name" должно иметь тип "string"!')
+      }
+
+      if (typeof description === 'string') {
+        this.description = description
+      } else {
+        this.description = 'No description'
+      }
+
+      if (type && typeof type === 'string') {
+        // На данный момент источники: Main site, Landing page и VK
         switch (type) {
           case 'Main site':
             this.type = type
-            this.pageUrl = url
             break
           case 'Landing page':
             this.type = type
-            this.pageUrl = url
             break
           case 'VK':
             this.type = type
-            this.pageUrl = url
+
             break
           default:
             // Либо вернуть, либо сбросить ошибку... решу потом
             throw new Error('Unknown source of leads. Could it be an outside attack?')
         }
+      } else {
+        // Либо вернуть, либо сбросить ошибку... решу потом
+        throw new TypeError('"Type" is not a string!')
       }
 
-      // Либо вернуть, либо сбросить ошибку... решу потом
-      throw new TypeError('Type or url is not a string!')
+      if (url && typeof url === 'string') {
+        this.url = url
+      } else {
+        throw new TypeError('"URL" is not a string!')
+      }
     } catch (error) {
       // Либо вернуть, либо сбросить ошибку... решу потом
       console.error(error)

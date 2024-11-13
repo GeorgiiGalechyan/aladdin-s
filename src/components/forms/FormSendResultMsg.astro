@@ -1,13 +1,14 @@
 ---
-let { formResultMsg } = Astro.props
+let { msg, id, cl, other } = Astro.props
 ---
 
-<p class="form-result, none"></p>
+<p id={id} class:list={[cl, 'none']} {...other}>{msg}</p>
 
 <style>
-  .form-result {
-  }
-
-  .f {
+  .form-result-msg {
+    display: inline-block;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
   }
 </style>
