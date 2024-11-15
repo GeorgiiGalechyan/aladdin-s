@@ -1,4 +1,4 @@
-// нужно ли определять дату в конструкторе или вне его???
+import { sendMail } from 'src/utils/mail/ya'
 
 export class Lead {
   constructor(leadSourse, formData, message) {
@@ -40,25 +40,53 @@ export class Lead {
 
   [Symbol.toPrimitive](hint) {
     if (hint === 'string') {
-      return `Дата создания: ${this.createDate}\nИмя: ${this.name}\nТелефон: ${this.phone}\nИсточник: ${this.sourse.description}`
+      let LeadToStr = [
+        `Дата создания: ${this.createDate}`,
+        `Имя: ${this.name}`,
+        `Телефон: ${this.phone}`,
+        `Источник: ${this.sourse.description}`,
+      ].join('\n')
+
+      return LeadToStr
     }
     return new TypeError('Лид может быть преобразован только в строку')
   }
 
-  async getMessageForSend() {
-    let msg = `${this}`
-    console.log(msg)
-    return msg
-  }
-
-  async sendLeadToTelegram() {
-    let msgForTg = this.getMessageForSend()
+  sendLeadToTelegram() {
+    let msgForTg = `${this}`
     consolelog(msgForTg)
   }
 
-  async sendLeadToMail() {
-    let msgForMail = this.getMessageForSend()
-    console.log(msgForMail)
+  static sendLeadToMail(lead) {
+    let email = import.meta.env.PUBLIC_M_USER
+    let subject
+    switch (lead.sourse.name) {
+      case 'Main site':
+        subject = 'Заявка с Главного сайта'
+        break
+      case 'Landing page':
+        subject = 'Заявка с Лендинга'
+      case 'VK':
+        subject = 'Заявка из VK'
+      default:
+        throw new Error(
+          'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно'
+        )
+    }
+
+    let html = [
+      `<h1>Информация о лиде:</h1><br>`,
+      `<b>Имя</b>: ${lead.name}<br>`,
+      `<b>Контакты</b>: ${lead.phone}<br>`,
+      `<b>ID источника</b>: ${lead.sourse.id}`,
+    ].join('\n')
+
+    let mailProps = {
+      email,
+      subject,
+      html,
+    }
+    sendMail(mailProps)
   }
 
   // Доработать, чтобы в зависимости от прошедшего времени выдавался возраст в секундах, минутах, часах, днях, месяцах.

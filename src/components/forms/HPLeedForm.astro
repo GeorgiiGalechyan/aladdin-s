@@ -25,25 +25,28 @@ import FormResultMSG from './FormSendResultMsg.astro'
 
   const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
 
-  hpHeroForm.addEventListener('submit', (event: SubmitEvent) => {
+  hpHeroForm.addEventListener('submit', function (event: SubmitEvent) {
     event.preventDefault() // прерываем действие по умолчанию
 
+    // создаём FormData нашей формы
     let leadData: FormData = new FormData(hpHeroForm)
 
-    // Формируем объект
+    // Готовим параменты для формирования лида
     let leadName = leadData.get('leadName')
     let leadPhone = leadData.get('leadPhone')
+
+    // Над сущностью Message еще надо подумать...
     let message = new Message('Заявка с сайта')
     console.log(message)
 
+    // Формируем лида
     let hpFormLead = new Lead(hpFormLeadSourse, { leadName, leadPhone }, message)
 
-    // hpFormLead.sendLeadToMail()
-    // hpFormLead.sendLeadToTelegram()
+    // Отравляем сообщение на Почту...
+    // Static or not static... вот в чем вопрос...!!!
+    Lead.sendLeadToMail(hpFormLead)
 
-    console.log(hpFormLeadSourse)
-    console.log(leadData)
-    console.log(hpFormLead)
+    // hpFormLead.sendLeadToTelegram()
   })
 </script>
 
