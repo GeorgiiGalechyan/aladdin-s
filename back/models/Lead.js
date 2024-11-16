@@ -1,4 +1,4 @@
-import { sendMail } from 'src/utils/mail/ya'
+const { sendMail } = await import('src/utils/mail/email')
 
 export class Lead {
   constructor(leadSourse, formData, message) {
@@ -57,10 +57,20 @@ export class Lead {
     consolelog(msgForTg)
   }
 
-  static sendLeadToMail(lead) {
-    let email = import.meta.env.PUBLIC_M_USER
+  async sendLeadToMail() {
+    transporter.verify((error, success) => {
+      if (error) {
+        console.error(error)
+      } else {
+        console.log('Server is ready to take our messages')
+        console.log(success)
+      }
+    })
+
+    let email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
+
     let subject
-    switch (lead.sourse.name) {
+    switch (this.sourse.type) {
       case 'Main site':
         subject = 'Заявка с Главного сайта'
         break
@@ -70,15 +80,19 @@ export class Lead {
         subject = 'Заявка из VK'
       default:
         throw new Error(
-          'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно'
+          'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
         )
     }
 
     let html = [
       `<h1>Информация о лиде:</h1><br>`,
-      `<b>Имя</b>: ${lead.name}<br>`,
-      `<b>Контакты</b>: ${lead.phone}<br>`,
-      `<b>ID источника</b>: ${lead.sourse.id}`,
+      `<b>Имя</b>: ${this.name}<br>`,
+      `<b>Контакты</b>: ${this.phone}<br>`,
+      `<b>Источник</b>: ${this.sourse.id}`,
+      `  - id ${this.sourse.id},`,
+      `  - тип ${this.sourse.type},`,
+      `  - имя ${this.sourse.name},`,
+      `  - url ${this.sourse.url}`,
     ].join('\n')
 
     let mailProps = {
@@ -86,7 +100,9 @@ export class Lead {
       subject,
       html,
     }
-    sendMail(mailProps)
+
+    console.log(mailProps)
+    await sendMail(mailProps)
   }
 
   // Доработать, чтобы в зависимости от прошедшего времени выдавался возраст в секундах, минутах, часах, днях, месяцах.

@@ -1,16 +1,17 @@
-import { defineConfig } from 'astro/config';
-import icon from 'astro-icon';
+import { defineConfig } from 'astro/config'
+import icon from 'astro-icon'
 
-import react from "@astrojs/react";
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'hybrid',
   site: 'https://aladdin-s.ru',
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
     routing: {
-      prefixDefaultLocale: true
+      prefixDefaultLocale: true,
     },
     // Резервные локали
     fallback: {
@@ -19,8 +20,8 @@ export default defineConfig({
       fr: 'ru',
       tm: 'ru',
       kz: 'ru',
-      uz: 'ru'
-    }
+      uz: 'ru',
+    },
   },
-  integrations: [icon(), react()]
-});
+  integrations: [icon(), react()],
+})

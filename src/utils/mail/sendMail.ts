@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+const nodemailer = await import('nodemailer')
 
 interface IEmailData {
   email: string
@@ -30,14 +30,14 @@ async function sendMail(props: IEmailData) {
   }
 
   // По идее его нужно вызывать не здесь, а на сервере при запуске Express или Fastify в качестве проверки готвности почтового сервера. Пусть пока будет здесь.
-  // transporter.verify((error, success) => {
-  //   if (error) {
-  //     console.error(error)
-  //   } else {
-  //     console.log('Server is ready to take our messages')
-  //     console.log(success)
-  //   }
-  // })
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error(error)
+    } else {
+      console.log('Server is ready to take our messages')
+      console.log(success)
+    }
+  })
 
   await transporter.sendMail(message, (error, info) => {
     if (error) {
