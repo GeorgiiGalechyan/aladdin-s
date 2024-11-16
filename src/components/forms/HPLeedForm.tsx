@@ -13,6 +13,7 @@ export default function HPLeadForm() {
       method: 'POST',
       body: formData,
     })
+
     const data = await response.json()
     if (data.message) {
       setResponseMessage(data.message)

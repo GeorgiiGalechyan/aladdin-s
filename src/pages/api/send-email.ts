@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro'
 
+
 // Добавляем redirect, если в конце нуно перенаправить на какую-то страницу
 export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   const leadData = await request.formData()
@@ -7,6 +8,9 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   const name = data.get('name')
   const email = data.get('email')
   const message = data.get('message')
+
+
+
   // Validate the data - you'll probably want to do more than this
   if (!name || !email || !message) {
     return new Response(
@@ -16,6 +20,20 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
       { status: 400 }
     )
   }
+
+
+//   // Throw an error if we're missing any of the needed fields.
+//   if (!to || !subject || !message) {
+//     throw new Error('Missing required fields')
+//   }
+
+
+
+
+
+
+
+
   // Do something with the data, then return a success response
   return new Response(
     JSON.stringify({
@@ -28,7 +46,7 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   // return redirect('/success')
 
 // import type { APIRoute } from 'astro'
-// import { sendMail } from 'src/utils/mail/sendMail'
+
 //
 // export const prerender = false
 //

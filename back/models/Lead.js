@@ -1,4 +1,4 @@
-const { sendMail } = await import('src/utils/mail/email')
+import { sendMail } from 'src/utils/mail/sendMail'
 
 export class Lead {
   constructor(leadSourse, formData, message) {
