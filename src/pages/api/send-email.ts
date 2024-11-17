@@ -1,15 +1,15 @@
 import type { APIRoute } from 'astro'
 
+import { Lead } from 'back/models/Lead'
+import { Message } from 'back/models/Message'
 
 // Добавляем redirect, если в конце нуно перенаправить на какую-то страницу
 export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   const leadData = await request.formData()
 
-  const name = data.get('name')
-  const email = data.get('email')
-  const message = data.get('message')
-
-
+  const name = leadData.get('name')
+  const email = leadData.get('email')
+  const message = leadData.get('message')
 
   // Validate the data - you'll probably want to do more than this
   if (!name || !email || !message) {
@@ -21,18 +21,10 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
     )
   }
 
-
-//   // Throw an error if we're missing any of the needed fields.
-//   if (!to || !subject || !message) {
-//     throw new Error('Missing required fields')
-//   }
-
-
-
-
-
-
-
+  //   // Throw an error if we're missing any of the needed fields.
+  //   if (!to || !subject || !message) {
+  //     throw new Error('Missing required fields')
+  //   }
 
   // Do something with the data, then return a success response
   return new Response(
@@ -44,6 +36,7 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
 
   // Redirect the user to a success page after the email is sent.
   // return redirect('/success')
+}
 
 // import type { APIRoute } from 'astro'
 
@@ -82,20 +75,9 @@ import { LeadSourse } from 'back/models/LeadSourse'
 import { Lead } from 'back/models/Lead'
 import { Message } from 'back/models/Message'
 
-const leadSourseId = '001'
-const leadSourseName = 'hp-hero-lead-form'
-const leadSourseType = 'Main site'
-const leadSourseURL = origin
-const leadSourseDescription = 'This is the LeadForm from the Hero section from the home page of the main site.'
 
-// (id, name, type, url, description)
-let hpFormLeadSourse = new LeadSourse(
-  leadSourseId, // '001'
-  leadSourseName, // 'hp-hero-lead-form'
-  leadSourseType, // 'Mine site'
-  leadSourseURL, // Astro.url.origin
-  leadSourseDescription // 'This is the LeadForm from the Hero section from the home page of the main site.'
-)
+
+
 
 const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
 
