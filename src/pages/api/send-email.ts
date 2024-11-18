@@ -5,27 +5,44 @@ import { Message } from 'back/models/Message'
 
 // Добавляем redirect, если в конце нуно перенаправить на какую-то страницу
 export const POST: APIRoute = async ({ request /*, redirect */ }) => {
-  const leadData = await request.formData()
-
-  const name = leadData.get('name')
-  const email = leadData.get('email')
-  const message = leadData.get('message')
-
-  // Validate the data - you'll probably want to do more than this
-  if (!name || !email || !message) {
-    return new Response(
-      JSON.stringify({
-        message: 'Missing required fields',
-      }),
-      { status: 400 }
-    )
+  if (!request) {
+    console.log('Почему-то отсутствует "request"...')
+  } else {
+    console.log('request есть, но почему-то не отображается')
+    console.log(request)
   }
 
-  //   // Throw an error if we're missing any of the needed fields.
-  //   if (!to || !subject || !message) {
-  //     throw new Error('Missing required fields')
-  //   }
+  const leadData = await request.formData()
 
+  console.log(leadData)
+  //
+  //   let leadName = leadData.get('leadName') as string | null
+  //   let leadPhone = leadData.get('leadPhone') as string | null
+  //   const sourse = leadData.get('sourse')
+  //
+  //   let obj = { leadName, leadPhone, sourse }
+  //   console.log(obj)
+
+  // Над сущностью Message еще надо подумать...
+  // let message = new Message('Заявка с сайта')
+
+  // const message = leadData.get('message')
+  //
+  //   // Validate the data - you'll probably want to do more than this
+  //   if (!name || !email || !message) {
+  //     return new Response(
+  //       JSON.stringify({
+  //         message: 'Missing required fields',
+  //       }),
+  //       { status: 400 }
+  //     )
+  //   }
+  //
+  //   //   // Throw an error if we're missing any of the needed fields.
+  //   //   if (!to || !subject || !message) {
+  //   //     throw new Error('Missing required fields')
+  //   //   }
+  //
   // Do something with the data, then return a success response
   return new Response(
     JSON.stringify({
@@ -69,16 +86,7 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
 // }
 
 ///////////////////////////////////////////////////////
-
 /*
-import { LeadSourse } from 'back/models/LeadSourse'
-import { Lead } from 'back/models/Lead'
-import { Message } from 'back/models/Message'
-
-
-
-
-
 const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
 
 hpHeroForm.addEventListener('submit', function (event: SubmitEvent) {
@@ -87,9 +95,6 @@ hpHeroForm.addEventListener('submit', function (event: SubmitEvent) {
   // создаём FormData нашей формы
   let leadData: FormData = new FormData(hpHeroForm)
 
-  // Готовим параменты для формирования лида
-  let leadName = leadData.get('leadName') as string | null
-  let leadPhone = leadData.get('leadPhone') as string | null
 
   // Над сущностью Message еще надо подумать...
   let message = new Message('Заявка с сайта')

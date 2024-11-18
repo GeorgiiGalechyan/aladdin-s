@@ -28,15 +28,19 @@ export default function HPLeadForm() {
     formData.append('leadSourse', JSON.stringify(sourse))
     // console.log(formData) // Работает!!!
 
-    // const response = await fetch('/api/send-email', {
-    //   method: 'POST',
-    //   body: formData,
-    // })
+    const response = await fetch('/api/send-email', {
+      // headers: {
+      //   'Content-type': 'application/json',
+      // },
+      method: 'POST',
+      body: formData,
+    })
 
-    // const data = await response.json()
-    // if (data.message) {
-    //   setResponseMessage(data.message)
-    // }
+    // Получить ответ в формате json и вывести поле  message
+    const data = await response.json()
+    if (data.message) {
+      setResponseMessage(data.message)
+    }
   }
 
   return (
