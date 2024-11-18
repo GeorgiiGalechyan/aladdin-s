@@ -20,7 +20,7 @@ export class Lead {
       }
 
       if (!message) {
-        this.message = []
+        this.messages = []
       } else {
         this.messages = [
           {
@@ -34,7 +34,7 @@ export class Lead {
       // Statuses: New => Processing => Qualified | Unqualified
       this.status = 'New'
     } catch (error) {
-      throw error
+      throw new Error('В конструктор переданы невалидные данные!')
     }
   }
 
@@ -45,9 +45,8 @@ export class Lead {
         `Имя: ${this.name}`,
         `Телефон: ${this.phone}`,
         `Источник: ${this.sourse.description}`,
-      ].join('\n')
-
-      return LeadToStr
+      ]
+      return LeadToStr.join('\n')
     }
     return new TypeError('Лид может быть преобразован только в строку')
   }
@@ -58,17 +57,9 @@ export class Lead {
   }
 
   async sendLeadToMail() {
-    transporter.verify((error, success) => {
-      if (error) {
-        console.error(error)
-      } else {
-        console.log('Server is ready to take our messages')
-        console.log(success)
-      }
-    })
-
     let email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
 
+    // console.log(this.sourse.type)
     let subject
     switch (this.sourse.type) {
       case 'Main site':
@@ -79,6 +70,7 @@ export class Lead {
       case 'VK':
         subject = 'Заявка из VK'
       default:
+        console.log(this.sourse)
         throw new Error(
           'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
         )
@@ -101,7 +93,7 @@ export class Lead {
       html,
     }
 
-    console.log(mailProps)
+    // console.log(mailProps)
     await sendMail(mailProps)
   }
 

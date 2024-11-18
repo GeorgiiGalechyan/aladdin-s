@@ -26,11 +26,10 @@ export default function HPLeadForm() {
 
     const formData = new FormData(e.target as HTMLFormElement)
     formData.append('leadSourse', JSON.stringify(sourse))
-    // console.log(formData) // Работает!!!
 
     const response = await fetch('/api/send-email', {
       // headers: {
-      //   'Content-type': 'application/json',
+      //   'Content-type': 'multipart/form-data',
       // },
       method: 'POST',
       body: formData,

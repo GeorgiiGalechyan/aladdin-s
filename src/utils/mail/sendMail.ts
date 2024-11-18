@@ -8,10 +8,19 @@ interface IEmailData {
 }
 
 // let poolConfig = import.meta.env.PUBLIC_M_POOLCONFIG
-let poolConfig = 'smtps://:galechyan23@yandex.ru:wpgxtbszhnqbwdqg@smtp.yandex.ru/?pool=true'
+let poolConfig = 'smtp://:galechyan23@yandex.ru:wpgxtbszhnqbwdqg@smtp.yandex.ru/?pool=true'
 
 async function sendMail(props: IEmailData) {
   let transporter = nodemailer.createTransport(poolConfig)
+
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error(error)
+    } else {
+      console.log('Server is ready to take our messages')
+      console.log(success)
+    }
+  })
 
   let email
   if (typeof props.email === 'string') {
@@ -30,14 +39,6 @@ async function sendMail(props: IEmailData) {
   }
 
   // По идее его нужно вызывать не здесь, а на сервере при запуске Express или Fastify в качестве проверки готвности почтового сервера. Пусть пока будет здесь.
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error(error)
-    } else {
-      console.log('Server is ready to take our messages')
-      console.log(success)
-    }
-  })
 
   await transporter.sendMail(message, (error, info) => {
     if (error) {
