@@ -19,6 +19,9 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
 
   let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
 
+  console.log(`${lead}`)
+
+  // email, subject, html
   lead.sendLeadToMail()
 
   // Validate the data - you'll probably want to do more than this
@@ -77,31 +80,3 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
 //
 
 // }
-
-///////////////////////////////////////////////////////
-/*
-const hpHeroForm = document.forms.namedItem('hpHeroForm') as HTMLFormElement
-
-hpHeroForm.addEventListener('submit', function (event: SubmitEvent) {
-  event.preventDefault() // прерываем действие по умолчанию
-
-  // создаём FormData нашей формы
-  let leadData: FormData = new FormData(hpHeroForm)
-
-
-  // Над сущностью Message еще надо подумать...
-  let message = new Message('Заявка с сайта')
-  console.log(message)
-
-  // Формируем лида
-  let hpFormLead = new Lead(hpFormLeadSourse, { leadName, leadPhone }, message)
-
-  //     // Отравляем сообщение на Почту...
-  //     // Static or not static... вот в чем вопрос...!!!
-  hpFormLead.sendLeadToMail()
-  //
-  //     // hpFormLead.sendLeadToTelegram()
-})
-
-
-*/

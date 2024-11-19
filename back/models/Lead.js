@@ -1,4 +1,4 @@
-import { sendMail } from 'src/utils/mail/sendMail'
+import { sendMail } from 'src/utils/mail/send-mail'
 
 export class Lead {
   constructor(leadSourse, formData, message) {
@@ -41,7 +41,7 @@ export class Lead {
   [Symbol.toPrimitive](hint) {
     if (hint === 'string') {
       let LeadToStr = [
-        `Дата создания: ${this.createDate}`,
+        `Дата создания: ${this.createDate.toDateString()}`,
         `Имя: ${this.name}`,
         `Телефон: ${this.phone}`,
         `Источник: ${this.sourse.description}`,
@@ -56,24 +56,26 @@ export class Lead {
     consolelog(msgForTg)
   }
 
-  async sendLeadToMail() {
-    let email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
+  async sendLeadToMail(email, subject, html) {
+    if (!email) {
+      email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
+    }
 
-    // console.log(this.sourse.type)
-    let subject
-    switch (this.sourse.type) {
-      case 'Main site':
-        subject = 'Заявка с Главного сайта'
-        break
-      case 'Landing page':
-        subject = 'Заявка с Лендинга'
-      case 'VK':
-        subject = 'Заявка из VK'
-      default:
-        console.log(this.sourse)
-        throw new Error(
-          'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
-        )
+    if (!subject) {
+      switch (this.sourse.type) {
+        case 'Main site':
+          subject = 'Заявка с Главного сайта'
+          break
+        case 'Landing page':
+          subject = 'Заявка с Лендинга'
+        case 'VK':
+          subject = 'Заявка из VK'
+        default:
+          console.log(this.sourse)
+          throw new Error(
+            'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
+          )
+      }
     }
 
     let html = [
