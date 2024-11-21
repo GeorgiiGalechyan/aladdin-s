@@ -14,15 +14,28 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   let leadPhone = leadData.get('leadPhone') as string | null
   const leadSourse = JSON.parse(leadData.get('leadSourse') as any)
 
+  // Throw an error if we're missing any of the needed fields.
+  if (!leadName) {
+    throw new Error('Form error: FormData.leadName null, undefined or incorrect!')
+  }
+
+  if (!leadPhone) {
+    throw new Error('Form error: FormData.leadPhone null, undefined or incorrect!!')
+  }
+  if (!leadSourse) {
+    throw new Error('Form error: FormData.leadSourse null, undefined or incorrect!!')
+  }
+
   // Над сущностью Message еще надо подумать...
   let message = new Message('Заявка с сайта')
+  try {
+    let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
 
-  let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
-
-  console.log(`${lead}`)
-
-  // email, subject, html
-  lead.sendLeadToMail()
+    // We can set the parameters: email, subject, htmlText
+    lead.sendLeadToMail()
+  } catch (error) {
+    throw error
+  }
 
   // Validate the data - you'll probably want to do more than this
   // if (!name || !email || !message) {
@@ -34,15 +47,10 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
   //   )
   // }
 
-  //   // Throw an error if we're missing any of the needed fields.
-  //   if (!to || !subject || !message) {
-  //     throw new Error('Missing required fields')
-  //   }
-
   // Do something with the data, then return a success response
   return new Response(
     JSON.stringify({
-      message: 'Письмо отправлено!',
+      message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
     }),
     { status: 200 }
   )

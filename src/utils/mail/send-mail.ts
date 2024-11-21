@@ -2,7 +2,7 @@ const nodemailer = await import('nodemailer')
 
 interface IEmailData {
   email: string
-  html: string
+  htmlText: string
   subject: string
   name?: string
 }
@@ -35,19 +35,21 @@ async function sendMail(props: IEmailData) {
       // from: 'galechyan23@yandex.ru',
       to: email,
       subject: props.subject,
-      html: props.html,
+      html: props.htmlText,
     }
 
     await transporter.sendMail(message, (error, info) => {
       if (error) {
+        console.error(error)
         throw error
       } else {
-        console.log('The email was successfully sent')
+        console.log('The email was successfully sent.')
         return info
       }
     })
   } catch (error) {
-    throw error
+    console.error(error)
+    return error
   }
 }
 

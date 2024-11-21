@@ -54,7 +54,7 @@ export default function HPLeadForm() {
             onChange={() => setChecked((prevState) => !prevState)}
             required={true}
           />
-          Даю согласие на обработку
+          {' Даю согласие на обработку '}
           <a href="/ru/law-info/personal-data-processing-policy" target="_blank">
             персональных данных
           </a>

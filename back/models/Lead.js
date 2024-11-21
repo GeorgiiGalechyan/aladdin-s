@@ -78,21 +78,21 @@ export class Lead {
       }
     }
 
-    let html = [
-      `<h1>Информация о лиде:</h1><br>`,
-      `<b>Имя</b>: ${this.name}<br>`,
-      `<b>Контакты</b>: ${this.phone}<br>`,
-      `<b>Источник</b>: ${this.sourse.id}`,
-      `  - id ${this.sourse.id},`,
-      `  - тип ${this.sourse.type},`,
-      `  - имя ${this.sourse.name},`,
-      `  - url ${this.sourse.url}`,
-    ].join('\n')
+    let htmlText = [
+      `<h1><b>Информация о лиде:</b></h1>`,
+      `<b>Имя:</b> ${this.name}`,
+      `<b>Контакты:</b> ${this.phone}`,
+      `<b>Источник:</b>`,
+      `- <b>id:</b> ${this.sourse.id},`,
+      `- <b>type:</b> ${this.sourse.type},`,
+      `- <b>name:</b> ${this.sourse.name},`,
+      `- <b>url:</b> ${this.sourse.url}`,
+    ].join('<br>')
 
     let mailProps = {
       email,
       subject,
-      html,
+      htmlText,
     }
 
     // console.log(mailProps)
