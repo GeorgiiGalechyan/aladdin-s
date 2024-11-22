@@ -1,4 +1,6 @@
-const nodemailer = await import('nodemailer')
+export const prerender = true
+
+import nodemailer from 'nodemailer'
 
 interface IEmailData {
   email: string
@@ -14,7 +16,7 @@ async function sendMail(props: IEmailData) {
     let transporter = nodemailer.createTransport(poolConfig)
 
     // По идее его нужно вызывать не здесь, а на сервере при запуске Express или Fastify в качестве проверки готвности почтового сервера. Пусть пока будет здесь.
-    await transporter.verify((error, success) => {
+    transporter.verify((error, success: any) => {
       if (error) {
         throw error
       } else {
@@ -27,12 +29,10 @@ async function sendMail(props: IEmailData) {
       email = props.email
     } else {
       email = import.meta.env.PUBLIC_M_USER
-      // email = 'galechyan23@yandex.ru'
     }
 
     let message = {
       from: import.meta.env.PUBLIC_M_USER,
-      // from: 'galechyan23@yandex.ru',
       to: email,
       subject: props.subject,
       html: props.htmlText,
@@ -48,8 +48,7 @@ async function sendMail(props: IEmailData) {
       }
     })
   } catch (error) {
-    console.error(error)
-    return error
+    console.error('Ошибка внутри src/utils/send-mail.ts')
   }
 }
 

@@ -1,6 +1,12 @@
-import { useState } from 'react'
+export const prerender = true
+
 import type { FormEvent } from 'react'
+
+import { useState } from 'react'
+
 import { LeadSourse } from 'back/models/LeadSourse'
+import { Message } from 'back/models/Message'
+import { Lead } from 'back/models/Lead'
 
 export default function HPLeadForm() {
   const [responseMessage, setResponseMessage] = useState('')
@@ -16,7 +22,7 @@ export default function HPLeadForm() {
     const leadSourseDescription = 'This is the LeadForm from the Hero section from the home page of the main site.'
 
     // (id, name, type, url, description)
-    let sourse = new LeadSourse(
+    let leadSourse = new LeadSourse(
       leadSourseId, // '001'
       leadSourseName, // 'hp-hero-lead-form'
       leadSourseType, // 'Mine site'
@@ -25,18 +31,53 @@ export default function HPLeadForm() {
     )
 
     const formData = new FormData(e.target as HTMLFormElement)
-    formData.append('leadSourse', JSON.stringify(sourse))
+    let leadName = formData.get('leadName') as string | null
+    let leadPhone = formData.get('leadPhone') as string | null
 
-    const response = await fetch('/api/send-lead-to-email', {
-      method: 'POST',
-      body: formData,
-    })
+    // Throw an error if we're missing any of the needed fields.
+    if (!leadName) {
+      throw new Error('Form error: FormData.leadName null, undefined or incorrect!')
+    }
+
+    if (!leadPhone) {
+      throw new Error('Form error: FormData.leadPhone null, undefined or incorrect!!')
+    }
+    if (!leadSourse) {
+      throw new Error('Form error: FormData.leadSourse null, undefined or incorrect!!')
+    }
+
+    // Над сущностью Message еще надо подумать...
+    let message = new Message('Заявка с сайта')
+
+    try {
+      let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
+
+      console.log(lead)
+
+      // We can set the parameters: email, subject, htmlText
+      await lead.sendLeadToMail()
+      await lead.sendLeadToTelegram()
+
+      // console.log(responseTelegram)
+    } catch (error) {
+      throw error
+    }
+
+    //     const responseEmail = await fetch('/api/send-lead-to-email', {
+    //       method: 'POST',
+    //       body: formData,
+    //     })
+    //
+    //     const responseTelegram = await fetch('/api/send-lead-to-telegram', {
+    //       method: 'POST',
+    //       body: formData,
+    //     })
 
     // Получить ответ в формате json и вывести поле  message
-    const data = await response.json()
-    if (data.message) {
-      setResponseMessage(data.message)
-    }
+    // const dataEmail = await responseEmail.json()
+    // if (responseEmail.ok && responseTelegram.ok) {
+    //   setResponseMessage(dataEmail.message)
+    // }
   }
 
   return (

@@ -1,4 +1,7 @@
-import { sendMail } from 'src/utils/mail/send-mail'
+export const prerender = true
+
+// import { sendMail } from 'src/utils/mail/send-mail'
+import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
 
 export class Lead {
   constructor(leadSourse, formData, message) {
@@ -51,59 +54,56 @@ export class Lead {
     return new TypeError('Лид может быть преобразован только в строку')
   }
 
-  getSubject(subject) {
-    if (!subject) {
-      switch (this.sourse.type) {
-        case 'Main site':
-          subject = 'Заявка с Главного сайта'
-          break
-        case 'Landing page':
-          subject = 'Заявка с Лендинга'
-        case 'VK':
-          subject = 'Заявка из VK'
-        default:
-          console.log(this.sourse)
-          throw new Error(
-            'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
-          )
-      }
+  getSubject() {
+    switch (this.sourse.type) {
+      case 'Main site':
+        return 'Заявка с Главного сайта'
+      case 'Landing page':
+        return 'Заявка с Лендинга'
+      case 'VK':
+        return 'Заявка из VK'
+      default:
+        console.log(this.sourse)
+        throw new Error(
+          'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
+        )
     }
-    return subject
   }
 
-  sendLeadToTelegram(chatID, subject, message) {
-    if (!chatID) {
-      chatID = import.meta.env.PUBLIC_TG_CHAT_ID
+  async sendLeadToTelegram(botToken, chatID, message, parse_mode) {
+    if (!botToken) {
+      botToken = undefined
     }
 
-    // if (!subject) {
-    //   switch (this.sourse.type) {
-    //     case 'Main site':
-    //       subject = 'Заявка с Главного сайта'
-    //       break
-    //     case 'Landing page':
-    //       subject = 'Заявка с Лендинга'
-    //     case 'VK':
-    //       subject = 'Заявка из VK'
-    //     default:
-    //       console.log(this.sourse)
-    //       throw new Error(
-    //         'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
-    //       )
-    //   }
-    // }
+    if (!chatID) {
+      chatID = undefined
+    }
 
     if (!message) {
-      message = `${this.name}, ${this.phone}`
+      message = `${this.name}: ${this.phone}`
     }
 
-    let conf = {
+    if (!parse_mode) {
+      parse_mode = undefined
+    }
+    let config = {
+      botToken,
       chatID,
-      subject: this.getSubject(subject),
       message,
+      parse_mode,
     }
 
-    fetch()
+    sendMessageToTelegram(config)
+
+    // Импортировать функцию и
+    //     await sendMessageToTelegram(conf)
+    //
+    // return new Response(
+    //   JSON.stringify({
+    //     message: 'Заявка отправлена в телеграм',
+    //   }),
+    //   { status: 200 }
+    // )
   }
 
   async sendLeadToMail(email, subject, htmlText) {
@@ -112,20 +112,7 @@ export class Lead {
     }
 
     if (!subject) {
-      switch (this.sourse.type) {
-        case 'Main site':
-          subject = 'Заявка с Главного сайта'
-          break
-        case 'Landing page':
-          subject = 'Заявка с Лендинга'
-        case 'VK':
-          subject = 'Заявка из VK'
-        default:
-          console.log(this.sourse)
-          throw new Error(
-            'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
-          )
-      }
+      subject = this.getSubject()
     }
 
     if (!htmlText) {
@@ -147,8 +134,14 @@ export class Lead {
       htmlText,
     }
 
-    // console.log(mailProps)
-    await sendMail(mailProps)
+    // await sendMail(mailProps)
+
+    // return new Response(
+    //   JSON.stringify({
+    //     message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
+    //   }),
+    //   { status: 200 }
+    // )
   }
 
   // Доработать, чтобы в зависимости от прошедшего времени выдавался возраст в секундах, минутах, часах, днях, месяцах.

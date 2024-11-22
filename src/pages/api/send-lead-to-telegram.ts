@@ -27,6 +27,7 @@ export const POST: APIRoute = async ({ request /*, redirect */ }) => {
 
   // Над сущностью Message еще надо подумать...
   let message = new Message('Заявка с сайта')
+  
   try {
     let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
 
