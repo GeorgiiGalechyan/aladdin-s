@@ -51,12 +51,62 @@ export class Lead {
     return new TypeError('Лид может быть преобразован только в строку')
   }
 
-  sendLeadToTelegram() {
-    let msgForTg = `${this}`
-    consolelog(msgForTg)
+  getSubject(subject) {
+    if (!subject) {
+      switch (this.sourse.type) {
+        case 'Main site':
+          subject = 'Заявка с Главного сайта'
+          break
+        case 'Landing page':
+          subject = 'Заявка с Лендинга'
+        case 'VK':
+          subject = 'Заявка из VK'
+        default:
+          console.log(this.sourse)
+          throw new Error(
+            'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
+          )
+      }
+    }
+    return subject
   }
 
-  async sendLeadToMail(email, subject, html) {
+  sendLeadToTelegram(chatID, subject, message) {
+    if (!chatID) {
+      chatID = import.meta.env.PUBLIC_TG_CHAT_ID
+    }
+
+    // if (!subject) {
+    //   switch (this.sourse.type) {
+    //     case 'Main site':
+    //       subject = 'Заявка с Главного сайта'
+    //       break
+    //     case 'Landing page':
+    //       subject = 'Заявка с Лендинга'
+    //     case 'VK':
+    //       subject = 'Заявка из VK'
+    //     default:
+    //       console.log(this.sourse)
+    //       throw new Error(
+    //         'Неизвестный источник лида... Очень странно, в этой части кода такого в принципе быть не должно!'
+    //       )
+    //   }
+    // }
+
+    if (!message) {
+      message = `${this.name}, ${this.phone}`
+    }
+
+    let conf = {
+      chatID,
+      subject: this.getSubject(subject),
+      message,
+    }
+
+    fetch()
+  }
+
+  async sendLeadToMail(email, subject, htmlText) {
     if (!email) {
       email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
     }
@@ -78,16 +128,18 @@ export class Lead {
       }
     }
 
-    let htmlText = [
-      `<h1><b>Информация о лиде:</b></h1>`,
-      `<b>Имя:</b> ${this.name}`,
-      `<b>Контакты:</b> ${this.phone}`,
-      `<b>Источник:</b>`,
-      `- <b>id:</b> ${this.sourse.id},`,
-      `- <b>type:</b> ${this.sourse.type},`,
-      `- <b>name:</b> ${this.sourse.name},`,
-      `- <b>url:</b> ${this.sourse.url}`,
-    ].join('<br>')
+    if (!htmlText) {
+      htmlText = [
+        `<h1><b>Информация о лиде:</b></h1>`,
+        `<b>Имя:</b> ${this.name}`,
+        `<b>Контакты:</b> ${this.phone}`,
+        `<b>Источник:</b>`,
+        `- <b>id:</b> ${this.sourse.id},`,
+        `- <b>type:</b> ${this.sourse.type},`,
+        `- <b>name:</b> ${this.sourse.name},`,
+        `- <b>url:</b> ${this.sourse.url}`,
+      ].join('<br>')
+    }
 
     let mailProps = {
       email,
