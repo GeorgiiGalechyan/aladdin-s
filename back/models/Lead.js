@@ -1,4 +1,4 @@
-export const prerender = true
+export const prerender = false
 
 // import { sendMail } from 'src/utils/mail/send-mail'
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
@@ -86,6 +86,7 @@ export class Lead {
     if (!parse_mode) {
       parse_mode = undefined
     }
+
     let config = {
       botToken,
       chatID,
@@ -93,58 +94,59 @@ export class Lead {
       parse_mode,
     }
 
-    sendMessageToTelegram(config)
-
-    // Импортировать функцию и
-    //     await sendMessageToTelegram(conf)
-    //
-    // return new Response(
-    //   JSON.stringify({
-    //     message: 'Заявка отправлена в телеграм',
-    //   }),
-    //   { status: 200 }
-    // )
+    try {
+      sendMessageToTelegram(config)
+      return new Response(
+        JSON.stringify({
+          message: 'Заявка отправлена в телеграм',
+        }),
+        { status: 200 }
+      )
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  async sendLeadToMail(email, subject, htmlText) {
-    if (!email) {
-      email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
-    }
-
-    if (!subject) {
-      subject = this.getSubject()
-    }
-
-    if (!htmlText) {
-      htmlText = [
-        `<h1><b>Информация о лиде:</b></h1>`,
-        `<b>Имя:</b> ${this.name}`,
-        `<b>Контакты:</b> ${this.phone}`,
-        `<b>Источник:</b>`,
-        `- <b>id:</b> ${this.sourse.id},`,
-        `- <b>type:</b> ${this.sourse.type},`,
-        `- <b>name:</b> ${this.sourse.name},`,
-        `- <b>url:</b> ${this.sourse.url}`,
-      ].join('<br>')
-    }
-
-    let mailProps = {
-      email,
-      subject,
-      htmlText,
-    }
-
-    // await sendMail(mailProps)
-
-    // return new Response(
-    //   JSON.stringify({
-    //     message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
-    //   }),
-    //   { status: 200 }
-    // )
-  }
+  //   async sendLeadToMail(email, subject, htmlText) {
+  //     if (!email) {
+  //       email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
+  //     }
+  //
+  //     if (!subject) {
+  //       subject = this.getSubject()
+  //     }
+  //
+  //     if (!htmlText) {
+  //       htmlText = [
+  //         `<h1><b>Информация о лиде:</b></h1>`,
+  //         `<b>Имя:</b> ${this.name}`,
+  //         `<b>Контакты:</b> ${this.phone}`,
+  //         `<b>Источник:</b>`,
+  //         `- <b>id:</b> ${this.sourse.id},`,
+  //         `- <b>type:</b> ${this.sourse.type},`,
+  //         `- <b>name:</b> ${this.sourse.name},`,
+  //         `- <b>url:</b> ${this.sourse.url}`,
+  //       ].join('<br>')
+  //     }
+  //
+  //     let mailProps = {
+  //       email,
+  //       subject,
+  //       htmlText,
+  //     }
+  //
+  //     await sendMail(mailProps)
+  //
+  //     // return new Response(
+  //     //   JSON.stringify({
+  //     //     message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
+  //     //   }),
+  //     //   { status: 200 }
+  //     // )
+  //   }
 
   // Доработать, чтобы в зависимости от прошедшего времени выдавался возраст в секундах, минутах, часах, днях, месяцах.
+
   async getAge() {
     console.log({ createDate: this.createDate })
     let nowDate = new Date()

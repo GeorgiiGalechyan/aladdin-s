@@ -1,35 +1,23 @@
-// export const prerender = а
+export const prerender = false
+
+import TelegramBot, { type ChatId, type Message, type ParseMode } from 'node-telegram-bot-api'
 
 interface ITG {
   botToken?: string
-  chat_id?: string
+  chat_id?: ChatId
   message?: string
-  parse_mode?: string
+  parse_mode?: ParseMode
 }
 
 async function sendMessageToTelegram(props: ITG) {
   if (!props.botToken || typeof props.botToken !== 'string') {
-    props.botToken = import.meta.env.PUBLIC_TG_BOT_TOKEN
+    props.botToken = import.meta.env.PUBLIC_TG_BOT_TOKEN as string
   }
 
-  let allowSendMSG = `https://api.telegram.org/bot${props.botToken}/allowSendMessage`
-
-  let isBotReadyURL = `https://api.telegram.org/bot${props.botToken}/canSendMessage`
-  let INPUT_URL = `https://api.telegram.org/bot${props.botToken}/sendMessage`
-
-  fetch(allowSendMSG)
-
-  let isReady = await fetch(isBotReadyURL)
-  let data = await isReady.json()
-
-  if (data.ok) {
-    console.log('Успех: Бот готов!')
-  } else {
-    console.error('Ошибка: Не удаётся подключитсься к боту')
-  }
+  const Bot = new TelegramBot(props.botToken, { polling: true })
 
   if (!props.chat_id || typeof props.chat_id !== 'string') {
-    props.chat_id = import.meta.env.PUBLIC_TG_CHAT_ID
+    props.chat_id = import.meta.env.PUBLIC_TG_CHAT_ID as ChatId
   }
 
   if (!props.parse_mode || typeof props.parse_mode !== 'string') {
@@ -40,23 +28,21 @@ async function sendMessageToTelegram(props: ITG) {
     props.message = ''
   }
 
-  let tgConfig = { chat_id: props.chat_id, parse_mode: props.parse_mode, message: props.message }
+  // Additional Telegram query options
+  let options = { parse_mode: props.parse_mode as ParseMode }
 
-  console.log(tgConfig)
-
-  let request = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(tgConfig),
+  try {
+    let data = await Bot.sendMessage(props.chat_id, props.message, options)
+    console.log(data)
+  } catch (error) {
+    console.error(error)
   }
 
-  let res = await fetch(INPUT_URL, request)
-  let resData = await res.json()
-  if (resData.ok) {
-    console.log('Успех: Сообщение отправлено!')
-  } else {
-    console.error('Ошибка: Сообщение не отправлено!')
-  }
+  // if (resData.ok) {
+  //   console.log('Успех: Сообщение отправлено!')
+  // } else {
+  //   console.error('Ошибка: Сообщение не отправлено!')
+  // }
 }
 
 export { sendMessageToTelegram }

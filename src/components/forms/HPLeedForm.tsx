@@ -55,12 +55,14 @@ export default function HPLeadForm() {
       console.log(lead)
 
       // We can set the parameters: email, subject, htmlText
-      await lead.sendLeadToMail()
-      await lead.sendLeadToTelegram()
+      // await lead.sendLeadToMail()
 
-      // console.log(responseTelegram)
+      // We can set the parameters: botToken, chatID, message, parse_mode
+      let data = await lead.sendLeadToTelegram()
+
+      console.log({ data_in_HPLeadForm: data })
     } catch (error) {
-      throw error
+      console.error(error)
     }
 
     //     const responseEmail = await fetch('/api/send-lead-to-email', {
