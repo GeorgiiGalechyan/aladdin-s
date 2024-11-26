@@ -1,5 +1,3 @@
-export const prerender = true
-
 import nodemailer from 'nodemailer'
 
 interface IEmailData {

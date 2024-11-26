@@ -1,12 +1,17 @@
 import { defineConfig } from 'astro/config'
+import vercel from '@astrojs/vercel/serverless'
 import icon from 'astro-icon'
 
 import react from '@astrojs/react'
 
+import vercel from '@astrojs/vercel/serverless'
+
 // https://astro.build/config
 export default defineConfig({
   output: 'hybrid',
-  site: 'https://aladdin-s.ru',
+  adapter: vercel(),
+  // site: 'https://aladdin-s.ru',
+
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
@@ -23,5 +28,7 @@ export default defineConfig({
       uz: 'ru',
     },
   },
+
   integrations: [icon(), react()],
+  adapter: vercel(),
 })
