@@ -52,15 +52,16 @@ export default function HPLeadForm() {
     try {
       let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
 
-      console.log(lead)
-
       // We can set the parameters: email, subject, htmlText
-      // await lead.sendLeadToMail()
+      let mailResData = await lead.sendLeadToMail()
 
       // We can set the parameters: botToken, chatID, message, parse_mode
-      let data = await lead.sendLeadToTelegram()
+      let telegramResData = await lead.sendLeadToTelegram()
 
-      console.log({ data_in_HPLeadForm: data })
+      console.log({
+        sendToEmailData: mailResData,
+        sendToTelegramData: telegramResData,
+      })
     } catch (error) {
       console.error(error)
     }
@@ -84,7 +85,7 @@ export default function HPLeadForm() {
 
   return (
     <>
-      <form id="hp-hero-form" name="hpHeroForm" onSubmit={submit}>
+      <form id="hp-hero-form" name="hpHeroForm" method="POST" onSubmit={submit}>
         <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
         <input type="text" placeholder="Ваш телефон" name="leadPhone" required={true} />
 
@@ -99,13 +100,13 @@ export default function HPLeadForm() {
           />
           {' Даю согласие на обработку '}
           <a href="/ru/law-info/personal-data-processing-policy" target="_blank">
-            персональных данных
+            {'персональных данных'}
           </a>
         </div>
 
         <button type="submit">Узнать цену</button>
 
-        {responseMessage && <p>{responseMessage}</p>}
+        {(responseMessage && <p>{responseMessage}</p>) || <p> Заглушка </p>}
       </form>
     </>
   )

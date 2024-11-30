@@ -1,6 +1,6 @@
-export const prerender = false
+// export const prerender = false
 
-// import { sendMail } from 'src/utils/mail/send-mail'
+import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
 
 export class Lead {
@@ -107,43 +107,43 @@ export class Lead {
     }
   }
 
-  //   async sendLeadToMail(email, subject, htmlText) {
-  //     if (!email) {
-  //       email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
-  //     }
-  //
-  //     if (!subject) {
-  //       subject = this.getSubject()
-  //     }
-  //
-  //     if (!htmlText) {
-  //       htmlText = [
-  //         `<h1><b>Информация о лиде:</b></h1>`,
-  //         `<b>Имя:</b> ${this.name}`,
-  //         `<b>Контакты:</b> ${this.phone}`,
-  //         `<b>Источник:</b>`,
-  //         `- <b>id:</b> ${this.sourse.id},`,
-  //         `- <b>type:</b> ${this.sourse.type},`,
-  //         `- <b>name:</b> ${this.sourse.name},`,
-  //         `- <b>url:</b> ${this.sourse.url}`,
-  //       ].join('<br>')
-  //     }
-  //
-  //     let mailProps = {
-  //       email,
-  //       subject,
-  //       htmlText,
-  //     }
-  //
-  //     await sendMail(mailProps)
-  //
-  //     // return new Response(
-  //     //   JSON.stringify({
-  //     //     message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
-  //     //   }),
-  //     //   { status: 200 }
-  //     // )
-  //   }
+  async sendLeadToMail(email, subject, htmlText) {
+    if (!email) {
+      email = import.meta.env.PUBLIC_M_USER || 'galechyan23@yandex.ru'
+    }
+
+    if (!subject) {
+      subject = this.getSubject()
+    }
+
+    if (!htmlText) {
+      htmlText = [
+        `<h1><b>Информация о лиде:</b></h1>`,
+        `<b>Имя:</b> ${this.name}`,
+        `<b>Контакты:</b> ${this.phone}`,
+        `<b>Источник:</b>`,
+        `- <b>id:</b> ${this.sourse.id},`,
+        `- <b>type:</b> ${this.sourse.type},`,
+        `- <b>name:</b> ${this.sourse.name},`,
+        `- <b>url:</b> ${this.sourse.url}`,
+      ].join('<br>')
+    }
+
+    let mailProps = {
+      email,
+      subject,
+      htmlText,
+    }
+
+    await sendMessageToEmail(mailProps)
+
+    // return new Response(
+    //   JSON.stringify({
+    //     message: 'Ваша заявка принята. Мы свяжемся с Вами в ближайшее время.',
+    //   }),
+    //   { status: 200 }
+    // )
+  }
 
   // Доработать, чтобы в зависимости от прошедшего времени выдавался возраст в секундах, минутах, часах, днях, месяцах.
 
