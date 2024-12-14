@@ -1,4 +1,3 @@
-export const prerender = true
 
 import type { FormEvent } from 'react'
 
