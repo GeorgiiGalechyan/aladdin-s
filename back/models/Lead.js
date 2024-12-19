@@ -1,5 +1,3 @@
-// export const prerender = false
-
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
 

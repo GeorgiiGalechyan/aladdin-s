@@ -1,5 +1,3 @@
-// const prelo
-
 import nodemailer from 'nodemailer'
 
 interface IEmailData {

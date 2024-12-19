@@ -1,7 +1,7 @@
 import pg from 'pg'
 
-// Disable prerender so that ENV variables are updated on the fly.
-export const prerender = false
+// Disable prerender so that ENV variables are updated on the fly.???
+// export const prerender = false
 
 const client = new pg.Client({
   host: import.meta.env.POSTGRES_HOST,
