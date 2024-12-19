@@ -18,9 +18,8 @@ export const lead = {
         ),
       formConsent: z.boolean(),
     }),
-    handler: async (input, ctx) => {
+    handler: async ({ leadName, leadPhone }, ctx) => {
       console.log({
-        input: input,
         context: ctx,
       })
     },
