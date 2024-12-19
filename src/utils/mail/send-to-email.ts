@@ -3,8 +3,8 @@ import nodemailer from 'nodemailer'
 interface IEmailData {
   email: string
   htmlText: string
-  subject: string
-  name?: string
+  subject?: string | undefined
+  name?: string | undefined
 }
 
 let poolConfig = import.meta.env.PUBLIC_M_POOLCONFIG
@@ -22,10 +22,16 @@ async function sendMessageToEmail(props: IEmailData) {
       }
     })
 
-    if (typeof props.email === 'string') {
-      props.email = props.email
-    } else {
+    if (!props.email || typeof props.email !== 'string') {
       props.email = import.meta.env.PUBLIC_M_USER
+    }
+
+    if (!props.htmlText || typeof props.htmlText !== 'string') {
+      console.error('Invalid or empty “htmlText” parameter.')
+    }
+
+    if (!props.subject || typeof props.subject !== 'string') {
+      props.subject = 'Без темы'
     }
 
     let message = {

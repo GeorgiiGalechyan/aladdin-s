@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro'
 
 export const prerender = false
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request /*, redirect*/ }) => {
   // Get the form data submitted by the user on the home page
   const formData = await request.formData()
   const to = formData.get('recipient') as string | null
