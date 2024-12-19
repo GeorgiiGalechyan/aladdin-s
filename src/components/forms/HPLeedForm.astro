@@ -5,7 +5,9 @@ const result = Astro.getActionResult(actions)
 ---
 
 <script>
-  const formData = new FormData(e.target as HTMLFormElement)
+  let form = document.getElementById('hp-hero-form') as HTMLFormElement
+  const formData = new FormData(form)
+
   let leadName = formData.get('leadName') as string | null
   let leadPhone = formData.get('leadPhone') as string | null
 
@@ -51,8 +53,8 @@ const result = Astro.getActionResult(actions)
   //       body: formData,
   //     })
 
-  async function eee() {}
-  let responseData = await eee
+  console.log(result)
+
   // Получить ответ в формате json и вывести поле  message
   // const dataEmail = await responseEmail.json()
   // if (responseEmail.ok && responseTelegram.ok) {
