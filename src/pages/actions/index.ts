@@ -1,3 +1,3 @@
-import { lead } from './lead'
+import { newLead } from './newLead'
 
-export const server = { lead }
+export const server = { newLead }

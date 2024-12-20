@@ -1,68 +1,13 @@
 ---
 import { actions } from 'astro:actions'
 
-const result = Astro.getActionResult(actions)
+const result = Astro.getActionResult(actions.newLead)
+// console.log(result)
 ---
 
-<script>
-  let form = document.getElementById('hp-hero-form') as HTMLFormElement
-  const formData = new FormData(form)
+<script></script>
 
-  let leadName = formData.get('leadName') as string | null
-  let leadPhone = formData.get('leadPhone') as string | null
-
-  // Throw an error if we're missing any of the needed fields.
-  if (!leadName) {
-    throw new Error('Form error: Invalid FormData.leadName!')
-  }
-
-  if (!leadPhone) {
-    throw new Error('Form error: Invalid FormData.leadPhone!')
-  }
-  if (!leadSourse) {
-    throw new Error('Form error: Invalid FormData.leadSourse!')
-  }
-
-  // Над сущностью Message еще надо подумать...
-  let message = new Message('Заявка с сайта')
-
-  try {
-    let lead = new Lead(leadSourse, { leadName, leadPhone }, message)
-
-    // We can set the parameters: email, subject, htmlText
-    let mailResData = await lead.sendLeadToMail()
-
-    // We can set the parameters: botToken, chatID, message, parse_mode
-    let telegramResData = await lead.sendLeadToTelegram()
-
-    console.log({
-      sendToEmailData: mailResData,
-      sendToTelegramData: telegramResData,
-    })
-  } catch (error) {
-    console.error(error)
-  }
-
-  //     const responseEmail = await fetch('/api/send-lead-to-email', {
-  //       method: 'POST',
-  //       body: formData,
-  //     })
-  //
-  //     const responseTelegram = await fetch('/api/send-lead-to-telegram', {
-  //       method: 'POST',
-  //       body: formData,
-  //     })
-
-  console.log(result)
-
-  // Получить ответ в формате json и вывести поле  message
-  // const dataEmail = await responseEmail.json()
-  // if (responseEmail.ok && responseTelegram.ok) {
-  //   setResponseMessage(dataEmail.message)
-  // }
-</script>
-
-<form id="hp-hero-form" name="hpHeroForm" method="POST" action={actions}>
+<form id="hp-hero-form" name="hpHeroForm" method="POST" action={actions.newLead}>
   <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
   <input type="text" placeholder="Ваш телефон" name="leadPhone" required />
 
@@ -76,6 +21,4 @@ const result = Astro.getActionResult(actions)
 
   <button type="submit">Узнать цену</button>
 </form>
-<p class="form-submit-status">
-  responseMessage && <p>{responseMessage}</p>) || <p>Заглушка</p>
-</p>
+<p class="form-submit-status"></p>

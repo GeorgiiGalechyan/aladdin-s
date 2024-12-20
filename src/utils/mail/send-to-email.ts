@@ -1,33 +1,63 @@
 import nodemailer from 'nodemailer'
 
-interface IEmailData {
-  email: string
-  htmlText: string
-  subject?: string | undefined
-  name?: string | undefined
-}
+import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
 
-let poolConfig = import.meta.env.PUBLIC_M_POOLCONFIG
+async function sendMessageToEmail(props: EmailMessageConfig) {
+  console.log(props)
+  let html
+  switch (props.template) {
+    case EmailTemplates.NewLead:
+      if (props.poolConfig || props.subject || props.email) {
+        throw new Error('This template only needs "template" and "message".')
+      }
 
-async function sendMessageToEmail(props: IEmailData) {
+      props.poolConfig = import.meta.env.PUBLIC_NODEMAILER_NEW_LEADS_SMTP
+      props.subject = 'Новая заявка'
+      props.email = import.meta.env.PUBLIC_NODEMAILER_NEW_LEADS_EMAIL
+      html = `<div>
+      <strong>${props.message.leadName}:</strong> 
+      
+      </div>`
+
+      break
+
+    case EmailTemplates.LeadToManager:
+      throw new Error(`Данный шаблон пока не прописан`)
+
+    case EmailTemplates.ManagerToLead:
+      throw new Error(`Данный шаблон пока не прописан`)
+
+    default:
+      throw new Error('Unknown message template.')
+  }
+
+  // poolConfig - данные почтового SMTP сервера ОТПРАВИТЕЛЯ в виде строки.
+  if (!props.poolConfig) {
+    throw new Error(`This template doesn't need a "poolConfig".`)
+  }
+
+  let transporter = nodemailer.createTransport(props.poolConfig)
+
+  // Проверка соединения с SMTP сервером
   try {
-    let transporter = nodemailer.createTransport(poolConfig)
-
-    // По идее его нужно вызывать не здесь, а на сервере при запуске Express или Fastify в качестве проверки готвности почтового сервера. Пусть пока будет здесь.
     await transporter.verify((error, success: any) => {
       if (error) {
         console.error(error)
       } else {
-        console.log('Nodemailer smtp-server is connected!')
+        console.log({
+          message: 'Nodemailer smtp-server is connected!',
+          success: success,
+        })
       }
     })
 
+    //
     if (!props.email || typeof props.email !== 'string') {
-      props.email = import.meta.env.PUBLIC_M_USER
+      throw new Error('Invalid or missing "email".')
     }
 
-    if (!props.htmlText || typeof props.htmlText !== 'string') {
-      console.error('Invalid or empty “htmlText” parameter.')
+    if (!props.message || typeof props.message !== 'string') {
+      throw new Error('Invalid or missing "message".')
     }
 
     if (!props.subject || typeof props.subject !== 'string') {
@@ -35,13 +65,13 @@ async function sendMessageToEmail(props: IEmailData) {
     }
 
     let message = {
-      from: import.meta.env.PUBLIC_M_USER,
-      to: props.email,
-      subject: props.subject,
-      html: props.htmlText,
+      from: props.email, // из вне или по шаблону
+      to: props.email, // из вне или по шаблону
+      subject: props.subject, // из вне или по шаблону
+      html: props.message, // приходит из вне
     }
 
-    let info = await transporter.sendMail(message, (error, info) => {
+    let successData = await transporter.sendMail(message, (error, info) => {
       if (error) {
         console.error(error)
       } else {
@@ -50,9 +80,12 @@ async function sendMessageToEmail(props: IEmailData) {
       }
     })
 
-    return info
+    return successData
   } catch (error) {
-    console.error('Ошибка внутри src/utils/send-mail.ts')
+    console.error({
+      message: 'Ошибка внутри try/catch в файле src/utils/send-to-email.ts',
+      error: error,
+    })
   }
 }
 
