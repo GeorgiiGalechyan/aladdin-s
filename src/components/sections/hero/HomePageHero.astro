@@ -1,6 +1,4 @@
 ---
-export const prerender = false
-
 import LeedForm from '@components/forms/HPLeedForm.astro'
 ---
 
@@ -8,7 +6,9 @@ import LeedForm from '@components/forms/HPLeedForm.astro'
   <p class="hero-text">
     Нотариальные переводы документов для поступления в ВУЗ, оформления РВП, ВНЖ, гражданства, шенгенской визы,.
   </p>
-  <LeedForm />
+  <LeedForm>
+    <div slot="fallback">Слот</div>
+  </LeedForm>
 </section>
 
 <style>

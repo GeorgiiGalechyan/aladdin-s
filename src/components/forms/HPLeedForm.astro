@@ -1,13 +1,15 @@
 ---
+export const prerender = false
+
 import { actions } from 'astro:actions'
 
-const result = Astro.getActionResult(actions.newLead)
-// console.log(result)
+const result = Astro.getActionResult(actions.test)
 ---
 
-<script></script>
+{result?.error && <p class="error">Unable to sign up. Please try again later.</p>}
 
-<form id="hp-hero-form" name="hpHeroForm" method="POST" action={actions.newLead}>
+<!-- <script></script> -->
+<form id="hp-hero-form" name="hpHeroForm" method="post" action={actions.test}>
   <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
   <input type="text" placeholder="Ваш телефон" name="leadPhone" required />
 
@@ -21,4 +23,3 @@ const result = Astro.getActionResult(actions.newLead)
 
   <button type="submit">Узнать цену</button>
 </form>
-<p class="form-submit-status"></p>

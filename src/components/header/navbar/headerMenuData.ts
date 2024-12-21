@@ -1,4 +1,4 @@
-import { type IHeaderMenuItem } from '@interfaces/webComponents/menu'
+import { type IHeaderMenuItem } from '@ts/ui/menu/menu'
 
 const headerMenu: IHeaderMenuItem[] = []
 
@@ -6,14 +6,14 @@ const headerMenu: IHeaderMenuItem[] = []
 const home: IHeaderMenuItem = {
   id: 'home',
   title: 'Главная',
-  url: '/ru/',
+  slug: '/ru/',
 }
 
 // https://aladdin-s.ru/services/
 const services: IHeaderMenuItem = {
   id: 'service',
   title: 'Услуги',
-  url: '/ru/services/',
+  slug: '/ru/services/',
   sub: [],
 }
 
@@ -22,7 +22,7 @@ const docTranslation: IHeaderMenuItem = {
   id: 'doc-translations',
   title: 'Переводы документов',
   description: `Простые и нотариально заверенные переводы документов для путешествий, учёбы, работы и бизнеса с/на иностранные языки.`,
-  url: '/ru/service/doc-translations/',
+  slug: '/ru/service/doc-translations/',
 }
 
 // https://aladdin-s.ru/services/design-translation/
@@ -30,7 +30,7 @@ const designTranslation: IHeaderMenuItem = {
   id: 'design-translation',
   title: 'Дизайнерский перевод',
   description: `Перевод надписей на изображениях, эмблемах и логотипах с применением графических редакторов.`,
-  url: '/ru/service/design-translations/',
+  slug: '/ru/service/design-translations/',
 }
 
 // https://aladdin-s.ru/services/doc-apostill/
@@ -39,7 +39,7 @@ const docApostille = {
   title: 'Апостиль (упрощённая легализация)',
   description:
     'Упрощенная легализация документов путём проставления специального штампа (апостиля) для их использования на территории иностранных стран-участников Гаагской конвенции 1961 года.',
-  url: '/ru/service/doc-apostille/',
+  slug: '/ru/service/doc-apostille/',
 }
 
 // https://aladdin-s.ru/services/doc-legalization/
@@ -48,7 +48,7 @@ const docLegalization: IHeaderMenuItem = {
   title: 'Легализация документов',
   description:
     'Придание российским документам юридической силы для их использования на территории иностранных стран, не подписавших Гаагскую конвенцию 1961 года.',
-  url: '/ru/service/doc-legalization/',
+  slug: '/ru/service/doc-legalization/',
 }
 
 // https://aladdin-s.ru/service/legal-migration/
@@ -65,7 +65,7 @@ const legalMigration: IHeaderMenuItem = {
   - гражданства Российской Федерации,\n
   - свидетельства участника Госпрограммы по переселению соотечественников,\n
   - консульских услуг`,
-  url: '/ru/service/legal-migration/',
+  slug: '/ru/service/legal-migration/',
 }
 
 // https://aladdin-s.ru/service/legal-lawyer/
@@ -80,35 +80,35 @@ const legalLawyer: IHeaderMenuItem = {
     - оспаривание административных постановлений,\n
     - оспаривание решений компетентных органов,\n
     - оспаривание судебных решений (апелляция, кассация).`,
-  url: '/ru/service/legal-lawyer/',
+  slug: '/ru/service/legal-lawyer/',
 }
 
 // https://aladdin-s.ru/price/
 const price: IHeaderMenuItem = {
   id: 'price',
   title: 'Цены',
-  url: '/ru/price/',
+  slug: '/ru/price/',
 }
 
 // https://aladdin-s.ru/vacancies/
 const vacancies: IHeaderMenuItem = {
   id: 'vacancies',
   title: 'Вакансии',
-  url: '/ru/vacancies/',
+  slug: '/ru/vacancies/',
 }
 
 // https://aladdin-s.ru/articles/
 const articles: IHeaderMenuItem = {
   id: 'articles',
   title: 'Статьи',
-  url: '/ru/articles/',
+  slug: '/ru/articles/',
 }
 
 // https://aladdin-s.ru/contacts/
 const contacts: IHeaderMenuItem = {
   id: 'contacts',
   title: 'Контакты',
-  url: '/ru/contacts/',
+  slug: '/ru/contacts/',
 }
 
 // push menuItem in menu

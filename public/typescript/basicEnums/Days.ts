@@ -29,11 +29,11 @@ export enum DaysFullEN {
 }
 
 export enum DaysShortEN {
-  'Mon.' = 1, // Пн
-  'Tues.' = 2, //Вт
-  'Wed.' = 3, //Ср
-  'Thurs.' = 4, // Чт
-  'Fri.' = 5, //Пт
-  'Sat.' = 6, //Сб
-  'Sun.' = 7, // Вс
+  Mon = 1, // Пн
+  Tues = 2, // Вт
+  Wed = 3, // Ср
+  Thurs = 4, // Чт
+  Fri = 5, // Пт
+  Sat = 6, // Сб
+  Sun = 7, // Вс
 }

@@ -1,4 +1,4 @@
-import { type IOffice } from '@interfaces/webComponents/office'
+import { type IOffice } from '@ts/ui/offces/office'
 
 const offices: IOffice[] = []
 

@@ -1,4 +1,4 @@
-import { ActionError, defineAction } from 'astro:actions'
+import { defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 import isMobilePhone from 'validator/lib/isMobilePhone'
 
@@ -8,7 +8,7 @@ import { TGTemplates, type TGMessageConfig } from '@ts/telegram/TGMessageProps'
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
 
-export const newLead = {
+export let newLead = {
   createLead: defineAction({
     accept: 'form',
     input: z.object({
@@ -26,26 +26,25 @@ export const newLead = {
     }),
     handler: async ({ leadName, leadPhone }: { leadName: string; leadPhone: string }, ctx) => {
       console.log('Avtion NewLead is started...')
-      console.log({
-        context: ctx,
-      })
+      console.log({ payload: { leadName, leadPhone }, ctx })
 
-      // let EmailConfig: EmailMessageConfig = {
-      //   template: EmailTemplates.NewLead,
-      //   sender: {
-      //     name: 'Auto message',
-      //     address: 'galechyan23@yandex.ru',
-      //   },
-      //   message: { leadName, leadPhone },
-      // }
+      let EmailConfig: EmailMessageConfig = {
+        template: EmailTemplates.NewLead,
+        sender: {
+          name: 'Auto message',
+          address: 'galechyan23@yandex.ru',
+        },
+        message: { leadName, leadPhone },
+      }
 
       let TGConfig: TGMessageConfig = {
         template: TGTemplates.NewLead,
         message: { leadName, leadPhone },
       }
 
-      // sendMessageToTelegram(TGConfig)
-      // sendMessageToEmail(EmailConfig)
+      sendMessageToTelegram(TGConfig)
+      sendMessageToEmail(EmailConfig)
+      return new Response('Отправлено', { status: 23 })
     },
   }),
 }
