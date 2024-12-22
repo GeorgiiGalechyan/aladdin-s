@@ -1,14 +1,14 @@
 import { defineConfig } from 'astro/config'
 
+import vercel from '@astrojs/vercel'
+
 import icon from 'astro-icon'
 import react from '@astrojs/react'
 
-import vercel from '@astrojs/vercel/serverless';
-
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
-  site: 'http://localhost:4321/ru/',
+  output: 'server',
+  site: 'http://localhost:4321/',
 
   i18n: {
     defaultLocale: 'ru',
@@ -17,14 +17,14 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
     // Резервные локали
-    fallback: {
-      en: 'ru',
-      de: 'ru',
-      fr: 'ru',
-      tm: 'ru',
-      kz: 'ru',
-      uz: 'ru',
-    },
+    // fallback: {
+    //   en: 'en',
+    //   de: 'de',
+    //   fr: 'fr',
+    //   tm: 'tm',
+    //   kz: 'kz',
+    //   uz: 'uz',
+    // },
   },
 
   integrations: [icon(), react()],
