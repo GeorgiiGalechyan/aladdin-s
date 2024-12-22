@@ -9,18 +9,31 @@ export type EmailSender = {
   address: string
 }
 
-export type EmailMessage =
-  | {
-      leadName: string
-      leadPhone: string
-    }
-  | string
+export type NodemailerAddresObject = {
+  name: string
+  address: string
+}
 
 export type EmailMessageConfig = {
   template?: EmailTemplates
   poolConfig?: string
-  sender?: EmailSender
+  from?: NodemailerAddresObject
   subject?: string
   email?: string
-  message: EmailMessage
+  cc?: []
+  bcc?: []
+  text?: string
+  html?: string
+  attachments?: any
+}
+
+export type NodemailerSendMessageConfig = {
+  from: NodemailerAddresObject
+  to: string
+  cc?: []
+  bcc?: []
+  subject: string
+  text?: string
+  html?: string
+  attachments?: any
 }

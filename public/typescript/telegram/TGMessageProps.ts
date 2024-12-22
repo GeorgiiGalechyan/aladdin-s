@@ -10,17 +10,10 @@ export enum ParseMode {
   MDv2 = 'MarkdownV2',
 }
 
-export type TGTextMessage = string
-
-export type TGLeadMessage = {
-  leadName: string
-  leadPhone: string
-}
-
 export interface TGMessageConfig {
   template?: TGTemplates
   token?: string
   chat_id?: string | number
-  message: TGTextMessage | TGLeadMessage
+  text: string
   parse_mode?: ParseMode
 }

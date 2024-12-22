@@ -1,5 +1,6 @@
 import { defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
+
 import isMobilePhone from 'validator/lib/isMobilePhone'
 
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
@@ -8,8 +9,10 @@ import { TGTemplates, type TGMessageConfig } from '@ts/telegram/TGMessageProps'
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
 
-export let newLead = {
-  createLead: defineAction({
+// console.log(isMobilePhone('+79030238585', 'any', { strictMode: true }))
+
+export let lead = {
+  create: defineAction({
     accept: 'form',
     input: z.object({
       leadName: z.string().trim().min(2).max(50),
@@ -17,43 +20,37 @@ export let newLead = {
         .string()
         .trim()
         .refine(
-          (leadPhone) => {
-            isMobilePhone(leadPhone, 'any', { strictMode: true })
+          (val) => {
+            return val.length <= 255
+            // return isMobilePhone(val, 'any', { strictMode: true })
           },
           { message: 'Incorrect phone number.' }
         ),
       formConsent: z.boolean({ message: 'FormConsent is not boolean.' }),
     }),
-    handler: async ({ leadName, leadPhone }: { leadName: string; leadPhone: string }, ctx) => {
-      console.log('Avtion NewLead is started...')
-      console.log({ payload: { leadName, leadPhone }, ctx })
 
+    handler: async ({ leadName, leadPhone }) => {
       let EmailConfig: EmailMessageConfig = {
         template: EmailTemplates.NewLead,
-        sender: {
-          name: 'Auto message',
+        from: {
+          name: 'Сайт aladdin-s.ru',
           address: 'galechyan23@yandex.ru',
         },
-        message: { leadName, leadPhone },
+        html: `<div><strong>${leadName}:</strong> ${leadPhone}</div>`,
       }
 
       let TGConfig: TGMessageConfig = {
         template: TGTemplates.NewLead,
-        message: { leadName, leadPhone },
+        text: `<strong>${leadName}:</strong> ${leadPhone}`,
       }
 
-      sendMessageToTelegram(TGConfig)
-      sendMessageToEmail(EmailConfig)
-      return new Response('Отправлено', { status: 23 })
+      let TGResult = await sendMessageToTelegram(TGConfig)
+      let EmailResult = await sendMessageToEmail(EmailConfig)
+
+      return {
+        TGResult,
+        EmailResult,
+      }
     },
   }),
 }
-
-// export type EmailMessageConfig = {
-//   template?: EmailTemplates
-//   poolConfig?: string
-//   sender?: EmailSender
-//   subject?: string
-//   email: string
-//   message: EmailMessage
-// }
