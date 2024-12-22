@@ -1,7 +1,7 @@
 import { defineAction } from 'astro:actions'
 import { z } from 'astro:schema'
 // import isMobilePhone from 'validator/lib/isMobilePhone'
-import { newLead } from './newLead'
+// import { newLead } from './newLead'
 
 export let server = {
   test: defineAction({
@@ -22,15 +22,11 @@ export let server = {
     }),
     handler: (input) => {
       console.log(input)
-      return new Response(
-        JSON.stringify({
-          message: 'test',
-        }),
-        {
-          status: 200,
-        }
-      )
+      return {
+        message: 'test',
+        status: 999,
+      }
     },
+    // newLead,
   }),
-  newLead,
 }

@@ -4,6 +4,7 @@ export const prerender = false
 import { actions } from 'astro:actions'
 
 const result = Astro.getActionResult(actions.test)
+console.log(result)
 ---
 
 {result?.error && <p class="error">Unable to sign up. Please try again later.</p>}
@@ -21,5 +22,5 @@ const result = Astro.getActionResult(actions.test)
     </a>
   </div>
 
-  <button type="submit">Узнать цену</button>
+  <button>Узнать цену</button>
 </form>
