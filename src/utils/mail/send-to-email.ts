@@ -24,9 +24,9 @@ async function sendMessageToEmail(props: EmailMessageConfig) {
             throw new Error('This template only needs "template" and "message".')
           }
 
-          props.poolConfig = import.meta.env.PUBLIC_NODEMAILER_NEW_LEADS_SMTP
+          props.poolConfig = import.meta.env.SMTPS_NEW_LEADS_TRANSPORT
           props.subject = 'Новая заявка'
-          props.email = import.meta.env.PUBLIC_NODEMAILER_NEW_LEADS_EMAIL
+          props.email = import.meta.env.SMTPS_NEW_LEADS_EMAIL
           break
 
         case EmailTemplates.LeadToManager:
