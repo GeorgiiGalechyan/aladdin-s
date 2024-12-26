@@ -1,4 +1,4 @@
-import { defineAction } from 'astro:actions'
+import { defineAction, ActionError } from 'astro:actions'
 import { z } from 'astro:schema'
 
 import isMobilePhone from 'validator/lib/isMobilePhone'
@@ -8,6 +8,7 @@ import { TGTemplates, type TGMessageConfig } from '@ts/telegram/TGMessageProps'
 
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
+import { error } from 'node_modules/astro/dist/core/logger/core'
 
 // console.log(isMobilePhone('+79030238585', 'any', { strictMode: true }))
 
@@ -29,7 +30,7 @@ export let lead = {
       formConsent: z.boolean({ message: 'FormConsent is not boolean.' }),
     }),
 
-    handler: async ({ leadName, leadPhone }) => {
+    handler: async ({ leadName, leadPhone }, ctx) => {
       let EmailConfig: EmailMessageConfig = {
         template: EmailTemplates.NewLead,
         from: {
@@ -47,9 +48,33 @@ export let lead = {
       let TGResult = await sendMessageToTelegram(TGConfig)
       let EmailResult = await sendMessageToEmail(EmailConfig)
 
-      return {
-        TGResult,
-        EmailResult,
+      if (!TGResult.error && !EmailResult.error) {
+        return {
+          succes: true,
+          error: undefined,
+          result: {
+            TG: TGResult.data,
+            Email: EmailResult.data,
+          },
+        }
+      } else if (TGResult.error && EmailResult.error) {
+        return {
+          succes: false,
+          error: {
+            TG: TGResult.error,
+            Email: EmailResult.error,
+          },
+          result: undefined,
+        }
+      } else if (TGResult.error || EmailResult.error) {
+        return {
+          succes: false,
+          error: {
+            TG: TGResult.error || undefined,
+            Email: EmailResult.error || undefined,
+          },
+          result: undefined,
+        }
       }
     },
   }),

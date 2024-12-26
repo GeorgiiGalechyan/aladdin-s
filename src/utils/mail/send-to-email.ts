@@ -6,11 +6,12 @@ import {
   type EmailMessageConfig,
   type NodemailerSendMessageConfig,
 } from '@ts/email/EmailMessageProps'
+import { error } from 'node_modules/astro/dist/core/logger/core'
 
-async function sendMessageToEmail(props: EmailMessageConfig) {
+export async function sendMessageToEmail(props: EmailMessageConfig) {
   try {
     if (!props.text && !props.html) {
-      throw new Error('Missing "message".')
+      throw new Error('Missing message (text or html).')
     }
 
     if (props.text && props.html) {
@@ -24,9 +25,10 @@ async function sendMessageToEmail(props: EmailMessageConfig) {
             throw new Error('This template only needs "template" and "message".')
           }
 
-          props.poolConfig = import.meta.env.SMTPS_NEW_LEADS_TRANSPORT
+          props.poolConfig = import.meta.env.NEW_LEADS_TRANSPORT
           props.subject = 'Новая заявка'
           props.email = import.meta.env.SMTPS_NEW_LEADS_EMAIL
+
           break
 
         case EmailTemplates.LeadToManager:
@@ -42,22 +44,11 @@ async function sendMessageToEmail(props: EmailMessageConfig) {
 
     // poolConfig - данные почтового SMTP сервера ОТПРАВИТЕЛЯ в виде строки.
     if (!props.poolConfig) {
-      throw new Error(`This template doesn't need a "poolConfig".`)
+      throw new Error(`"PoolConfig" is undefined or missing..`)
     }
 
     let transporter = nodemailer.createTransport(props.poolConfig)
 
-    // Проверка соединения с SMTP сервером
-
-    await transporter.verify((error, success: any) => {
-      if (error) {
-        throw error
-      } else {
-        console.log(success)
-      }
-    })
-
-    //
     if (!props.email || typeof props.email !== 'string') {
       throw new Error('Invalid or missing "email".')
     }
@@ -77,16 +68,9 @@ async function sendMessageToEmail(props: EmailMessageConfig) {
       attachments: props.attachments || undefined,
     }
 
-    let successData = await transporter.sendMail(config, (error, info) => {
-      if (error) {
-        throw error
-      } else {
-        return successData
-      }
-    })
+    let data = await transporter.sendMail(config)
+    return { data, error: undefined }
   } catch (error) {
-    return error
+    return { data: undefined, error }
   }
 }
-
-export { sendMessageToEmail }

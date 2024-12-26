@@ -3,11 +3,20 @@ export const prerender = false
 
 import { actions } from 'astro:actions'
 
+// const {succes, error, result} = Astro.getActionResult(actions.lead.create)
+
+// if (!succes) {
+//   console.log(result)
+// } else {
+//   console.error(error)
+// }
+
 const result = Astro.getActionResult(actions.lead.create)
-if (result && !result.error) {
-  console.log(result?.data)
-} else {
+
+if (!result?.error) {
   console.error(result?.error)
+} else {
+  console.log(result.data)
 }
 ---
 

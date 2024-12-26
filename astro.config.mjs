@@ -8,7 +8,7 @@ import react from '@astrojs/react'
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  site: 'http://localhost:4321/',
+  // site: 'http://localhost:4321/',
 
   i18n: {
     defaultLocale: 'ru',
@@ -35,6 +35,7 @@ export default defineConfig({
       // PORT: envField.number({ context: "server", access: "public", default: 4321 }),
 
       // Nodemailer or other SMTP
+
       NEW_LEADS_TRANSPORT: envField.string({ context: 'server', access: 'secret' }),
       SMTPS_NEW_LEADS_EMAIL: envField.string({ context: 'server', access: 'secret' }),
 

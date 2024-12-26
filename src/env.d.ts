@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   // Nodemailer or any SMTP
+
   readonly NEW_LEADS_TRANSPORT: string
   readonly SMTPS_NEW_LEADS_EMAIL: string
 

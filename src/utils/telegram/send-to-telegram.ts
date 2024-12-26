@@ -13,8 +13,8 @@ export async function sendMessageToTelegram(props: TGMessageConfig) {
       switch (props.template) {
         // Шаблон сообщения при создании лида (из html-формы или др. источника)
         case TGTemplates.NewLead:
-          props.token = import.meta.env.PUBLIC_TG_BOT_TOKEN as string
-          props.chat_id = import.meta.env.PUBLIC_TG_CHAT_ID as string | number
+          props.token = import.meta.env.TG_BOT_TOKEN as string
+          props.chat_id = import.meta.env.TG_CHAT_ID as string | number
 
           break
         // Шаблон сообщения лида (не клиента) менеджеру
@@ -71,15 +71,21 @@ export async function sendMessageToTelegram(props: TGMessageConfig) {
     })
 
     // Бот отправляет сообщение
-    let TGResult = await bot.api.sendMessage(props.chat_id, props.text as string, { parse_mode: props.parse_mode })
+    let data = await bot.api.sendMessage(props.chat_id, props.text as string, { parse_mode: props.parse_mode })
 
     // Стартуем бота!
     bot.start()
 
+    function stopBotAfterMessage() {
+      setTimeout(() => {
+        bot.stop()
+      }, 1000)
+    }
+
+    stopBotAfterMessage()
     // Возвращаем некий результат по итогам отправки сообщения ботом
-    return TGResult
+    return { data, error: undefined }
   } catch (error) {
-    console.error(error)
-    return error
+    return { data: undefined, error }
   }
 }
