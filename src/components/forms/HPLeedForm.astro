@@ -3,25 +3,16 @@ export const prerender = false
 
 import { actions } from 'astro:actions'
 
-// const {succes, error, result} = Astro.getActionResult(actions.lead.create)
-
-// if (!succes) {
-//   console.log(result)
-// } else {
-//   console.error(error)
-// }
-
 const result = Astro.getActionResult(actions.lead.create)
-
-if (!result?.error) {
-  console.error(result?.error)
-} else {
-  console.log(result.data)
+let data = result?.data
+let err = result?.error
+if (data && !err) {
+  console.log(err)
 }
+console.log(err)
 ---
 
-{result?.error && <p class="error">Action error</p>}
-
+{err && <p class="error">{err}</p>}
 <form id="hp-hero-form" name="hpHeroForm" method="post" action={actions.lead.create}>
   <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
   <input type="text" placeholder="Ваш телефон" name="leadPhone" required />

@@ -6,9 +6,10 @@ import {
   type EmailMessageConfig,
   type NodemailerSendMessageConfig,
 } from '@ts/email/EmailMessageProps'
-import { error } from 'node_modules/astro/dist/core/logger/core'
 
 export async function sendMessageToEmail(props: EmailMessageConfig) {
+  // для проверки входящих props
+  // console.log({ emailProps: props })
   try {
     if (!props.text && !props.html) {
       throw new Error('Missing message (text or html).')
@@ -28,7 +29,6 @@ export async function sendMessageToEmail(props: EmailMessageConfig) {
           props.poolConfig = import.meta.env.NEW_LEADS_TRANSPORT
           props.subject = 'Новая заявка'
           props.email = import.meta.env.SMTPS_NEW_LEADS_EMAIL
-
           break
 
         case EmailTemplates.LeadToManager:
@@ -59,7 +59,7 @@ export async function sendMessageToEmail(props: EmailMessageConfig) {
 
     let config: NodemailerSendMessageConfig = {
       from: props.from as NodemailerAddresObject, // из вне | по шаблону |
-      to: props.email, // из вне | по шаблону |
+      // to: props.email, // из вне | по шаблону |
       cc: props?.cc || [], // из вне | по шаблону
       bcc: props?.bcc || [], // из вне | по шаблону
       subject: props.subject, // из вне | по шаблону | 'Без темы'

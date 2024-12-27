@@ -8,7 +8,6 @@ import { TGTemplates, type TGMessageConfig } from '@ts/telegram/TGMessageProps'
 
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
-import { error } from 'node_modules/astro/dist/core/logger/core'
 
 // console.log(isMobilePhone('+79030238585', 'any', { strictMode: true }))
 
@@ -48,34 +47,28 @@ export let lead = {
       let TGResult = await sendMessageToTelegram(TGConfig)
       let EmailResult = await sendMessageToEmail(EmailConfig)
 
-      if (!TGResult.error && !EmailResult.error) {
-        return {
-          succes: true,
-          error: undefined,
-          result: {
-            TG: TGResult.data,
-            Email: EmailResult.data,
-          },
-        }
-      } else if (TGResult.error && EmailResult.error) {
-        return {
-          succes: false,
-          error: {
-            TG: TGResult.error,
-            Email: EmailResult.error,
-          },
-          result: undefined,
-        }
-      } else if (TGResult.error || EmailResult.error) {
-        return {
-          succes: false,
-          error: {
-            TG: TGResult.error || undefined,
-            Email: EmailResult.error || undefined,
-          },
-          result: undefined,
-        }
+      if (TGResult.error && EmailResult.error) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'TG Bot and Nodemailer SMTPS server are not working',
+        })
       }
+
+      if (TGResult.error) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'TG Bot error',
+        })
+      }
+
+      if (EmailResult.error) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Nodemailer SMTPS server error  ',
+        })
+      }
+
+      return { tg: TGResult.data, email: EmailResult.data }
     },
   }),
 }
