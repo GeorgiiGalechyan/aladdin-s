@@ -7,7 +7,7 @@ import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: 'static',
   // site: 'http://localhost:4321/',
 
   i18n: {
@@ -17,14 +17,14 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
     // Резервные локали
-    // fallback: {
-    //   en: 'en',
-    //   de: 'de',
-    //   fr: 'fr',
-    //   tm: 'tm',
-    //   kz: 'kz',
-    //   uz: 'uz',
-    // },
+    fallback: {
+      en: 'en',
+      de: 'de',
+      fr: 'fr',
+      tm: 'tm',
+      kz: 'kz',
+      uz: 'uz',
+    },
   },
 
   integrations: [icon(), react()],
