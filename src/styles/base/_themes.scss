@@ -36,9 +36,7 @@ html {
   --link-color-dark: var(--accent-dark);
 }
 
-/* Default     | По умолчанию*/
-/* Preferences | Предпочтения */
-/* Light theme | Светлая тема */
+/* Default | По умолчанию*/
 :root {
   color-scheme: light;
 
@@ -56,29 +54,6 @@ html {
 
   --text-color: var(--text-color-light);
   --link-color: var(--link-color-light);
-}
-
-/* Preferences | Предпочтения */
-/* Dark theme  | Тёмная тема  */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-
-    --accent-color: var(--accent-dark);
-
-    --surface-1: var(--surface-1-dark);
-    --surface-2: var(--surface-2-dark);
-    --surface-3: var(--surface-3-dark);
-    --surface-4: var(--surface-4-dark);
-
-    --surface-invert-1: var(--surface-invert-1-dark);
-    --surface-invert-2: var(--surface-invert-2-dark);
-    --surface-invert-3: var(--surface-invert-3-dark);
-    --surface-invert-4: var(--surface-invert-4-dark);
-
-    --text-color: var(--text-color-dark);
-    --link-color: var(--link-color-dark);
-  }
 }
 
 /* Light theme | Светлая тема */
