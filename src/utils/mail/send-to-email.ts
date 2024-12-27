@@ -59,7 +59,7 @@ export async function sendMessageToEmail(props: EmailMessageConfig) {
 
     let config: NodemailerSendMessageConfig = {
       from: props.from as NodemailerAddresObject, // из вне | по шаблону |
-      // to: props.email, // из вне | по шаблону |
+      to: props.email, // из вне | по шаблону |
       cc: props?.cc || [], // из вне | по шаблону
       bcc: props?.bcc || [], // из вне | по шаблону
       subject: props.subject, // из вне | по шаблону | 'Без темы'
