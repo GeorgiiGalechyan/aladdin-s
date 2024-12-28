@@ -15,7 +15,7 @@ console.log('siteUrl', siteUrl)
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: siteUrl,
+  // site: siteUrl,
 
   i18n: {
     defaultLocale: 'ru',
