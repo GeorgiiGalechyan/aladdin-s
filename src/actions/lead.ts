@@ -30,14 +30,14 @@ export let lead = {
     }),
 
     handler: async ({ leadName, leadPhone }, ctx) => {
-      let EmailConfig: EmailMessageConfig = {
-        template: EmailTemplates.NewLead,
-        from: {
-          name: 'Сайт aladdin-s.ru',
-          address: 'galechyan23@yandex.ru',
-        },
-        html: `<div><strong>${leadName}:</strong> ${leadPhone}</div>`,
-      }
+      // let EmailConfig: EmailMessageConfig = {
+      //   template: EmailTemplates.NewLead,
+      //   from: {
+      //     name: 'Сайт aladdin-s.ru',
+      //     address: 'galechyan23@yandex.ru',
+      //   },
+      //   html: `<div><strong>${leadName}:</strong> ${leadPhone}</div>`,
+      // }
 
       let TGConfig: TGMessageConfig = {
         template: TGTemplates.NewLead,
@@ -45,14 +45,14 @@ export let lead = {
       }
 
       let TGResult = await sendMessageToTelegram(TGConfig)
-      let EmailResult = await sendMessageToEmail(EmailConfig)
+      // let EmailResult = await sendMessageToEmail(EmailConfig)
 
-      if (TGResult.error && EmailResult.error) {
-        throw new ActionError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: 'TG Bot and Nodemailer SMTPS server are not working',
-        })
-      }
+      // if (TGResult.error && EmailResult.error) {
+      //   throw new ActionError({
+      //     code: 'INTERNAL_SERVER_ERROR',
+      //     message: 'TG Bot and Nodemailer SMTPS server are not working',
+      //   })
+      // }
 
       if (TGResult.error) {
         throw new ActionError({
@@ -61,14 +61,14 @@ export let lead = {
         })
       }
 
-      if (EmailResult.error) {
-        throw new ActionError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: 'Nodemailer SMTPS server error  ',
-        })
-      }
+      // if (EmailResult.error) {
+      //   throw new ActionError({
+      //     code: 'INTERNAL_SERVER_ERROR',
+      //     message: 'Nodemailer SMTPS server error  ',
+      //   })
+      // }
 
-      return { tg: TGResult.data, email: EmailResult.data }
+      return { tg: TGResult.data /*, email: EmailResult.data*/ }
     },
   }),
 }
