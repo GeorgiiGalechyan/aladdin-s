@@ -5,17 +5,17 @@ import vercel from '@astrojs/vercel/static'
 import icon from 'astro-icon'
 import react from '@astrojs/react'
 
-const siteUrl =
-  process.env.VERCEL_ENV === 'production'
-    ? 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/' // 'your.prod.domain.here'
-    : 'http://localhost:4321/ru/'
+// const siteUrl =
+//   process.env.VERCEL_ENV === 'production'
+//     ? 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/' // 'your.prod.domain.here'
+//     : 'http://localhost:4321/ru/'
 
 console.log('siteUrl', siteUrl)
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/',
+  site: 'aladdin-s-georgiigalechyans-projects.vercel.app',
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
