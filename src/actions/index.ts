@@ -18,11 +18,12 @@ export let server = {
     handler: (input) => {
       if (!input) {
         throw new ActionError({ code: 'BAD_REQUEST', message: 'Error: Invalid or empty "input".' })
-      }
-      console.log(input)
-      return {
-        message: 'test',
-        status: 200,
+      } else {
+        console.log(input)
+        return {
+          data: { message: 'test' },
+          error: undefined,
+        }
       }
     },
   }),

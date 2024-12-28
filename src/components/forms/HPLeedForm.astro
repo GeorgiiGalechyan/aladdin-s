@@ -7,7 +7,7 @@ const result = Astro.getActionResult(actions.test)
 let data = result?.data
 let err = result?.error
 if (data && !err) {
-  console.log(err)
+  console.log(data)
 }
 console.log(err)
 ---
