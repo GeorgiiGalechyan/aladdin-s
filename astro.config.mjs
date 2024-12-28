@@ -5,10 +5,10 @@ import vercel from '@astrojs/vercel'
 import icon from 'astro-icon'
 import react from '@astrojs/react'
 
-// const siteUrl =
-//   process.env.VERCEL_ENV === 'production'
-//     ? 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/' // 'your.prod.domain.here'
-//     : 'http://localhost:4321/ru/'
+const siteUrl =
+  process.env.VERCEL_ENV === 'production'
+    ? 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/' // 'your.prod.domain.here'
+    : 'http://localhost:4321/ru/'
 
 console.log('siteUrl', siteUrl)
 
