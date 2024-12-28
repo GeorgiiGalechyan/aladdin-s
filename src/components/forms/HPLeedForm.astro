@@ -3,7 +3,7 @@ export const prerender = false
 
 import { actions } from 'astro:actions'
 
-const result = Astro.getActionResult(actions.lead.create)
+const result = Astro.getActionResult(actions.test)
 let data = result?.data
 let err = result?.error
 if (data && !err) {
@@ -13,7 +13,7 @@ console.log(err)
 ---
 
 {err && <p class="error">{err}</p>}
-<form id="hp-hero-form" name="hpHeroForm" method="post" action={actions.lead.create}>
+<form id="hp-hero-form" name="hpHeroForm" method="post" action={actions.test}>
   <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
   <input type="text" placeholder="Ваш телефон" name="leadPhone" required />
 
