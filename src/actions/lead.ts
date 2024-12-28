@@ -30,10 +30,6 @@ export let lead = {
     }),
 
     handler: async ({ leadName, leadPhone }, ctx) => {
-      // let EmailConfig: EmailMessageConfig =
-
-      // let TGConfig: TGMessageConfig =
-
       let TGResult = await sendMessageToTelegram({
         template: TGTemplates.NewLead,
         text: `<strong>${leadName}:</strong> ${leadPhone}`,
@@ -51,21 +47,21 @@ export let lead = {
       if (TGResult.error && EmailResult.error) {
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'TG Bot and Nodemailer SMTPS server are not working',
+          message: 'TG Bot and Nodemailer SMTPS server are not working.',
         })
       }
 
       if (TGResult.error) {
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'TG Bot error',
+          message: 'TG Bot error.',
         })
       }
 
       if (EmailResult.error) {
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
-          message: 'Nodemailer SMTPS server error  ',
+          message: 'Nodemailer SMTPS server error.',
         })
       }
 
