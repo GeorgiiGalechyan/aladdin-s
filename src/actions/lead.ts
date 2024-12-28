@@ -4,10 +4,10 @@ import { z } from 'astro:schema'
 import isMobilePhone from 'validator/lib/isMobilePhone'
 
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
-import { TGTemplates, type TGMessageConfig } from '@ts/telegram/TGMessageProps'
+import { TGTemplates } from '@ts/telegram/TGMessageProps'
 
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
-import { EmailTemplates, type EmailMessageConfig } from '@ts/email/EmailMessageProps'
+import { EmailTemplates } from '@ts/email/EmailMessageProps'
 
 // console.log(isMobilePhone('+79030238585', 'any', { strictMode: true }))
 
@@ -30,29 +30,30 @@ export let lead = {
     }),
 
     handler: async ({ leadName, leadPhone }, ctx) => {
-      // let EmailConfig: EmailMessageConfig = {
-      //   template: EmailTemplates.NewLead,
-      //   from: {
-      //     name: 'Сайт aladdin-s.ru',
-      //     address: 'galechyan23@yandex.ru',
-      //   },
-      //   html: `<div><strong>${leadName}:</strong> ${leadPhone}</div>`,
-      // }
+      // let EmailConfig: EmailMessageConfig =
 
-      let TGConfig: TGMessageConfig = {
+      // let TGConfig: TGMessageConfig =
+
+      let TGResult = await sendMessageToTelegram({
         template: TGTemplates.NewLead,
         text: `<strong>${leadName}:</strong> ${leadPhone}`,
+      })
+
+      let EmailResult = await sendMessageToEmail({
+        template: EmailTemplates.NewLead,
+        from: {
+          name: 'Сайт aladdin-s.ru',
+          address: 'galechyan23@yandex.ru',
+        },
+        html: `<div><strong>${leadName}:</strong> ${leadPhone}</div>`,
+      })
+
+      if (TGResult.error && EmailResult.error) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'TG Bot and Nodemailer SMTPS server are not working',
+        })
       }
-
-      let TGResult = await sendMessageToTelegram(TGConfig)
-      // let EmailResult = await sendMessageToEmail(EmailConfig)
-
-      // if (TGResult.error && EmailResult.error) {
-      //   throw new ActionError({
-      //     code: 'INTERNAL_SERVER_ERROR',
-      //     message: 'TG Bot and Nodemailer SMTPS server are not working',
-      //   })
-      // }
 
       if (TGResult.error) {
         throw new ActionError({
@@ -61,14 +62,14 @@ export let lead = {
         })
       }
 
-      // if (EmailResult.error) {
-      //   throw new ActionError({
-      //     code: 'INTERNAL_SERVER_ERROR',
-      //     message: 'Nodemailer SMTPS server error  ',
-      //   })
-      // }
+      if (EmailResult.error) {
+        throw new ActionError({
+          code: 'INTERNAL_SERVER_ERROR',
+          message: 'Nodemailer SMTPS server error  ',
+        })
+      }
 
-      return { tg: TGResult.data /*, email: EmailResult.data*/ }
+      return { tg: TGResult.data, email: EmailResult.data }
     },
   }),
 }
