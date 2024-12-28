@@ -16,6 +16,7 @@ console.log('siteUrl', siteUrl)
 export default defineConfig({
   output: 'static',
   site: 'aladdin-s-georgiigalechyans-projects.vercel.app',
+
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
@@ -33,8 +34,8 @@ export default defineConfig({
     },
   },
 
-  integrations: [icon(), react()],
   adapter: vercel(),
+  outDir: './my-custom-build-directory',
   env: {
     schema: {
       // API_URL: envField.string({ context: "client", access: "public", optional: true }),
@@ -53,4 +54,5 @@ export default defineConfig({
       PG_CONFIG: envField.string({ context: 'server', access: 'secret' }),
     },
   },
+  integrations: [icon(), react()],
 })
