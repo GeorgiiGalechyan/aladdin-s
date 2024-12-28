@@ -15,7 +15,7 @@ console.log('siteUrl', siteUrl)
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: siteUrl,
+  site: 'aladdin-s-georgiigalechyans-projects.vercel.app/ru/',
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'en', 'de', 'fr', 'tm', 'kz', 'uz'],
