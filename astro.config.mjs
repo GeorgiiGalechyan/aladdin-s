@@ -1,6 +1,6 @@
 import { defineConfig, envField } from 'astro/config'
 
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel'
 
 import icon from 'astro-icon'
 import react from '@astrojs/react'
@@ -15,7 +15,7 @@ console.log('siteUrl', siteUrl)
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'aladdin-s-georgiigalechyans-projects.vercel.app',
+  // site: 'aladdin-s-georgiigalechyans-projects.vercel.app',
 
   i18n: {
     defaultLocale: 'ru',
@@ -35,7 +35,7 @@ export default defineConfig({
   },
 
   adapter: vercel(),
-  outDir: './my-custom-build-directory',
+  outDir: './dist',
   env: {
     schema: {
       // API_URL: envField.string({ context: "client", access: "public", optional: true }),
