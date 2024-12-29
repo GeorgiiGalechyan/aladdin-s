@@ -1,0 +1,27 @@
+---
+export const prerender = false
+
+let { error, data, success } = Astro.props
+---
+
+{error && <p class="form-error-message">{error.message}</p>}
+{data && <p class="form-success-message">{success}</p>}
+
+<style>
+  .form-error-message,
+  .form-success-message {
+    position: relative;
+    font-weight: bold;
+  }
+
+  .form-error-message::before {
+    position: absolute;
+    content: '';
+  }
+
+  .form-success-message::before {
+    position: absolute;
+
+    content: '';
+  }
+</style>

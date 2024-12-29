@@ -1,29 +1,58 @@
 ---
 export const prerender = false
 
-import { actions } from 'astro:actions'
+import { actions, isInputError } from 'astro:actions'
+import FormActionMessage from './FormActionMessage.astro'
 
 const result = Astro.getActionResult(actions.lead.create)
 let data = result?.data
 let err = result?.error
-if (data && !err) {
-  console.log('Actions worked without errors.')
-}
-console.error(err)
+const inputErrors = isInputError(err) ? err.fields : {}
 ---
 
-{err && <p class="error">{err}</p>}
 <form id="hp-hero-form" name="hpHeroForm" method="post" action={actions.lead.create}>
-  <input type="text" placeholder="Ваше имя" name="leadName" required={true} />
-  <input type="text" placeholder="Ваш телефон" name="leadPhone" required />
+  <input
+    transition:persist
+    required
+    minlength="2"
+    maxlength="40"
+    type="text"
+    placeholder="Ваше имя"
+    name="leadName"
+    aria-describedby="error"
+  />
+  {inputErrors.leadName && <p class="form-input-error">{inputErrors.leadName.join(',')}</p>}
+  <input
+    transition:persist
+    required
+    name="leadPhone"
+    type="text"
+    inputmode="tel"
+    pattern="^[0-9+][0-9]+$"
+    minlength="10"
+    maxlength="21"
+    title="Телефон может содержать только цифры и +"
+    placeholder="Ваш телефон начиная с +7"
+    aria-describedby="error"
+  />
+  {inputErrors.leadPhone && <p class="form-input-error">{inputErrors.leadPhone.join(', ')}</p>}
 
   <div>
-    <input type="checkbox" placeholder="Даю согласие на обработку" name="formConsent" required />
+    <input
+      transition:persist
+      required
+      type="checkbox"
+      placeholder="Даю согласие на обработку"
+      name="formConsent"
+      aria-describedby="error"
+    />
     {' Даю согласие на обработку '}
     <a href="/ru/law-info/personal-data-processing-policy" target="_blank">
       {'персональных данных'}
     </a>
   </div>
+  {inputErrors.formConsent && <p class="form-input-error">{inputErrors.formConsent.join(', ')}</p>}
 
   <button>Узнать цену</button>
+  <FormActionMessage data={data} success="Ваша заявка принята" />
 </form>

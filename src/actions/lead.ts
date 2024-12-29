@@ -16,16 +16,16 @@ export let lead = {
       leadName: z
         .string()
         .trim()
-        .min(2, { message: 'Input value too short.' })
-        .max(50, { message: 'Input value too long.' }),
+        .min(2, { message: 'The name is too short.' })
+        .max(40, { message: 'The name is too long.' }),
       leadPhone: z
         .string()
         .trim()
         .transform((val) => val.replaceAll(' ', ''))
         .refine((val) => validator.isMobilePhone(val, 'any', { strictMode: true }), {
-          message: 'Incorrect phone number.',
+          message: 'Enter the number in international format with +',
         }),
-      formConsent: z.boolean({ message: 'FormConsent is not boolean.' }),
+      formConsent: z.string().refine((val) => val === 'on', { message: 'You must agree to the privacy policy.' }),
     }),
 
     handler: async ({ leadName, leadPhone }, ctx) => {
@@ -44,6 +44,7 @@ export let lead = {
       })
 
       if (TGResult.error && EmailResult.error) {
+        console.log(TGResult.error, EmailResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'TG Bot and Nodemailer SMTPS server are not working.',
@@ -51,6 +52,7 @@ export let lead = {
       }
 
       if (TGResult.error) {
+        console.log(TGResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'TG Bot error.',
@@ -58,6 +60,7 @@ export let lead = {
       }
 
       if (EmailResult.error) {
+        console.log(EmailResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'Nodemailer SMTPS server error.',

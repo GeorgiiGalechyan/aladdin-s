@@ -13,9 +13,12 @@ export async function sendMessageToTelegram(props: TGMessageConfig) {
       switch (props.template) {
         // Шаблон сообщения при создании лида (из html-формы или др. источника)
         case TGTemplates.NewLead:
-          props.token = import.meta.env.TG_BOT_TOKEN as string
-          props.chat_id = import.meta.env.TG_CHAT_ID as string | number
+          props.token = String(import.meta.env.TG_BOT_TOKEN)
+          props.chat_id = String(import.meta.env.TG_CHAT_ID)
 
+          if (!props.token || !props.chat_id) {
+            throw new Error('Env variables are not read or defined.')
+          }
           break
         // Шаблон сообщения лида (не клиента) менеджеру
         case TGTemplates.LeadToManager:
@@ -73,16 +76,23 @@ export async function sendMessageToTelegram(props: TGMessageConfig) {
     // Бот отправляет сообщение
     let data = await bot.api.sendMessage(props.chat_id, props.text as string, { parse_mode: props.parse_mode })
 
+    // Выключаем бота...
+    // см. https://grammy.dev/advanced/reliability#graceful-shutdown
+    process.once('SIGINT', () => bot.stop())
+    process.once('SIGTERM', () => bot.stop())
+
     // Стартуем бота!
     bot.start()
 
     function stopBotAfterMessage() {
       setTimeout(() => {
         bot.stop()
-      }, 1000)
+      }, 500)
     }
 
+    // Останавливаем бота после отправки сообщения
     stopBotAfterMessage()
+
     // Возвращаем некий результат по итогам отправки сообщения ботом
     return { data, error: undefined }
   } catch (error) {
