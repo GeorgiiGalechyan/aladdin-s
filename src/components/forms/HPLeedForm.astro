@@ -7,9 +7,9 @@ const result = Astro.getActionResult(actions.lead.create)
 let data = result?.data
 let err = result?.error
 if (data && !err) {
-  console.log(data)
+  console.log('Actions worked without errors.')
 }
-console.log(err)
+console.error(err)
 ---
 
 {err && <p class="error">{err}</p>}

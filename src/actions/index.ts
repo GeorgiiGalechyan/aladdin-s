@@ -8,7 +8,11 @@ export let server = {
   test: defineAction({
     accept: 'form',
     input: z.object({
-      leadName: z.string().min(2, { message: 'Input value too short.' }).max(50, { message: 'Input value too long.' }),
+      leadName: z
+        .string()
+        .trim()
+        .min(2, { message: 'Input value too short.' })
+        .max(50, { message: 'Input value too long.' }),
       leadPhone: z
         .string()
         .min(10, { message: 'Input value too short.' })

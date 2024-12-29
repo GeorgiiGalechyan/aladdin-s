@@ -1,7 +1,7 @@
 import { defineAction, ActionError } from 'astro:actions'
 import { z } from 'astro:schema'
 
-import isMobilePhone from 'validator/lib/isMobilePhone'
+import validator from 'validator'
 
 import { sendMessageToTelegram } from 'src/utils/telegram/send-to-telegram'
 import { TGTemplates } from '@ts/telegram/TGMessageProps'
@@ -9,23 +9,22 @@ import { TGTemplates } from '@ts/telegram/TGMessageProps'
 import { sendMessageToEmail } from 'src/utils/mail/send-to-email'
 import { EmailTemplates } from '@ts/email/EmailMessageProps'
 
-// console.log(isMobilePhone('+79030238585', 'any', { strictMode: true }))
-
 export let lead = {
   create: defineAction({
     accept: 'form',
     input: z.object({
-      leadName: z.string().trim().min(2).max(50),
+      leadName: z
+        .string()
+        .trim()
+        .min(2, { message: 'Input value too short.' })
+        .max(50, { message: 'Input value too long.' }),
       leadPhone: z
         .string()
         .trim()
-        .refine(
-          (val) => {
-            return val.length <= 255
-            // return isMobilePhone(val, 'any', { strictMode: true })
-          },
-          { message: 'Incorrect phone number.' }
-        ),
+        .transform((val) => val.replaceAll(' ', ''))
+        .refine((val) => validator.isMobilePhone(val, 'any', { strictMode: true }), {
+          message: 'Incorrect phone number.',
+        }),
       formConsent: z.boolean({ message: 'FormConsent is not boolean.' }),
     }),
 
