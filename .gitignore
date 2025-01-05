@@ -30,3 +30,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+draft/
+
+src/db/postgres/config.js

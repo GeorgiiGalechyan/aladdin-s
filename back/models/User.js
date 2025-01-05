@@ -1,10 +1,12 @@
 class User {
-  constructor(login, password) {
+  constructor(login, password, role) {
     this.login = login
     this.password = password
-  }
 
-  role = undefined
+    this.isAdmin
+
+    role = 'admin' ? (this.isAdmin = 1) : (this.isAdmin = 0)
+  }
 
   addEmail() {}
   changePassword() {}

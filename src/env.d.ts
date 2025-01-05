@@ -12,7 +12,12 @@ interface ImportMetaEnv {
   readonly TG_CHAT_ID: string | number
 
   // Postgres config and other data
-  readonly PG_CONFIG: string
+  readonly PG_USER: string
+  readonly PG_PASS: string
+  readonly PG_HOST: string
+  readonly PG_PORT: number
+  readonly PG_DB: string
+  readonly PG_SSL_CA: string
 
   // more env variables...
 }

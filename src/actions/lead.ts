@@ -44,7 +44,7 @@ export let lead = {
       })
 
       if (TGResult.error && EmailResult.error) {
-        console.log(TGResult.error, EmailResult.error)
+        console.log('TG & Email Errors', TGResult.error, EmailResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'TG Bot and Nodemailer SMTPS server are not working.',
@@ -52,7 +52,7 @@ export let lead = {
       }
 
       if (TGResult.error) {
-        console.log(TGResult.error)
+        console.log('TG Error', TGResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'TG Bot error.',
@@ -60,7 +60,7 @@ export let lead = {
       }
 
       if (EmailResult.error) {
-        console.log(EmailResult.error)
+        console.log('Email Error', EmailResult.error)
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'Nodemailer SMTPS server error.',

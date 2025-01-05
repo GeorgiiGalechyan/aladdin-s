@@ -33,6 +33,7 @@ const inputErrors = isInputError(err) ? err.fields : {}
     maxlength="21"
     title="Телефон может содержать только цифры и +"
     placeholder="Ваш телефон начиная с +7"
+    aria-label="Номер телефона"
     aria-describedby="error"
   />
   {inputErrors.leadPhone && <p class="form-input-error">{inputErrors.leadPhone.join(', ')}</p>}

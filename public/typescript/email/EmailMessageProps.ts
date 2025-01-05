@@ -1,5 +1,6 @@
 export enum EmailTemplates {
   NewLead = 'newLead',
+  Reg = 'registration',
   LeadToManager = 'fromLeadToManager',
   ManagerToLead = 'fromManagerToLead',
 }
