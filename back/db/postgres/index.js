@@ -1,4 +1,4 @@
-import Pool from 'pg-pool'
+import { Pool } from 'pg'
 
 const config = {
   user: import.meta.env.PG_USER,
@@ -17,16 +17,6 @@ const config = {
 
 const pool = new Pool(config)
 
-pool.connect(function (err) {
-  if (err) throw err
-  pool.query('SELECT VERSION()', [], function (err, result) {
-    if (err) throw err
+const client = await pool.connect()
 
-    console.log(result.rows[0].version)
-    pool.end(function (err) {
-      if (err) throw err
-    })
-  })
-})
-
-// export { client as db }
+export { client }

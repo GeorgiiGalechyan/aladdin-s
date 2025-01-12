@@ -34,6 +34,11 @@ export default defineConfig({
     },
   },
 
+  vite: {
+    optimizeDeps: {
+      exclude: ['@node-rs/argon2'],
+    },
+  },
   adapter: vercel(),
   outDir: './dist',
   env: {
@@ -41,17 +46,20 @@ export default defineConfig({
       // API_URL: envField.string({ context: "client", access: "public", optional: true }),
       // PORT: envField.number({ context: "server", access: "public", default: 4321 }),
 
-      // Nodemailer or other SMTP
-
-      NEW_LEADS_TRANSPORT: envField.string({ context: 'server', access: 'secret' }),
-      SMTPS_NEW_LEADS_EMAIL: envField.string({ context: 'server', access: 'secret' }),
-
       // Telegram BOT and other TG data
-      TG_BOT_TOKEN: envField.string({ context: 'server', access: 'secret' }),
       TG_CHAT_ID: envField.string({ context: 'server', access: 'secret' }),
+      TG_BOT_TOKEN: envField.string({ context: 'server', access: 'secret' }),
+
+      // Nodemailer or other SMTP
+      SMTPS_NEW_LEADS_EMAIL: envField.string({ context: 'server', access: 'secret' }),
+      NEW_LEADS_TRANSPORT: envField.string({ context: 'server', access: 'secret' }),
 
       // Postgres config and other data
-      PG_CONFIG: envField.string({ context: 'server', access: 'secret' }),
+      PG_USER: envField.string({ context: 'server', access: 'secret' }),
+      PG_PASS: envField.string({ context: 'server', access: 'secret' }),
+      PG_HOST: envField.string({ context: 'server', access: 'secret' }),
+      PG_PORT: envField.number({ context: 'server', access: 'secret' }),
+      PG_DB: envField.string({ context: 'server', access: 'secret' }),
     },
   },
   integrations: [icon(), react()],

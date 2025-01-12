@@ -17,7 +17,6 @@ interface ImportMetaEnv {
   readonly PG_HOST: string
   readonly PG_PORT: number
   readonly PG_DB: string
-  readonly PG_SSL_CA: string
 
   // more env variables...
 }
