@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -21,6 +23,7 @@
     "@types/react-dom": "^18.3.1",
     "astro": "^5.1.1",
     "astro-icon": "^1.1.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "grammy": "^1.32.0",
     "i": "^0.3.7",
@@ -35,9 +38,18 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
+    "@storybook/addon-essentials": "^8.6.0-alpha.0",
+    "@storybook/addon-interactions": "^8.6.0-alpha.0",
+    "@storybook/addon-onboarding": "^8.6.0-alpha.0",
+    "@storybook/blocks": "^8.6.0-alpha.0",
+    "@storybook/react": "^8.6.0-alpha.0",
+    "@storybook/react-vite": "^8.6.0-alpha.0",
+    "@storybook/test": "^8.6.0-alpha.0",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.10",
     "@types/validator": "^13.12.2",
-    "sass": "^1.77.4"
+    "sass": "^1.77.4",
+    "storybook": "^8.6.0-alpha.0"
   }
 }
