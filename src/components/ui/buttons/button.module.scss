@@ -1,4 +1,4 @@
-.cva-base {
+.base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
     border: inherit;
   }
 
-  .big {
+  .large {
     font-size: large;
     padding: 2em, 3em;
     border: inherit;

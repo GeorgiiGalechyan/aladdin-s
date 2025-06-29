@@ -2,26 +2,42 @@ import { type FC, type ButtonHTMLAttributes } from 'react'
 import { type VariantProps, cva } from 'class-variance-authority'
 import cl from './button.module.scss'
 
-/*
-Active: Enable / Disable
-Size: small, medium, big
-Color: transparent (background-color: transparent, border ...) / primary / other */
-
-const ButtonVariant = cva('font-size: ', {
+const ButtonVariant = cva(cl.base, {
   variants: {
-    variant: {
-      default: '',
+    intent: {
+      primary: cl.primary,
+      secondary: cl.secondary,
+      dangerous: cl.dangerous,
     },
+
     size: {
-      default: '',
+      sm: cl.small,
+      md: cl.medium,
+      lg: cl.large,
     },
+    disabled: {
+      true: cl.disabled,
+      false: '',
+    },
+    fullWidth: {
+      true: cl.fullWidth,
+      false: '',
+    },
+  },
+  compoundVariants: [],
+  defaultVariants: {
+    intent: 'primary',
+    size: 'md',
+    disabled: false,
+    fullWidth: false,
   },
 })
 
-const Button: FC<ButtonProps> = ({ ...props }) => {
-  return <button {...props} />
+const Button: FC<ButtonProps> = ({ children, ...props }) => {
+  return <button {...props}>{children}</button>
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof ButtonVariant> {
+  children?: any
   href?: string
 }
